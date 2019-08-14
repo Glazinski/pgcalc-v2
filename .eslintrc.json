@@ -28,6 +28,9 @@
     ],
     "semi": "warn",
     "func-names": "off",
-    "node/no-unsupported-features/es-syntax": "off"
+    "node/no-unsupported-features/es-syntax": "off",
+    "react/prop-types": "warn",
+    "react/destructuring-assignment": "off",
+    "import/prefer-default-export": "off"
   }
 }
