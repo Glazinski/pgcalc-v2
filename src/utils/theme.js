@@ -9,6 +9,7 @@ export const theme = {
     l: '2rem',
     xl: '2.3rem'
   },
+  fontWeight: {},
   zIndex: {
     level10: '10',
     level15: '15',

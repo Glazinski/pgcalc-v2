@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
-import { BrowserRouter as Router, Route } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
 import { StyledHeader, StyledNav, StyledLink } from './styledHeader';
 import { H1 } from '../styledComp/H1';
-import { navData, pageTitle } from '../../data/navData';
+import { navData, pageTitle, rulesLink } from '../../data/navData';
 import HamburgerMenu from './HamburgerMenu';
-import index from '../../pages/index';
+import index from '../../pages/nowaMatura';
 import staraMatura from '../../pages/staraMatura';
 
 const Header = () => {
@@ -22,6 +22,7 @@ const Header = () => {
         <StyledNav pose={checked ? 'visible' : 'hidden'}>
           {navData.map(item => (
             <StyledLink
+              as={Link}
               key={item.id}
               onClick={handleChecked}
               to={`/${item.link}`}
@@ -29,6 +30,14 @@ const Header = () => {
               {item.content}
             </StyledLink>
           ))}
+          <StyledLink
+            pose={checked ? 'visible' : 'hidden'}
+            href={rulesLink.link}
+            target="_blank"
+            bottom={1}
+          >
+            {rulesLink.content}
+          </StyledLink>
         </StyledNav>
       </StyledHeader>
 

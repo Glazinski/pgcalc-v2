@@ -1,6 +1,5 @@
-import { Link } from 'react-router-dom';
 import styled from 'styled-components';
-import { Nav } from '../styledComp/animations';
+import { Nav, Alink } from '../styledComp/animations';
 
 export const StyledHeader = styled.header`
   display: flex;
@@ -26,8 +25,19 @@ export const StyledNav = styled(Nav)`
   background-color: #fff;
 `;
 
-export const StyledLink = styled(Link)`
+export const StyledLink = styled(Alink)`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 8rem;
   text-decoration: none;
   font-size: ${({ theme }) => theme.fontSize.xl};
   color: ${({ theme }) => theme.colors.secondaryDark};
+
+  position: ${({ bottom }) => (bottom === 1 ? 'fixed' : null)};
+  bottom: ${({ bottom }) => (bottom === 1 ? '0' : null)};
+  left: ${({ bottom }) => (bottom === 1 ? '0' : null)};
+  background-color: ${({ bottom }) => (bottom === 1 ? `#F3F3F3` : null)};
+  color: ${({ bottom }) => (bottom === 1 ? `#00669E` : null)};
 `;

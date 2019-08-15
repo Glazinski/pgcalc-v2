@@ -8,7 +8,24 @@ export const Nav = posed.nav({
     }
   },
   hidden: {
-    x: -1000,
+    x: '-100%',
+    transition: {
+      default: { ease: 'easeInOut', duration: 300 }
+    }
+  }
+});
+
+export const Alink = posed.a({
+  visible: {
+    y: 0,
+    delay: 200,
+    transition: {
+      default: { ease: 'easeInOut', duration: 300 }
+    }
+  },
+  hidden: {
+    y: '100%',
+    delay: 500,
     transition: {
       default: { ease: 'easeInOut', duration: 300 }
     }

@@ -15,6 +15,7 @@ export const StyledHamburger = styled.div`
     height: 2px;
     background-color: ${({ theme }) => theme.colors.primary};
     z-index: ${({ theme }) => theme.zIndex.level15};
+    transition: background-color 0.2s ease-in-out;
 
     ::before,
     ::after {
@@ -45,6 +46,7 @@ const StyledInput = styled.input`
   width: 30px;
   z-index: ${({ theme }) => theme.zIndex.level20};
   opacity: 0;
+
   &:checked ~ div {
     background-color: transparent;
     /* opacity: 0; */
