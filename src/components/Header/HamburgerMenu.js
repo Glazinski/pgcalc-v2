@@ -14,6 +14,8 @@ export const StyledHamburger = styled.div`
     width: 22px;
     height: 2px;
     background-color: ${({ theme }) => theme.colors.primary};
+    z-index: ${({ theme }) => theme.zIndex.level15};
+
     ::before,
     ::after {
       content: '';
@@ -22,26 +24,17 @@ export const StyledHamburger = styled.div`
       width: 22px;
       height: 2px;
       background-color: ${({ theme }) => theme.colors.primary};
+      transition: transform 0.3s ease-in-out;
     }
 
     ::before {
-      top: 7.5px;
+      transform-origin: 0% 0%;
+      top: -7.5px;
     }
 
     ::after {
-      top: -7.5px;
-    }
-  }
-
-  &:hover div {
-    background-color: transparent;
-    &::before {
-      top: 0;
-      transform: rotate(45deg);
-    }
-    &::after {
-      top: 0;
-      transform: rotate(-45deg);
+      transform-origin: 0% 100%;
+      top: 7.5px;
     }
   }
 `;
@@ -50,12 +43,33 @@ const StyledInput = styled.input`
   position: absolute;
   height: 30px;
   width: 30px;
+  z-index: ${({ theme }) => theme.zIndex.level20};
+  opacity: 0;
+  &:checked ~ div {
+    background-color: transparent;
+    /* opacity: 0; */
+    &::before {
+      transform: rotate(45deg);
+    }
+    &::after {
+      transform: rotate(-45deg);
+    }
+  }
+
+  :hover {
+    cursor: pointer;
+  }
 `;
 
-const HamburgerMenu = () => (
+const HamburgerMenu = props => (
   <StyledHamburger>
+    <StyledInput
+      name="navigation"
+      type="checkbox"
+      checked={props.checked}
+      onChange={props.handleChecked}
+    />
     <div />
-    <StyledInput type="checkbox" />
   </StyledHamburger>
 );
 
