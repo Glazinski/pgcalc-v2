@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
 import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
 import { StyledHeader, StyledNav, StyledLink } from './styledHeader';
-import { H1 } from '../styledComp/H1';
+import { H1 } from '../styledComp/styles';
 import { navData, pageTitle, rulesLink } from '../../data/navData';
 import HamburgerMenu from './HamburgerMenu';
-import index from '../../pages/nowaMatura';
+import NowaMaturaPage from '../../pages/nowaMatura';
 import staraMatura from '../../pages/staraMatura';
 
 const Header = () => {
@@ -41,7 +41,7 @@ const Header = () => {
         </StyledNav>
       </StyledHeader>
 
-      <Route path="/" exact component={index} />
+      <Route path="/" exact component={NowaMaturaPage} />
       <Route path="/stara-matura" component={staraMatura} />
     </Router>
   );
