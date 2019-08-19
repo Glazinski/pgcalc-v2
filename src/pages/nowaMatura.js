@@ -1,10 +1,18 @@
 import React, { useState } from 'react';
-import { H2, StyledMain } from '../components/styledComp/styles';
+import {
+  H2,
+  StyledMain,
+  StyledAddButton
+} from '../components/styledComp/styles';
 import Subject from '../components/Subject/Subject';
-import { nowaConfigSubjects } from '../data/nowaConfig';
+import { nowaConfigSubjects, test } from '../data/nowaConfig';
+import { extraSubjectsConfig } from '../data/extraSubjects';
+import CustomSelect from '../components/CustomSelect/CustomSelect';
 
 const NowaMaturaPage = () => {
   const [nowaConfig, setNowaConfig] = useState(nowaConfigSubjects);
+  const [testConfig, setTestConfig] = useState(test);
+  const [extraConfig, setExtraConfig] = useState(extraSubjectsConfig);
 
   return (
     <StyledMain>
@@ -13,7 +21,8 @@ const NowaMaturaPage = () => {
           Nowa Matura
         </H2>
       </div>
-      <Subject data={nowaConfig} />
+      <Subject data={nowaConfig} test={testConfig} extra={extraConfig} />
+      <StyledAddButton>+</StyledAddButton>
     </StyledMain>
   );
 };

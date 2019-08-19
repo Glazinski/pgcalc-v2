@@ -5,4 +5,5 @@ export const H3 = styled.h3`
   font-weight: ${({ theme }) => theme.fontWeight.regular};
   color: ${({ theme }) => theme.colors.black};
   padding: ${({ pad }) => (pad ? '3rem' : null)};
+  pointer-events: ${({ pointer }) => (pointer ? 'none' : null)};
 `;

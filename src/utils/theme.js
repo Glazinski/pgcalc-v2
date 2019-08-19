@@ -6,8 +6,10 @@ export const theme = {
     secondary: '#D2D2D2',
     secondaryLight: '#F3F3F3',
     secondaryDark: '#707070',
-    black: '#000'
+    black: '#000',
+    white: '#fff'
   },
+  boxShadow: 'rgba(0, 0, 0, 0.4)',
   borderRadius: '4px',
   fontSize: {
     s: '1.5rem',
@@ -34,6 +36,21 @@ export const theme = {
       left: -9px;
       background-color: #d2d2d2;
       z-index: -5;
+    }
+  `,
+  scrollbar: css`
+    ::-webkit-scrollbar {
+      width: 4px;
+      background-color: #f5f5f5;
+    }
+
+    ::-webkit-scrollbar-thumb {
+      background-color: #707070;
+      border-radius: 4px;
+    }
+
+    ::-webkit-scrollbar-track {
+      background-color: #f5f5f5;
     }
   `
 };

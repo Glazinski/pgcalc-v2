@@ -7,57 +7,38 @@ import {
   StyledSubjectWrapper,
   StyledInput
 } from './styledSubject';
+import CustomSelect from '../CustomSelect/CustomSelect';
 
 const Subject = props => (
   <StyledWrapper>
     <StyledForm>
-      {/* <div>
-        <H2 black mt>
-          Język Polski
-        </H2>
-      </div>
-      <StyledInnerForm>
-        <StyledSubjectWrapper>
-          <H3>
-            Egzamin
-            <br />
-            Państwowy
-          </H3>
-          <StyledInput type="number" />
-        </StyledSubjectWrapper>
-
-        <StyledSubjectWrapper>
-          <H3>
-            Egzamin
-            <br />
-            Państwowy
-          </H3>
-          <StyledInput type="number" />
-        </StyledSubjectWrapper>
-      </StyledInnerForm> */}
-
-      {props.data.map(
-        ({ id, title, subject, extSubject, level, secondLevel, hidden }) =>
-          hidden ? null : (
-            <React.Fragment key={id}>
-              <div>
+      {props.data.map(({ id, title, hidden, special }) =>
+        hidden ? null : (
+          <React.Fragment key={id}>
+            <div>
+              {special ? (
+                <CustomSelect extra={props.extra} />
+              ) : (
                 <H2 black mt>
                   {title}
                 </H2>
-              </div>
-              <StyledInnerForm>
-                <StyledSubjectWrapper>
-                  <H3 pad>{level}</H3>
-                  <StyledInput type="number" name={subject} />
+              )}
+            </div>
+            <StyledInnerForm>
+              {props.test.map(item => (
+                <StyledSubjectWrapper key={item.id}>
+                  <H3 pad>{item.level}</H3>
+                  <StyledInput
+                    type="number"
+                    name={item.subject}
+                    min={item.min}
+                    max={item.max}
+                  />
                 </StyledSubjectWrapper>
-
-                <StyledSubjectWrapper>
-                  <H3 pad>{secondLevel}</H3>
-                  <StyledInput type="number" name={extSubject} />
-                </StyledSubjectWrapper>
-              </StyledInnerForm>
-            </React.Fragment>
-          )
+              ))}
+            </StyledInnerForm>
+          </React.Fragment>
+        )
       )}
     </StyledForm>
   </StyledWrapper>

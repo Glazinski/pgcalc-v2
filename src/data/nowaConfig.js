@@ -1,40 +1,40 @@
 export const nowaConfigSubjects = [
   {
     id: 1,
-    title: 'Język obcy',
-    subject: 'basicForeign',
-    extSubject: 'extForeign',
-    level: `Poziom Podstawowy (%)`,
-    secondLevel: 'Poziom rozszerzony (%)',
-    value: 0
+    title: 'Język obcy'
   },
   {
     id: 2,
-    title: 'Język polski',
-    subject: 'basicPolish',
-    extSubject: 'extPolish',
-    level: `Poziom Podstawowy (%)`,
-    secondLevel: 'Poziom rozszerzony (%)',
-    value: 0
+    title: 'Język polski'
   },
   {
     id: 3,
     title: 'Matematyka',
-    subject: 'basicMath',
-    extSubject: 'extMath',
-    level: `Poziom Podstawowy (%)`,
-    secondLevel: 'Poziom rozszerzony (%)',
-    value: 0,
     hidden: true
   },
   {
     id: 4,
     title: 'Fizyka',
-    subject: 'basicAdd',
-    extSubject: 'extAdd',
+    hidden: true,
+    special: true
+  }
+];
+
+export const test = [
+  {
+    id: 12,
     level: `Poziom Podstawowy (%)`,
-    secondLevel: 'Poziom rozszerzony (%)',
-    value: 0,
-    hidden: true
+    subject: 'basicForeign',
+    min: 0,
+    max: 100,
+    value: 0
+  },
+  {
+    id: 22,
+    level: `Poziom Podstawowy (%)`,
+    subject: 'extPolish',
+    min: 0,
+    max: 100,
+    value: 0
   }
 ];

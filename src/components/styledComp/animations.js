@@ -31,3 +31,14 @@ export const Alink = posed.a({
     }
   }
 });
+
+export const List = posed.div({
+  enter: {
+    opacity: 1,
+    transition: { duration: 300 }
+  },
+  exit: {
+    opacity: 0,
+    transition: { duration: 300 }
+  }
+});
