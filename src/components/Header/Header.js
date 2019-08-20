@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
 import { StyledHeader, StyledNav, StyledLink } from './styledHeader';
-import { H1 } from '../styledComp/styles';
+import { H1 } from '../styledComp';
 import { navData, pageTitle, rulesLink } from '../../data/navData';
 import HamburgerMenu from './HamburgerMenu';
 import NowaMaturaPage from '../../pages/nowaMatura';
@@ -41,7 +41,8 @@ const Header = () => {
         </StyledNav>
       </StyledHeader>
 
-      <Route path="/" exact component={NowaMaturaPage} />
+      {/* <Route path="/" exact component={NowaMaturaPage} /> */}
+      <Route path="/" exact render={() => <NowaMaturaPage />} />
       <Route path="/stara-matura" component={staraMatura} />
     </Router>
   );

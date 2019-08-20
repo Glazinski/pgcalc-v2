@@ -1,18 +1,25 @@
 import React, { useState } from 'react';
-import {
-  H2,
-  StyledMain,
-  StyledAddButton
-} from '../components/styledComp/styles';
+import { H2, StyledMain } from '../components/styledComp';
 import Subject from '../components/Subject/Subject';
-import { nowaConfigSubjects, test } from '../data/nowaConfig';
+import { nowaConfigSubjects, nowaInputsConfig } from '../data/nowaConfig';
 import { extraSubjectsConfig } from '../data/extraSubjects';
-import CustomSelect from '../components/CustomSelect/CustomSelect';
+import AddSubject from '../components/AddSubject/AddSubject';
 
 const NowaMaturaPage = () => {
   const [nowaConfig, setNowaConfig] = useState(nowaConfigSubjects);
-  const [testConfig, setTestConfig] = useState(test);
+  const [inputsConfig, setInputsConfig] = useState(nowaInputsConfig);
   const [extraConfig, setExtraConfig] = useState(extraSubjectsConfig);
+
+  const onItemClick = num => {
+    const newNowaConfig = nowaConfig.map(item => {
+      if (item.id === num) {
+        item.hidden = false;
+      }
+
+      return item;
+    });
+    setNowaConfig(newNowaConfig);
+  };
 
   return (
     <StyledMain>
@@ -21,8 +28,8 @@ const NowaMaturaPage = () => {
           Nowa Matura
         </H2>
       </div>
-      <Subject data={nowaConfig} test={testConfig} extra={extraConfig} />
-      <StyledAddButton>+</StyledAddButton>
+      <Subject data={nowaConfig} inputs={inputsConfig} extra={extraConfig} />
+      <AddSubject onItemClick={onItemClick} />
     </StyledMain>
   );
 };

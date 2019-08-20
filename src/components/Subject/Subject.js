@@ -1,5 +1,5 @@
 import React from 'react';
-import { H2, H3 } from '../styledComp/styles';
+import { H2, H3 } from '../styledComp';
 import {
   StyledWrapper,
   StyledForm,
@@ -25,17 +25,19 @@ const Subject = props => (
               )}
             </div>
             <StyledInnerForm>
-              {props.test.map(item => (
-                <StyledSubjectWrapper key={item.id}>
-                  <H3 pad>{item.level}</H3>
-                  <StyledInput
-                    type="number"
-                    name={item.subject}
-                    min={item.min}
-                    max={item.max}
-                  />
-                </StyledSubjectWrapper>
-              ))}
+              {props.inputs.map(item => {
+                return (
+                  <StyledSubjectWrapper key={item.id}>
+                    <H3 pad>{item.level}</H3>
+                    <StyledInput
+                      type="number"
+                      name={item.subject}
+                      min={item.min}
+                      max={item.max}
+                    />
+                  </StyledSubjectWrapper>
+                );
+              })}
             </StyledInnerForm>
           </React.Fragment>
         )

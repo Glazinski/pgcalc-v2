@@ -29,8 +29,14 @@
     "semi": "warn",
     "func-names": "off",
     "node/no-unsupported-features/es-syntax": "off",
-    "react/prop-types": "warn",
+    "react/prop-types": "off",
     "react/destructuring-assignment": "off",
-    "import/prefer-default-export": "off"
+    "import/prefer-default-export": "off",
+    "no-param-reassign": [
+      2,
+      {
+        "props": false
+      }
+    ]
   }
 }

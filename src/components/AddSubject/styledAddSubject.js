@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { List } from '../styledComp/animations';
 
 export const StyledAddButton = styled.button`
   position: fixed;
@@ -21,4 +22,25 @@ export const StyledAddButton = styled.button`
   :focus {
     box-shadow: 0 0 1rem rgba(0, 0, 0, 0.6);
   }
+`;
+
+export const StyledWrapper = styled(List)`
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  position: absolute;
+  top: -145px;
+  right: 0;
+  width: 127px;
+  height: 127px;
+  background-color: black;
+  box-shadow: 0 0.5rem 2rem ${({ theme }) => theme.boxShadow};
+  background-color: ${({ theme }) => theme.colors.white};
+  text-align: start;
+  padding: 2rem;
+  z-index: -10;
+`;
+
+export const StyledItem = styled.div`
+  width: 100%;
 `;

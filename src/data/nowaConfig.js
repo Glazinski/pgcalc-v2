@@ -20,7 +20,7 @@ export const nowaConfigSubjects = [
   }
 ];
 
-export const test = [
+export const nowaInputsConfig = [
   {
     id: 12,
     level: `Poziom Podstawowy (%)`,
@@ -31,10 +31,26 @@ export const test = [
   },
   {
     id: 22,
-    level: `Poziom Podstawowy (%)`,
-    subject: 'extPolish',
+    level: `Poziom Rozszerzony (%)`,
+    subject: 'extForeign',
     min: 0,
     max: 100,
     value: 0
   }
+  // {
+  //   id: 32,
+  //   level: `Poziom Podstawowy (%)`,
+  //   subject: 'basicPolish',
+  //   min: 0,
+  //   max: 100,
+  //   value: 0
+  // },
+  // {
+  //   id: 42,
+  //   level: `Poziom Rozszerzony (%)`,
+  //   subject: 'extPolish',
+  //   min: 0,
+  //   max: 100,
+  //   value: 0
+  // }
 ];

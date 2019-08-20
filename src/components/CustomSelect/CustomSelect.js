@@ -1,26 +1,12 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useRef } from 'react';
 import { PoseGroup } from 'react-pose';
 import { StyledSelect, StyledList, StyledListItem } from './styledCustomSelect';
-import { H2, H3 } from '../styledComp/styles';
+import { H2, H3 } from '../styledComp';
+import { useOutsideClick } from '../../hooks';
 
 const CustomSelect = props => {
   const [value, setValue] = useState('Fizyka');
   const [visible, setVisible] = useState(false);
-
-  const useOutsideAlerter = ref => {
-    const handleClickOutside = event => {
-      if (ref.current && !ref.current.contains(event.target)) {
-        setVisible(false);
-      }
-    };
-
-    useEffect(() => {
-      document.addEventListener('mousedown', handleClickOutside);
-      return () => {
-        document.removeEventListener('mousedown', handleClickOutside);
-      };
-    });
-  };
 
   const handleClick = e => {
     const { dataset } = e.target;
@@ -28,12 +14,13 @@ const CustomSelect = props => {
     setVisible(!visible);
   };
 
-  const wrapperRef = useRef(null);
-  useOutsideAlerter(wrapperRef, setVisible);
+  const ref = useRef(null);
+  useOutsideClick(ref, setVisible);
 
   return (
-    <StyledSelect onClick={handleClick} ref={wrapperRef}>
+    <StyledSelect onClick={handleClick} ref={ref}>
       <H2 black>{value}</H2>
+      <i className="material-icons">keyboard_arrow_down</i>
       <PoseGroup>
         {visible ? (
           <StyledList vis={visible} key="124532">

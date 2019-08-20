@@ -4,18 +4,19 @@ import { List } from '../styledComp/animations';
 export const StyledSelect = styled.div`
   position: relative;
   display: flex;
-  justify-content: center;
+  justify-content: space-around;
   align-items: center;
   width: 136px;
   height: 44px;
   border: 1px solid ${({ theme }) => theme.colors.secondaryDark};
   border-radius: 4px;
   margin-top: 2rem;
+
   :hover {
     cursor: pointer;
   }
 
-  ::after {
+  /* ::after {
     content: '';
     display: inline-block;
     width: 9px;
@@ -24,7 +25,7 @@ export const StyledSelect = styled.div`
     border-bottom: 1px solid ${({ theme }) => theme.colors.secondaryDark};
     margin-left: 11px;
     transform: rotate(-45deg);
-  }
+  } */
 `;
 
 export const StyledList = styled(List)`
