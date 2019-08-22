@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { List } from '../styledComp/animations';
 
 export const StyledWrapper = styled.div`
   width: 100%;
@@ -9,11 +10,24 @@ export const StyledForm = styled.form`
   width: 100%;
 `;
 
+export const Test = styled(List)``;
+
+export const StyledInnerWrapper = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  i {
+    font-size: 28px !important;
+  }
+`;
+
 export const StyledInnerForm = styled.div`
   display: flex;
   justify-content: space-evenly;
   text-align: center;
   border-bottom: 1px solid ${({ theme }) => theme.colors.secondaryDark};
+  margin-bottom: 2rem;
 `;
 
 export const StyledSubjectWrapper = styled.div`
@@ -39,4 +53,10 @@ export const StyledInput = styled.input`
     -webkit-appearance: none;
     margin: 0;
   }
+`;
+
+export const StyledDeleteButton = styled.button`
+  appearance: none;
+  border: none;
+  background: none;
 `;

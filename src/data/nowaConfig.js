@@ -1,22 +1,28 @@
 export const nowaConfigSubjects = [
   {
     id: 1,
-    title: 'Język obcy'
+    title: 'Język obcy',
+    inputTitle: 'Foreign'
   },
   {
     id: 2,
-    title: 'Język polski'
+    title: 'Język polski',
+    inputTitle: 'Polish'
   },
   {
     id: 3,
     title: 'Matematyka',
-    hidden: true
+    inputTitle: 'Maths',
+    hidden: true,
+    removable: true
   },
   {
     id: 4,
     title: 'Fizyka',
+    inputTitle: 'Extra',
     hidden: true,
-    special: true
+    special: true,
+    removable: true
   }
 ];
 
@@ -24,7 +30,7 @@ export const nowaInputsConfig = [
   {
     id: 12,
     level: `Poziom Podstawowy (%)`,
-    subject: 'basicForeign',
+    subject: 'basic',
     min: 0,
     max: 100,
     value: 0
@@ -32,25 +38,9 @@ export const nowaInputsConfig = [
   {
     id: 22,
     level: `Poziom Rozszerzony (%)`,
-    subject: 'extForeign',
+    subject: 'ext',
     min: 0,
     max: 100,
     value: 0
   }
-  // {
-  //   id: 32,
-  //   level: `Poziom Podstawowy (%)`,
-  //   subject: 'basicPolish',
-  //   min: 0,
-  //   max: 100,
-  //   value: 0
-  // },
-  // {
-  //   id: 42,
-  //   level: `Poziom Rozszerzony (%)`,
-  //   subject: 'extPolish',
-  //   min: 0,
-  //   max: 100,
-  //   value: 0
-  // }
 ];

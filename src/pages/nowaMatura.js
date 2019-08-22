@@ -10,25 +10,38 @@ const NowaMaturaPage = () => {
   const [inputsConfig, setInputsConfig] = useState(nowaInputsConfig);
   const [extraConfig, setExtraConfig] = useState(extraSubjectsConfig);
 
-  const onItemClick = num => {
+  const onItemClick = (e, num) => {
+    e.preventDefault();
+    const { type } = e.target.dataset;
+
     const newNowaConfig = nowaConfig.map(item => {
       if (item.id === num) {
         item.hidden = false;
       }
 
+      if (item.id === num && type === 'del') {
+        item.hidden = true;
+      }
+
       return item;
     });
+
     setNowaConfig(newNowaConfig);
   };
 
   return (
     <StyledMain>
       <div>
-        <H2 square medium black regular>
+        <H2 square medium black regular mb>
           Nowa Matura
         </H2>
       </div>
-      <Subject data={nowaConfig} inputs={inputsConfig} extra={extraConfig} />
+      <Subject
+        onItemClick={onItemClick}
+        data={nowaConfig}
+        inputs={inputsConfig}
+        extra={extraConfig}
+      />
       <AddSubject onItemClick={onItemClick} />
     </StyledMain>
   );

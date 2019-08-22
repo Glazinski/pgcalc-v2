@@ -24,13 +24,9 @@ const CustomSelect = props => {
       <PoseGroup>
         {visible ? (
           <StyledList vis={visible} key="124532">
-            {props.extra.map(item => (
-              <StyledListItem
-                key={item.id}
-                onClick={handleClick}
-                data-value={item.title}
-              >
-                <H3 pointer>{item.title}</H3>
+            {props.extra.map(({ id, title }) => (
+              <StyledListItem key={id} onClick={handleClick} data-value={title}>
+                <H3 pointer>{title}</H3>
               </StyledListItem>
             ))}
           </StyledList>

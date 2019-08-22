@@ -10,7 +10,6 @@ export const StyledSelect = styled.div`
   height: 44px;
   border: 1px solid ${({ theme }) => theme.colors.secondaryDark};
   border-radius: 4px;
-  margin-top: 2rem;
 
   :hover {
     cursor: pointer;
