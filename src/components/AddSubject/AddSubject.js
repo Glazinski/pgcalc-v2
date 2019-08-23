@@ -16,12 +16,12 @@ const AddSubject = props => {
       <PoseGroup>
         {visible ? (
           <StyledWrapper key="89742">
-            <StyledItem onClick={e => props.onItemClick(e, 3)}>
+            <StyledItem onClick={e => props.handleItemClick(e, 3)}>
               <H2 regular square black mb>
                 Matematyka
               </H2>
             </StyledItem>
-            <StyledItem onClick={e => props.onItemClick(e, 4)}>
+            <StyledItem onClick={e => props.handleItemClick(e, 4)}>
               <H2 regular square black>
                 Przedmiot dodatkowy
               </H2>

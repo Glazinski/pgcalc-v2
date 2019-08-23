@@ -37,6 +37,7 @@
       {
         "props": false
       }
-    ]
+    ],
+    "no-restricted-globals": "off"
   }
 }

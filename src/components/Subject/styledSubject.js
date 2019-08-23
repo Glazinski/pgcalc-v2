@@ -31,7 +31,7 @@ export const StyledInnerForm = styled.div`
 `;
 
 export const StyledSubjectWrapper = styled.div`
-  margin-bottom: 2.5rem;
+  margin: 2.5rem 0;
 `;
 
 export const StyledInput = styled.input`
@@ -43,6 +43,7 @@ export const StyledInput = styled.input`
   border-radius: ${({ theme }) => theme.borderRadius};
   outline: none;
   transition: box-shadow 0.2s ease-in-out;
+  margin-top: 2rem;
 
   :focus {
     box-shadow: 0 0 1rem ${({ theme }) => theme.boxShadow};
@@ -53,6 +54,10 @@ export const StyledInput = styled.input`
     -webkit-appearance: none;
     margin: 0;
   }
+`;
+
+export const StyledResultWrapper = styled.div`
+  width: 100%;
 `;
 
 export const StyledDeleteButton = styled.button`

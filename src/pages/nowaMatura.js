@@ -1,16 +1,15 @@
 import React, { useState } from 'react';
 import { H2, StyledMain } from '../components/styledComp';
 import Subject from '../components/Subject/Subject';
-import { nowaConfigSubjects, nowaInputsConfig } from '../data/nowaConfig';
+import { nowaConfigSubjects } from '../data/nowaConfig';
 import { extraSubjectsConfig } from '../data/extraSubjects';
 import AddSubject from '../components/AddSubject/AddSubject';
 
 const NowaMaturaPage = () => {
   const [nowaConfig, setNowaConfig] = useState(nowaConfigSubjects);
-  const [inputsConfig, setInputsConfig] = useState(nowaInputsConfig);
   const [extraConfig, setExtraConfig] = useState(extraSubjectsConfig);
 
-  const onItemClick = (e, num) => {
+  const handleItemClick = (e, num) => {
     e.preventDefault();
     const { type } = e.target.dataset;
 
@@ -29,6 +28,39 @@ const NowaMaturaPage = () => {
     setNowaConfig(newNowaConfig);
   };
 
+  const handleInputChange = e => {
+    const { name } = e.target;
+    let { value, min, max } = e.target;
+
+    // Parse to Int becouse them come as a string
+    value = parseInt(value, 10);
+    min = parseInt(min, 10);
+    max = parseInt(max, 10);
+
+    if (value > max) value = max;
+    if (value < min) value = min;
+    if (isNaN(value)) value = '';
+
+    const newNowaConfig = nowaConfig.map(item => {
+      item.input.map(input => {
+        if (input.name === name) {
+          input.value = value;
+        }
+        return input;
+      });
+
+      return item;
+    });
+
+    setNowaConfig(newNowaConfig);
+  };
+
+  const handleSubmit = e => {
+    e.preventDefault();
+    // This takes all values ant make one array
+    // const test = nowaConfig.map(item => item.input.map(input => input)).flat();
+  };
+
   return (
     <StyledMain>
       <div>
@@ -37,12 +69,13 @@ const NowaMaturaPage = () => {
         </H2>
       </div>
       <Subject
-        onItemClick={onItemClick}
+        handleInputChange={handleInputChange}
+        handleSubmit={handleSubmit}
+        handleItemClick={handleItemClick}
         data={nowaConfig}
-        inputs={inputsConfig}
         extra={extraConfig}
       />
-      <AddSubject onItemClick={onItemClick} />
+      <AddSubject handleItemClick={handleItemClick} />
     </StyledMain>
   );
 };

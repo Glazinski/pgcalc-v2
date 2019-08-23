@@ -2,45 +2,94 @@ export const nowaConfigSubjects = [
   {
     id: 1,
     title: 'Język obcy',
-    inputTitle: 'Foreign'
+    input: [
+      {
+        id: 12,
+        level: `Poziom Podstawowy (%)`,
+        name: 'basicForeign',
+        min: 0,
+        max: 100,
+        value: ''
+      },
+      {
+        id: 22,
+        level: `Poziom Rozszerzony (%)`,
+        name: 'extForeign',
+        min: 0,
+        max: 100,
+        value: ''
+      }
+    ]
   },
   {
     id: 2,
     title: 'Język polski',
-    inputTitle: 'Polish'
+    input: [
+      {
+        id: 32,
+        level: `Poziom Podstawowy (%)`,
+        name: 'basicPolish',
+        min: 0,
+        max: 100,
+        value: ''
+      },
+      {
+        id: 42,
+        level: `Poziom Rozszerzony (%)`,
+        name: 'extPolish',
+        min: 0,
+        max: 100,
+        value: ''
+      }
+    ]
   },
   {
     id: 3,
     title: 'Matematyka',
-    inputTitle: 'Maths',
     hidden: true,
-    removable: true
+    removable: true,
+    input: [
+      {
+        id: 52,
+        level: `Poziom Podstawowy (%)`,
+        name: 'basicMaths',
+        min: 0,
+        max: 100,
+        value: ''
+      },
+      {
+        id: 62,
+        level: `Poziom Rozszerzony (%)`,
+        name: 'extMaths',
+        min: 0,
+        max: 100,
+        value: ''
+      }
+    ]
   },
   {
     id: 4,
-    title: 'Fizyka',
-    inputTitle: 'Extra',
+    title: 'Przedmiot dodatkowy',
     hidden: true,
     special: true,
-    removable: true
-  }
-];
-
-export const nowaInputsConfig = [
-  {
-    id: 12,
-    level: `Poziom Podstawowy (%)`,
-    subject: 'basic',
-    min: 0,
-    max: 100,
-    value: 0
-  },
-  {
-    id: 22,
-    level: `Poziom Rozszerzony (%)`,
-    subject: 'ext',
-    min: 0,
-    max: 100,
-    value: 0
+    removable: true,
+    input: [
+      {
+        id: 72,
+        level: `Poziom Podstawowy (%)`,
+        name: 'basicExtra',
+        min: 0,
+        max: 100,
+        value: ''
+      },
+      {
+        id: 82,
+        level: `Poziom Rozszerzony (%)`,
+        name: 'extExtra',
+        min: 0,
+        max: 100,
+        value: ''
+      }
+    ]
   }
 ];

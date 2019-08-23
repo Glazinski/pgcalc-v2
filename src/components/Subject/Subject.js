@@ -1,5 +1,5 @@
 import React from 'react';
-import { PoseGroup } from 'react-pose';
+import FlipMove from 'react-flip-move';
 import { H2, H3, StyledButton } from '../styledComp';
 import {
   StyledWrapper,
@@ -9,55 +9,58 @@ import {
   StyledInnerForm,
   StyledSubjectWrapper,
   StyledInput,
+  StyledResultWrapper,
   StyledDeleteButton
 } from './styledSubject';
 import CustomSelect from '../CustomSelect/CustomSelect';
 
 const Subject = props => (
   <StyledWrapper>
-    <StyledForm>
-      <PoseGroup>
-        {props.data.map(
-          ({ id, title, inputTitle, hidden, special, removable }) =>
-            hidden ? null : (
-              <Test key={id}>
-                <StyledInnerWrapper>
-                  {special ? (
-                    <CustomSelect extra={props.extra} />
-                  ) : (
-                    <H2 black>{title}</H2>
-                  )}
-                  {removable ? (
-                    <StyledDeleteButton
-                      type="submit"
-                      onClick={e => props.onItemClick(e, id)}
-                    >
-                      <i className="material-icons" data-type="del">
-                        delete_forever
-                      </i>
-                    </StyledDeleteButton>
-                  ) : null}
-                </StyledInnerWrapper>
-                <StyledInnerForm>
-                  {props.inputs.map(item => {
-                    return (
-                      <StyledSubjectWrapper key={item.id}>
-                        <H3 pad>{item.level}</H3>
-                        <StyledInput
-                          type="number"
-                          name={`${item.subject}${inputTitle}`}
-                          min={item.min}
-                          max={item.max}
-                        />
-                      </StyledSubjectWrapper>
-                    );
-                  })}
-                </StyledInnerForm>
-              </Test>
-            )
+    <StyledForm onSubmit={e => props.handleSubmit(e)}>
+      <FlipMove duration={300} easing="ease-in-out">
+        {props.data.map(item =>
+          item.hidden ? null : (
+            <Test key={item.id}>
+              <StyledInnerWrapper>
+                {item.special ? (
+                  <CustomSelect extra={props.extra} />
+                ) : (
+                  <H2 black>{item.title}</H2>
+                )}
+                {item.removable ? (
+                  <StyledDeleteButton
+                    type="submit"
+                    onClick={e => props.handleItemClick(e, item.id)}
+                  >
+                    <i className="material-icons" data-type="del">
+                      delete_forever
+                    </i>
+                  </StyledDeleteButton>
+                ) : null}
+              </StyledInnerWrapper>
+
+              <StyledInnerForm>
+                {item.input.map(({ id, level, value, name, min, max }) => (
+                  <StyledSubjectWrapper key={id}>
+                    <H3>{level}</H3>
+                    <StyledInput
+                      type="number"
+                      onChange={e => props.handleInputChange(e)}
+                      value={value}
+                      name={name}
+                      min={min}
+                      max={max}
+                    />
+                  </StyledSubjectWrapper>
+                ))}
+              </StyledInnerForm>
+            </Test>
+          )
         )}
-      </PoseGroup>
-      <StyledButton key="buttonan">Policz</StyledButton>
+        <StyledResultWrapper>
+          <StyledButton>Policz</StyledButton>
+        </StyledResultWrapper>
+      </FlipMove>
     </StyledForm>
   </StyledWrapper>
 );
