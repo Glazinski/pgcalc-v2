@@ -2,12 +2,38 @@ import React, { useState } from 'react';
 import { H2, StyledMain } from '../components/styledComp';
 import Subject from '../components/Subject/Subject';
 import { nowaConfigSubjects } from '../data/nowaConfig';
-import { extraSubjectsConfig } from '../data/extraSubjects';
+
 import AddSubject from '../components/AddSubject/AddSubject';
 
-const NowaMaturaPage = () => {
+const NowaMaturaPage = props => {
   const [nowaConfig, setNowaConfig] = useState(nowaConfigSubjects);
-  const [extraConfig, setExtraConfig] = useState(extraSubjectsConfig);
+  const [lastResult, setLastResult] = useState(0);
+  const [isChecked, setIsChecked] = useState(false);
+
+  // Calculate result for Nowa Matura
+  const calcResult = () => {
+    const results = nowaConfig.map(item =>
+      item.input
+        .map((subject, index) => {
+          if (index % 2 === 0) {
+            if (subject.unique) {
+              return parseFloat((subject.value * 0.4).toFixed(2));
+            }
+            return parseFloat((0.1 * subject.value * 0.4).toFixed(2));
+          }
+
+          if (subject.unique) {
+            return parseFloat((subject.value * 1).toFixed(2));
+          }
+          return parseFloat((0.1 * subject.value * 1).toFixed(2));
+        })
+        .reduce((acc, cur) => Math.max(acc, cur))
+    );
+
+    const veryLastResult = results.reduce((acc, cur) => acc + cur, 0);
+
+    setLastResult(veryLastResult);
+  };
 
   const handleItemClick = (e, num) => {
     e.preventDefault();
@@ -20,6 +46,14 @@ const NowaMaturaPage = () => {
 
       if (item.id === num && type === 'del') {
         item.hidden = true;
+
+        // After delete change value to 0
+        // I don't want to have deleted subject in last result
+        item.input.map(input => {
+          input.value = '';
+          return input;
+        });
+        calcResult();
       }
 
       return item;
@@ -29,36 +63,17 @@ const NowaMaturaPage = () => {
   };
 
   const handleInputChange = e => {
-    const { name } = e.target;
-    let { value, min, max } = e.target;
+    const { type } = e.target;
 
-    // Parse to Int becouse them come as a string
-    value = parseInt(value, 10);
-    min = parseInt(min, 10);
-    max = parseInt(max, 10);
+    if (type === 'checkbox') setIsChecked(!isChecked);
 
-    if (value > max) value = max;
-    if (value < min) value = min;
-    if (isNaN(value)) value = '';
-
-    const newNowaConfig = nowaConfig.map(item => {
-      item.input.map(input => {
-        if (input.name === name) {
-          input.value = value;
-        }
-        return input;
-      });
-
-      return item;
-    });
-
-    setNowaConfig(newNowaConfig);
+    props.handleConfigInputChange(e, nowaConfig, setNowaConfig);
   };
 
   const handleSubmit = e => {
     e.preventDefault();
-    // This takes all values ant make one array
-    // const test = nowaConfig.map(item => item.input.map(input => input)).flat();
+
+    calcResult();
   };
 
   return (
@@ -73,7 +88,9 @@ const NowaMaturaPage = () => {
         handleSubmit={handleSubmit}
         handleItemClick={handleItemClick}
         data={nowaConfig}
-        extra={extraConfig}
+        lastResult={lastResult}
+        isChecked={isChecked}
+        checkboxExist
       />
       <AddSubject handleItemClick={handleItemClick} />
     </StyledMain>

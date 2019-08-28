@@ -55,7 +55,8 @@ export const nowaConfigSubjects = [
         name: 'basicMaths',
         min: 0,
         max: 100,
-        value: ''
+        value: '',
+        unique: true
       },
       {
         id: 62,
@@ -63,7 +64,8 @@ export const nowaConfigSubjects = [
         name: 'extMaths',
         min: 0,
         max: 100,
-        value: ''
+        value: '',
+        unique: true
       }
     ]
   },
@@ -80,7 +82,8 @@ export const nowaConfigSubjects = [
         name: 'basicExtra',
         min: 0,
         max: 100,
-        value: ''
+        value: '',
+        unique: true
       },
       {
         id: 82,
@@ -88,7 +91,8 @@ export const nowaConfigSubjects = [
         name: 'extExtra',
         min: 0,
         max: 100,
-        value: ''
+        value: '',
+        unique: true
       }
     ]
   }

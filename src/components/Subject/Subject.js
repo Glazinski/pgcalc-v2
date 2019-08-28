@@ -22,11 +22,7 @@ const Subject = props => (
           item.hidden ? null : (
             <Test key={item.id}>
               <StyledInnerWrapper>
-                {item.special ? (
-                  <CustomSelect extra={props.extra} />
-                ) : (
-                  <H2 black>{item.title}</H2>
-                )}
+                {item.special ? <CustomSelect /> : <H2 black>{item.title}</H2>}
                 {item.removable ? (
                   <StyledDeleteButton
                     type="submit"
@@ -58,6 +54,20 @@ const Subject = props => (
           )
         )}
         <StyledResultWrapper>
+          <H2 square regular xl black>
+            Wynik: <span>{props.lastResult > 0 ? props.lastResult : null}</span>
+          </H2>
+          {props.checkboxExist ? (
+            <label htmlFor="twoLang">
+              <input
+                id="twoLang"
+                type="checkbox"
+                checked={props.isChecked}
+                onChange={e => props.handleInputChange(e)}
+              />
+              Matura Dwujęzyczna
+            </label>
+          ) : null}
           <StyledButton>Policz</StyledButton>
         </StyledResultWrapper>
       </FlipMove>

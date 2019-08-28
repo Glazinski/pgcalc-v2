@@ -8,6 +8,8 @@ export const H2 = styled.h2`
   font-size: ${({ theme, medium }) =>
     medium ? theme.fontSize.l : theme.fontSize.s};
 
+  font-size: ${({ theme, xl }) => (xl ? theme.fontSize.xl : null)};
+
   font-weight: ${({ theme, regular }) =>
     regular ? theme.fontWeight.regular : theme.fontWeight.bold};
 

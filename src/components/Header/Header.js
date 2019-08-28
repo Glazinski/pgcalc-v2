@@ -7,7 +7,7 @@ import HamburgerMenu from './HamburgerMenu';
 import NowaMaturaPage from '../../pages/nowaMatura';
 import staraMatura from '../../pages/staraMatura';
 
-const Header = () => {
+const Header = props => {
   const [checked, setChecked] = useState(false);
   const handleChecked = () => {
     setChecked(!checked);
@@ -42,7 +42,15 @@ const Header = () => {
       </StyledHeader>
 
       {/* <Route path="/" exact component={NowaMaturaPage} /> */}
-      <Route path="/" exact render={() => <NowaMaturaPage />} />
+      <Route
+        path="/"
+        exact
+        render={() => (
+          <NowaMaturaPage
+            handleConfigInputChange={props.handleConfigInputChange}
+          />
+        )}
+      />
       <Route path="/stara-matura" component={staraMatura} />
     </Router>
   );

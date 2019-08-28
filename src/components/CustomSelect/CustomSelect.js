@@ -3,8 +3,9 @@ import { PoseGroup } from 'react-pose';
 import { StyledSelect, StyledList, StyledListItem } from './styledCustomSelect';
 import { H2, H3 } from '../styledComp';
 import { useOutsideClick } from '../../hooks';
+import { extraSubjectsConfig } from '../../data/extraSubjects';
 
-const CustomSelect = props => {
+const CustomSelect = () => {
   const [value, setValue] = useState('Fizyka');
   const [visible, setVisible] = useState(false);
 
@@ -24,7 +25,7 @@ const CustomSelect = props => {
       <PoseGroup>
         {visible ? (
           <StyledList vis={visible} key="124532">
-            {props.extra.map(({ id, title }) => (
+            {extraSubjectsConfig.map(({ id, title }) => (
               <StyledListItem key={id} onClick={handleClick} data-value={title}>
                 <H3 pointer>{title}</H3>
               </StyledListItem>

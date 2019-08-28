@@ -2,10 +2,41 @@ import React from 'react';
 import Global from '../Layout/Global';
 import Header from './Header/Header';
 
-const App = () => (
-  <Global>
-    <Header />
-  </Global>
-);
+const App = () => {
+  const handleConfigInputChange = (e, config, setConfig) => {
+    const { name } = e.target;
+    let { value, min, max } = e.target;
+
+    // Parse to Int becouse these properties come as a string
+    value = parseInt(value, 10);
+    min = parseInt(min, 10);
+    max = parseInt(max, 10);
+
+    // Change value if user write something he shouldn't
+    if (value > max) value = max;
+    if (value < min) value = min;
+    if (isNaN(value)) value = '';
+
+    // Map nested array and give them user's value
+    const newConfig = config.map(item => {
+      item.input.map(input => {
+        if (input.name === name) {
+          input.value = value;
+        }
+        return input;
+      });
+
+      return item;
+    });
+
+    setConfig(newConfig);
+  };
+
+  return (
+    <Global>
+      <Header handleConfigInputChange={handleConfigInputChange} />
+    </Global>
+  );
+};
 
 export default App;
