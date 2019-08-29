@@ -32,6 +32,7 @@ export const StyledInnerForm = styled.div`
 
 export const StyledSubjectWrapper = styled.div`
   margin: 2.5rem 0;
+  width: 100%;
 `;
 
 export const StyledInput = styled.input`
@@ -60,6 +61,7 @@ export const StyledResultWrapper = styled.div`
   display: flex;
   flex-direction: column;
   width: 100%;
+  margin-top: 5rem;
 `;
 
 export const StyledDeleteButton = styled.button`

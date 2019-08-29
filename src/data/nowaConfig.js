@@ -1,3 +1,8 @@
+export const scale = {
+  basic: 0.4,
+  extended: 1
+};
+
 export const nowaConfigSubjects = [
   {
     id: 1,
@@ -5,7 +10,7 @@ export const nowaConfigSubjects = [
     input: [
       {
         id: 12,
-        level: `Poziom Podstawowy (%)`,
+        level: `Poziom \n Podstawowy \n (%)`,
         name: 'basicForeign',
         min: 0,
         max: 100,
@@ -13,7 +18,7 @@ export const nowaConfigSubjects = [
       },
       {
         id: 22,
-        level: `Poziom Rozszerzony (%)`,
+        level: `Poziom \n Rozszerzony \n (%)`,
         name: 'extForeign',
         min: 0,
         max: 100,
@@ -27,7 +32,7 @@ export const nowaConfigSubjects = [
     input: [
       {
         id: 32,
-        level: `Poziom Podstawowy (%)`,
+        level: `Poziom \n Podstawowy \n (%)`,
         name: 'basicPolish',
         min: 0,
         max: 100,
@@ -35,7 +40,7 @@ export const nowaConfigSubjects = [
       },
       {
         id: 42,
-        level: `Poziom Rozszerzony (%)`,
+        level: `Poziom \n Rozszerzony \n (%)`,
         name: 'extPolish',
         min: 0,
         max: 100,
@@ -51,7 +56,7 @@ export const nowaConfigSubjects = [
     input: [
       {
         id: 52,
-        level: `Poziom Podstawowy (%)`,
+        level: `Poziom \n Podstawowy \n (%)`,
         name: 'basicMaths',
         min: 0,
         max: 100,
@@ -60,7 +65,7 @@ export const nowaConfigSubjects = [
       },
       {
         id: 62,
-        level: `Poziom Rozszerzony (%)`,
+        level: `Poziom \n Rozszerzony \n (%)`,
         name: 'extMaths',
         min: 0,
         max: 100,
@@ -78,7 +83,7 @@ export const nowaConfigSubjects = [
     input: [
       {
         id: 72,
-        level: `Poziom Podstawowy (%)`,
+        level: `Poziom \n Podstawowy \n (%)`,
         name: 'basicExtra',
         min: 0,
         max: 100,
@@ -87,7 +92,7 @@ export const nowaConfigSubjects = [
       },
       {
         id: 82,
-        level: `Poziom Rozszerzony (%)`,
+        level: `Poziom \n Rozszerzony \n (%)`,
         name: 'extExtra',
         min: 0,
         max: 100,

@@ -5,7 +5,7 @@ import { H1 } from '../styledComp';
 import { navData, pageTitle, rulesLink } from '../../data/navData';
 import HamburgerMenu from './HamburgerMenu';
 import NowaMaturaPage from '../../pages/nowaMatura';
-import staraMatura from '../../pages/staraMatura';
+import StaraMaturaPage from '../../pages/staraMatura';
 
 const Header = props => {
   const [checked, setChecked] = useState(false);
@@ -48,10 +48,19 @@ const Header = props => {
         render={() => (
           <NowaMaturaPage
             handleConfigInputChange={props.handleConfigInputChange}
+            handleItemClick={props.handleItemClick}
           />
         )}
       />
-      <Route path="/stara-matura" component={staraMatura} />
+      <Route
+        path="/stara-matura"
+        render={() => (
+          <StaraMaturaPage
+            handleConfigInputChange={props.handleConfigInputChange}
+            handleItemClick={props.handleItemClick}
+          />
+        )}
+      />
     </Router>
   );
 };

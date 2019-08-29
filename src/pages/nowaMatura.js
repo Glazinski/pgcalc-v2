@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { H2, StyledMain } from '../components/styledComp';
 import Subject from '../components/Subject/Subject';
-import { nowaConfigSubjects } from '../data/nowaConfig';
+import { nowaConfigSubjects, scale } from '../data/nowaConfig';
 
 import AddSubject from '../components/AddSubject/AddSubject';
 
@@ -17,49 +17,26 @@ const NowaMaturaPage = props => {
         .map((subject, index) => {
           if (index % 2 === 0) {
             if (subject.unique) {
-              return parseFloat((subject.value * 0.4).toFixed(2));
+              return parseFloat((subject.value * scale.basic).toFixed(2));
             }
-            return parseFloat((0.1 * subject.value * 0.4).toFixed(2));
+            return parseFloat((0.1 * subject.value * scale.basic).toFixed(2));
           }
 
           if (subject.unique) {
-            return parseFloat((subject.value * 1).toFixed(2));
+            return parseFloat(subject.value * scale.extended.toFixed(2));
           }
-          return parseFloat((0.1 * subject.value * 1).toFixed(2));
+          return parseFloat((0.1 * subject.value * scale.extended).toFixed(2));
         })
         .reduce((acc, cur) => Math.max(acc, cur))
     );
 
     const veryLastResult = results.reduce((acc, cur) => acc + cur, 0);
 
-    setLastResult(veryLastResult);
+    setLastResult(parseFloat(veryLastResult.toFixed(2)));
   };
 
   const handleItemClick = (e, num) => {
-    e.preventDefault();
-    const { type } = e.target.dataset;
-
-    const newNowaConfig = nowaConfig.map(item => {
-      if (item.id === num) {
-        item.hidden = false;
-      }
-
-      if (item.id === num && type === 'del') {
-        item.hidden = true;
-
-        // After delete change value to 0
-        // I don't want to have deleted subject in last result
-        item.input.map(input => {
-          input.value = '';
-          return input;
-        });
-        calcResult();
-      }
-
-      return item;
-    });
-
-    setNowaConfig(newNowaConfig);
+    props.handleItemClick(e, num, calcResult, nowaConfig, setNowaConfig);
   };
 
   const handleInputChange = e => {

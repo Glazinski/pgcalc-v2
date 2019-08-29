@@ -19,6 +19,7 @@ export const StyledNav = styled(Nav)`
   justify-content: center;
   align-items: center;
   flex-direction: column;
+  text-align: center;
   height: 100vh;
   width: 100%;
   z-index: ${({ theme }) => theme.zIndex.level10};
