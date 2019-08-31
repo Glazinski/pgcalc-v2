@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { List } from '../styledComp/animations';
+import { List, Text } from '../styledComp/animations';
 
 export const StyledWrapper = styled.div`
   width: 100%;
@@ -10,7 +10,7 @@ export const StyledForm = styled.form`
   width: 100%;
 `;
 
-export const Test = styled(List)``;
+export const AnimationWrapper = styled(List)``;
 
 export const StyledInnerWrapper = styled.div`
   display: flex;
@@ -35,6 +35,12 @@ export const StyledSubjectWrapper = styled.div`
   width: 100%;
 `;
 
+export const StyledInputWrapper = styled.div`
+  display: flex;
+  align-items: center;
+  margin-top: 3rem;
+`;
+
 export const StyledInput = styled.input`
   appearance: none;
   width: 67px;
@@ -57,7 +63,12 @@ export const StyledInput = styled.input`
   }
 `;
 
-export const StyledResultWrapper = styled.div`
+export const StyledLabel = styled.label`
+  margin-left: 1rem;
+  font-size: ${({ theme }) => theme.fontSize.s};
+`;
+
+export const StyledResultWrapper = styled(List)`
   display: flex;
   flex-direction: column;
   width: 100%;
@@ -69,3 +80,5 @@ export const StyledDeleteButton = styled.button`
   border: none;
   background: none;
 `;
+
+export const StyledText = styled(Text)``;

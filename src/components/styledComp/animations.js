@@ -1,4 +1,5 @@
 import posed from 'react-pose';
+import { tween } from 'popmotion';
 
 export const Nav = posed.nav({
   visible: {
@@ -32,6 +33,21 @@ export const Alink = posed.a({
   }
 });
 
+export const Text = posed.span({
+  visible: {
+    opacity: 1,
+    transition: {
+      default: { ease: 'easeInOut', duration: 300 }
+    }
+  },
+  hidden: {
+    opacity: 0,
+    transition: {
+      default: { ease: 'easeInOut', duration: 300 }
+    }
+  }
+});
+
 export const List = posed.div({
   enter: {
     opacity: 1,
@@ -42,7 +58,10 @@ export const List = posed.div({
   exit: {
     opacity: 0,
     transition: {
-      default: { ease: 'easeInOut', duration: 300 }
+      default: { ease: 'easeInOut', duration: 0 }
     }
+  },
+  flip: {
+    transition: tween
   }
 });

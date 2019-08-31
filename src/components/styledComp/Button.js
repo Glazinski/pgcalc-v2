@@ -10,4 +10,9 @@ export const StyledButton = styled.button`
   border: none;
   border-radius: ${({ theme }) => theme.borderRadius};
   font-size: ${({ theme }) => theme.fontSize.s};
+  margin-top: ${({ mt }) => (mt ? '3rem' : null)};
+
+  :hover {
+    cursor: pointer;
+  }
 `;

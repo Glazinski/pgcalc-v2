@@ -3,6 +3,9 @@ import { List } from '../styledComp/animations';
 
 export const StyledAddButton = styled.button`
   position: fixed;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   appearance: none;
   width: 38px;
   height: 38px;

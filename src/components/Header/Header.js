@@ -6,6 +6,7 @@ import { navData, pageTitle, rulesLink } from '../../data/navData';
 import HamburgerMenu from './HamburgerMenu';
 import NowaMaturaPage from '../../pages/nowaMatura';
 import StaraMaturaPage from '../../pages/staraMatura';
+import MaturaIBPage from '../../pages/maturaIB';
 
 const Header = props => {
   const [checked, setChecked] = useState(false);
@@ -56,6 +57,15 @@ const Header = props => {
         path="/stara-matura"
         render={() => (
           <StaraMaturaPage
+            handleConfigInputChange={props.handleConfigInputChange}
+            handleItemClick={props.handleItemClick}
+          />
+        )}
+      />
+      <Route
+        path="/matura-miedzynarodowa"
+        render={() => (
+          <MaturaIBPage
             handleConfigInputChange={props.handleConfigInputChange}
             handleItemClick={props.handleItemClick}
           />

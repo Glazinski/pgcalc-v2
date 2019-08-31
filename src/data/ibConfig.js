@@ -1,29 +1,48 @@
-const min = 0;
-const max = 100;
+const min = 1;
+const max = 7;
 const value = '';
 const unique = true;
 
-export const scale = {
-  basic: 0.4,
-  extended: 1
-};
+export const basicGrades = new Map([
+  ['', 0],
+  [0, 0],
+  [1, 0],
+  [2, 30],
+  [3, 40],
+  [4, 50],
+  [5, 60],
+  [6, 70],
+  [7, 80]
+]);
 
-export const nowaConfigSubjects = [
+export const extGrades = new Map([
+  ['', 0],
+  [0, 0],
+  [1, 0],
+  [2, 40],
+  [3, 60],
+  [4, 80],
+  [5, 90],
+  [6, 95],
+  [7, 100]
+]);
+
+export const ibConfigSubject = [
   {
     id: 1,
     title: 'Język obcy',
     input: [
       {
-        id: 12,
-        level: `Poziom \n Podstawowy \n (%)`,
+        id: 12765,
+        level: `Poziom \n SL (1-7)`,
         name: 'basicForeign',
         min,
         max,
         value
       },
       {
-        id: 22,
-        level: `Poziom \n Rozszerzony \n (%)`,
+        id: 22765,
+        level: `Poziom \n HL (1-7)`,
         name: 'extForeign',
         min,
         max,
@@ -36,16 +55,16 @@ export const nowaConfigSubjects = [
     title: 'Język polski',
     input: [
       {
-        id: 32,
-        level: `Poziom \n Podstawowy \n (%)`,
+        id: 32765,
+        level: `Poziom \n SL (1-7)`,
         name: 'basicPolish',
         min,
         max,
         value
       },
       {
-        id: 42,
-        level: `Poziom \n Rozszerzony \n (%)`,
+        id: 42765,
+        level: `Poziom \n HL (1-7)`,
         name: 'extPolish',
         min,
         max,
@@ -60,8 +79,8 @@ export const nowaConfigSubjects = [
     removable: true,
     input: [
       {
-        id: 52,
-        level: `Poziom \n Podstawowy \n (%)`,
+        id: 52765,
+        level: `Poziom \n SL (1-7)`,
         name: 'basicMaths',
         min,
         max,
@@ -69,8 +88,8 @@ export const nowaConfigSubjects = [
         unique
       },
       {
-        id: 62,
-        level: `Poziom \n Rozszerzony \n (%)`,
+        id: 62765,
+        level: `Poziom \n HL (1-7)`,
         name: 'extMaths',
         min,
         max,
@@ -81,14 +100,14 @@ export const nowaConfigSubjects = [
   },
   {
     id: 4,
-    title: 'Przedmiot dodatkowy',
+    title: 'Przedmiot Dodatkowy',
     hidden: true,
     special: true,
     removable: true,
     input: [
       {
-        id: 72,
-        level: `Poziom \n Podstawowy \n (%)`,
+        id: 72765,
+        level: `Poziom \n SL (1-7)`,
         name: 'basicExtra',
         min,
         max,
@@ -96,8 +115,8 @@ export const nowaConfigSubjects = [
         unique
       },
       {
-        id: 82,
-        level: `Poziom \n Rozszerzony \n (%)`,
+        id: 82765,
+        level: `Poziom \n HL (1-7)`,
         name: 'extExtra',
         min,
         max,

@@ -1,5 +1,6 @@
 import styled from 'styled-components';
 import { Nav, Alink } from '../styledComp/animations';
+import { media } from '../../utils/';
 
 export const StyledHeader = styled.header`
   display: flex;
@@ -36,9 +37,9 @@ export const StyledLink = styled(Alink)`
   font-size: ${({ theme }) => theme.fontSize.xl};
   color: ${({ theme }) => theme.colors.secondaryDark};
 
-  position: ${({ bottom }) => (bottom === 1 ? 'fixed' : null)};
-  bottom: ${({ bottom }) => (bottom === 1 ? '0' : null)};
-  left: ${({ bottom }) => (bottom === 1 ? '0' : null)};
-  background-color: ${({ bottom }) => (bottom === 1 ? `#F3F3F3` : null)};
-  color: ${({ bottom }) => (bottom === 1 ? `#00669E` : null)};
+  position: ${({ bottom }) => (bottom ? 'fixed' : null)};
+  bottom: ${({ bottom }) => (bottom ? '0' : null)};
+  left: ${({ bottom }) => (bottom ? '0' : null)};
+  background-color: ${({ bottom }) => (bottom ? `#F3F3F3` : null)};
+  color: ${({ bottom }) => (bottom ? `#00669E` : null)};
 `;

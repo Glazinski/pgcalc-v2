@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "popmotion": "^8.7.0",
     "react": "^16.9.0",
     "react-dom": "^16.9.0",
     "react-flip-move": "^3.0.3",

@@ -15,17 +15,30 @@ const NowaMaturaPage = props => {
     const results = nowaConfig.map(item =>
       item.input
         .map((subject, index) => {
+          const { unique, value, name } = subject;
+          const { basic, extended } = scale;
+
           if (index % 2 === 0) {
-            if (subject.unique) {
-              return parseFloat((subject.value * scale.basic).toFixed(2));
+            if (unique) {
+              return parseFloat((value * basic).toFixed(2));
             }
-            return parseFloat((0.1 * subject.value * scale.basic).toFixed(2));
+
+            if (isChecked && name.includes('Foreign')) {
+              return parseFloat((0.1 * value * extended).toFixed(2));
+            }
+
+            return parseFloat((0.1 * value * basic).toFixed(2));
           }
 
-          if (subject.unique) {
-            return parseFloat(subject.value * scale.extended.toFixed(2));
+          if (unique) {
+            return parseFloat(value * extended.toFixed(2));
           }
-          return parseFloat((0.1 * subject.value * scale.extended).toFixed(2));
+
+          if (isChecked && name.includes('Foreign')) {
+            return parseFloat((0.1 * value * extended).toFixed(2));
+          }
+
+          return parseFloat((0.1 * value * extended).toFixed(2));
         })
         .reduce((acc, cur) => Math.max(acc, cur))
     );
