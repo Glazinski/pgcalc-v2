@@ -1,6 +1,12 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
-import { StyledHeader, StyledNav, StyledLink } from './styledHeader';
+import { useMediaPredicate } from 'react-media-hook';
+import {
+  StyledHeader,
+  StyledNav,
+  StyledNavDekstop,
+  StyledLink
+} from './styledHeader';
 import { H1 } from '../styledComp';
 import { navData, pageTitle, rulesLink } from '../../data/navData';
 import HamburgerMenu from './HamburgerMenu';
@@ -14,35 +20,57 @@ const Header = props => {
     setChecked(!checked);
   };
 
+  const biggerThan800 = useMediaPredicate('(min-width: 800px)');
+
+  const mobileNav = (
+    <StyledNav pose={checked ? 'visible' : 'hidden'}>
+      {navData.map(item => (
+        <StyledLink
+          as={Link}
+          key={item.id}
+          onClick={handleChecked}
+          to={`/${item.link}`}
+        >
+          {item.content}
+        </StyledLink>
+      ))}
+      <StyledLink
+        pose={checked ? 'visible' : 'hidden'}
+        href={rulesLink.link}
+        target="_blank"
+        bottom={1}
+      >
+        {rulesLink.content}
+      </StyledLink>
+    </StyledNav>
+  );
+
+  const desktopNav = (
+    <StyledNavDekstop>
+      {navData.map(item => (
+        <StyledLink
+          as={Link}
+          key={item.id}
+          onClick={handleChecked}
+          to={`/${item.link}`}
+        >
+          {item.content}
+        </StyledLink>
+      ))}
+    </StyledNavDekstop>
+  );
+
   return (
     <Router>
       <StyledHeader>
-        <H1>{pageTitle}</H1>
+        <div style={{ width: '50%' }}>
+          <H1>{pageTitle}</H1>
+        </div>
 
         <HamburgerMenu checked={checked} handleChecked={handleChecked} />
-        <StyledNav pose={checked ? 'visible' : 'hidden'}>
-          {navData.map(item => (
-            <StyledLink
-              as={Link}
-              key={item.id}
-              onClick={handleChecked}
-              to={`/${item.link}`}
-            >
-              {item.content}
-            </StyledLink>
-          ))}
-          <StyledLink
-            pose={checked ? 'visible' : 'hidden'}
-            href={rulesLink.link}
-            target="_blank"
-            bottom={1}
-          >
-            {rulesLink.content}
-          </StyledLink>
-        </StyledNav>
-      </StyledHeader>
 
-      {/* <Route path="/" exact component={NowaMaturaPage} /> */}
+        {biggerThan800 ? desktopNav : mobileNav}
+      </StyledHeader>
       <Route
         path="/"
         exact

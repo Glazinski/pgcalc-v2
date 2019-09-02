@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 import { Nav, Alink } from '../styledComp/animations';
 import { media } from '../../utils/';
 
@@ -27,6 +27,15 @@ export const StyledNav = styled(Nav)`
   background-color: #fff;
 `;
 
+export const StyledNavDekstop = styled.nav`
+  display: flex;
+  justify-content: space-between;
+  flex-direction: row;
+  width: 100%;
+  height: auto;
+  background-color: ${({ theme }) => theme.colors.secondaryLight};
+`;
+
 export const StyledLink = styled(Alink)`
   display: flex;
   justify-content: center;
@@ -37,9 +46,21 @@ export const StyledLink = styled(Alink)`
   font-size: ${({ theme }) => theme.fontSize.xl};
   color: ${({ theme }) => theme.colors.secondaryDark};
 
-  position: ${({ bottom }) => (bottom ? 'fixed' : null)};
-  bottom: ${({ bottom }) => (bottom ? '0' : null)};
-  left: ${({ bottom }) => (bottom ? '0' : null)};
-  background-color: ${({ bottom }) => (bottom ? `#F3F3F3` : null)};
-  color: ${({ bottom }) => (bottom ? `#00669E` : null)};
+  ${({ bottom }) =>
+    bottom &&
+    css`
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      background-color: #f3f3f3;
+      color: #00669e;
+    `}
+
+  ${media.tablet`
+    height: inherit;
+    font-size: ${({ theme }) => theme.fontSize.l};
+    color: theme.colors.secondaryDark};
+  `}
 `;
+
+export const LinksContainer = styled.div``;

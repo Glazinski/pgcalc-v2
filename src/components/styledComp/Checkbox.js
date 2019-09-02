@@ -49,5 +49,8 @@ export const StyledCheckbox = styled.input`
     cursor: pointer;
   }
 
-  margin-top: ${({ mt }) => (mt ? '3rem' : null)};
+  /* :focus {
+    transition: box-shadow 0.3s ease-in-out;
+    box-shadow: 0 1px 5px rgba(0, 0, 0, 0.6);
+  } */
 `;

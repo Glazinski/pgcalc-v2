@@ -58,6 +58,24 @@ export const List = posed.div({
   exit: {
     opacity: 0,
     transition: {
+      default: { ease: 'easeInOut', duration: 300 }
+    }
+  },
+  flip: {
+    transition: tween
+  }
+});
+
+export const ListNew = posed.div({
+  enter: {
+    opacity: 1,
+    transition: {
+      default: { ease: 'easeInOut', duration: 300 }
+    }
+  },
+  exit: {
+    opacity: 0,
+    transition: {
       default: { ease: 'easeInOut', duration: 0 }
     }
   },

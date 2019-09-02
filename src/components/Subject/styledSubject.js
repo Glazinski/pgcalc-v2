@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { List, Text } from '../styledComp/animations';
+import { ListNew, Text } from '../styledComp/animations';
 
 export const StyledWrapper = styled.div`
   width: 100%;
@@ -10,7 +10,7 @@ export const StyledForm = styled.form`
   width: 100%;
 `;
 
-export const AnimationWrapper = styled(List)``;
+export const AnimationWrapper = styled(ListNew)``;
 
 export const StyledInnerWrapper = styled.div`
   display: flex;
@@ -68,7 +68,7 @@ export const StyledLabel = styled.label`
   font-size: ${({ theme }) => theme.fontSize.s};
 `;
 
-export const StyledResultWrapper = styled(List)`
+export const StyledResultWrapper = styled(ListNew)`
   display: flex;
   flex-direction: column;
   width: 100%;

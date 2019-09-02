@@ -10,6 +10,10 @@ export const StyledHamburger = styled.div`
   padding: 15px 10px;
   cursor: pointer;
 
+  ${media.tablet`;
+    display: none;
+  `}
+
   div {
     position: relative;
     width: 22px;
@@ -47,6 +51,10 @@ const StyledInput = styled.input`
   width: 30px;
   z-index: ${({ theme }) => theme.zIndex.level20};
   opacity: 0;
+
+  ${media.tablet`;
+    display: none;
+  `}
 
   &:checked ~ div {
     background-color: transparent;

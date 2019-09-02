@@ -17,7 +17,6 @@ export const StyledAddButton = styled.button`
   background-color: ${({ theme }) => theme.colors.secondaryLight};
   outline: none;
   transition: box-shadow 0.2s ease-in-out;
-
   :hover {
     cursor: pointer;
   }
@@ -46,4 +45,9 @@ export const StyledWrapper = styled(List)`
 
 export const StyledItem = styled.div`
   width: 100%;
+
+  :hover h2 {
+    transition: color 0.3s ease-in-out;
+    color: ${({ theme }) => theme.colors.primary};
+  }
 `;
