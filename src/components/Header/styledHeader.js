@@ -1,5 +1,5 @@
 import styled, { css } from 'styled-components';
-import { Nav, Alink } from '../styledComp/animations';
+import { Nav, NavList } from '../styledComp/animations';
 import { media } from '../../utils/';
 
 export const StyledHeader = styled.header`
@@ -29,14 +29,63 @@ export const StyledNav = styled(Nav)`
 
 export const StyledNavDekstop = styled.nav`
   display: flex;
-  justify-content: space-between;
+  text-align: center;
+  align-items: center;
   flex-direction: row;
-  width: 100%;
-  height: auto;
-  background-color: ${({ theme }) => theme.colors.secondaryLight};
 `;
 
-export const StyledLink = styled(Alink)`
+export const StyledLinkContainer = styled.div`
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 70px;
+  height: 30px;
+  transition: background-color 0.3s ease-in-out, color 0.3s ease-in-out;
+  z-index: 100;
+  margin-right: 2rem;
+
+  :hover {
+    background-color: ${({ theme }) => theme.colors.primary};
+    cursor: pointer;
+
+    span {
+      color: ${({ theme }) => theme.colors.white};
+    }
+  }
+
+  ::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 40px;
+  }
+
+  span {
+    color: ${({ theme }) => theme.colors.secondaryDark};
+    font-size: ${({ theme }) => theme.fontSize.s};
+    font-weight: bold;
+  }
+`;
+
+export const StyledLinkList = styled(NavList)`
+  position: absolute;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-auto-rows: 1fr;
+  grid-gap: 1rem;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  width: 230px;
+  list-style: none;
+  top: 40px;
+  right: 0;
+`;
+
+export const StyledLink = styled.a`
   display: flex;
   justify-content: center;
   align-items: center;
@@ -45,7 +94,6 @@ export const StyledLink = styled(Alink)`
   text-decoration: none;
   font-size: ${({ theme }) => theme.fontSize.xl};
   color: ${({ theme }) => theme.colors.secondaryDark};
-
   ${({ bottom }) =>
     bottom &&
     css`
@@ -57,10 +105,35 @@ export const StyledLink = styled(Alink)`
     `}
 
   ${media.tablet`
-    height: inherit;
-    font-size: ${({ theme }) => theme.fontSize.l};
-    color: theme.colors.secondaryDark};
+
+    ${({ unique }) =>
+      unique
+        ? css`
+            display: inline-block;
+            height: 100%;
+            padding: 0.5rem 0;
+            font-size: ${({ theme }) => theme.fontSize.s};
+            background-color: ${({ theme }) => theme.colors.primary};
+            color: ${({ theme }) => theme.colors.white};
+            box-shadow: 0 0 0.3rem ${({ theme }) => theme.boxShadow};
+          `
+        : css`
+            width: 100%;
+            height: 30px;
+            padding: 0;
+            color: ${({ theme }) => theme.colors.secondaryDark};
+            font-size: ${({ theme }) => theme.fontSize.s};
+            font-weight: bold;
+            margin-right: 2rem;
+
+            :hover {
+              color: ${({ theme }) => theme.colors.white};
+            }
+          `}
+      
+    :hover {
+      cursor: pointer;
+      background-color: ${({ theme }) => theme.colors.primaryLight};
+    }
   `}
 `;
-
-export const LinksContainer = styled.div``;

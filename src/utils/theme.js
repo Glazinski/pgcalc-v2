@@ -3,6 +3,8 @@ import { css } from 'styled-components';
 export const theme = {
   colors: {
     primary: '#00669E',
+    // primaryLight: '#0082c9',
+    primaryLight: '#0078ba',
     secondary: '#D2D2D2',
     secondaryLight: '#F3F3F3',
     secondaryDark: '#707070',
@@ -14,6 +16,7 @@ export const theme = {
   borderRadius: '4px',
   fontSize: {
     s: '1.5rem',
+    ss: '1.8rem',
     l: '2rem',
     xl: '2.3rem'
   },
@@ -24,7 +27,8 @@ export const theme = {
   zIndex: {
     level10: '10',
     level15: '15',
-    level20: '20'
+    level20: '20',
+    level25: '25'
   },
   square: css`
     ::before {

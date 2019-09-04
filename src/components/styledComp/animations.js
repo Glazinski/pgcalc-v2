@@ -66,6 +66,26 @@ export const List = posed.div({
   }
 });
 
+export const NavList = posed.div({
+  enter: {
+    y: 0,
+    opacity: 1,
+    transition: {
+      default: { ease: 'easeInOut', duration: 300 }
+    }
+  },
+  exit: {
+    y: '15%',
+    opacity: 0,
+    transition: {
+      default: { ease: 'easeInOut', duration: 300 }
+    }
+  },
+  flip: {
+    transition: tween
+  }
+});
+
 export const ListNew = posed.div({
   enter: {
     opacity: 1,

@@ -1,11 +1,14 @@
 import React, { useState, useEffect } from 'react';
 import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
+import { PoseGroup } from 'react-pose';
 import { useMediaPredicate } from 'react-media-hook';
 import {
   StyledHeader,
   StyledNav,
   StyledNavDekstop,
-  StyledLink
+  StyledLink,
+  StyledLinkContainer,
+  StyledLinkList
 } from './styledHeader';
 import { H1 } from '../styledComp';
 import { navData, pageTitle, rulesLink } from '../../data/navData';
@@ -18,6 +21,12 @@ const Header = props => {
   const [checked, setChecked] = useState(false);
   const handleChecked = () => {
     setChecked(!checked);
+  };
+
+  const [isHover, setIsHover] = useState(false);
+
+  const toggleHover = () => {
+    setIsHover(!isHover);
   };
 
   const biggerThan800 = useMediaPredicate('(min-width: 800px)');
@@ -47,16 +56,46 @@ const Header = props => {
 
   const desktopNav = (
     <StyledNavDekstop>
-      {navData.map(item => (
-        <StyledLink
-          as={Link}
-          key={item.id}
-          onClick={handleChecked}
-          to={`/${item.link}`}
-        >
-          {item.content}
-        </StyledLink>
-      ))}
+      <StyledLinkContainer
+        onMouseEnter={toggleHover}
+        onMouseLeave={toggleHover}
+      >
+        <span>Matury</span>
+        <PoseGroup>
+          {isHover && (
+            <StyledLinkList key="209389sd">
+              {navData.map(
+                item =>
+                  item.unique && (
+                    <StyledLink
+                      as={Link}
+                      key={item.id}
+                      onClick={handleChecked}
+                      to={`/${item.link}`}
+                      style={item.style}
+                      unique={1}
+                    >
+                      {item.content}
+                    </StyledLink>
+                  )
+              )}
+            </StyledLinkList>
+          )}
+        </PoseGroup>
+      </StyledLinkContainer>
+      {navData.map(
+        item =>
+          !item.unique && (
+            <StyledLink
+              as={Link}
+              key={item.id}
+              onClick={handleChecked}
+              to={`/${item.link}`}
+            >
+              {item.content}
+            </StyledLink>
+          )
+      )}
     </StyledNavDekstop>
   );
 
