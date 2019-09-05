@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { media } from '../../utils';
 import { ListNew, Text } from '../styledComp/animations';
 
 export const StyledWrapper = styled.div`
@@ -10,12 +11,23 @@ export const StyledForm = styled.form`
   width: 100%;
 `;
 
+export const StyledSubjectWrapper = styled.div`
+  ${media.tablet`
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-auto-rows: 1fr;
+    grid-gap: 4rem;
+    padding: 4rem;
+  `}
+`;
+
 export const AnimationWrapper = styled(ListNew)``;
 
 export const StyledInnerWrapper = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-between;
+  height: 44px;
 
   i {
     font-size: 28px !important;
@@ -30,7 +42,7 @@ export const StyledInnerForm = styled.div`
   margin-bottom: 2rem;
 `;
 
-export const StyledSubjectWrapper = styled.div`
+export const StyledInnerSubjectWrapper = styled.div`
   margin: 2.5rem 0;
   width: 100%;
 `;
@@ -73,6 +85,10 @@ export const StyledResultWrapper = styled(ListNew)`
   flex-direction: column;
   width: 100%;
   margin-top: 5rem;
+
+  ${media.tablet`
+    grid-column: 1 / -1;
+  `}
 `;
 
 export const StyledDeleteButton = styled.button`

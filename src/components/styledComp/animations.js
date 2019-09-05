@@ -66,7 +66,7 @@ export const List = posed.div({
   }
 });
 
-export const NavList = posed.div({
+export const NavList = posed.ul({
   enter: {
     y: 0,
     opacity: 1,

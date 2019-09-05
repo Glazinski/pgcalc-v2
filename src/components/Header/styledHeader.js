@@ -39,14 +39,16 @@ export const StyledLinkContainer = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 70px;
+  width: auto;
   height: 30px;
-  transition: background-color 0.3s ease-in-out, color 0.3s ease-in-out;
+  transition: background-color 0.3s ease-in-out, color 0.3s ease-in-out,
+    box-shadow 0.3s ease-in-out;
   z-index: 100;
   margin-right: 2rem;
 
   :hover {
     background-color: ${({ theme }) => theme.colors.primary};
+    box-shadow: 0 0 0.3rem ${({ theme }) => theme.boxShadow};
     cursor: pointer;
 
     span {
@@ -94,6 +96,9 @@ export const StyledLink = styled.a`
   text-decoration: none;
   font-size: ${({ theme }) => theme.fontSize.xl};
   color: ${({ theme }) => theme.colors.secondaryDark};
+  transition: background-color 0.3s ease-in-out, color 0.3s ease-in-out,
+    box-shadow 0.3s ease-in-out;
+
   ${({ bottom }) =>
     bottom &&
     css`
@@ -107,6 +112,7 @@ export const StyledLink = styled.a`
   ${media.tablet`
 
     ${({ unique }) =>
+      // For List with Matury
       unique
         ? css`
             display: inline-block;
@@ -117,8 +123,9 @@ export const StyledLink = styled.a`
             color: ${({ theme }) => theme.colors.white};
             box-shadow: 0 0 0.3rem ${({ theme }) => theme.boxShadow};
           `
-        : css`
-            width: 100%;
+        : // For links next to to Matury
+          css`
+            width: auto;
             height: 30px;
             padding: 0;
             color: ${({ theme }) => theme.colors.secondaryDark};
@@ -134,6 +141,7 @@ export const StyledLink = styled.a`
     :hover {
       cursor: pointer;
       background-color: ${({ theme }) => theme.colors.primaryLight};
+      box-shadow: 0 0 0.3rem ${({ theme }) => theme.boxShadow};
     }
   `}
 `;
