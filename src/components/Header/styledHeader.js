@@ -1,5 +1,5 @@
 import styled, { css } from 'styled-components';
-import { Nav, NavList } from '../styledComp/animations';
+import { Nav, NavList, Alink } from '../styledComp/animations';
 import { media } from '../../utils/';
 
 export const StyledHeader = styled.header`
@@ -87,7 +87,7 @@ export const StyledLinkList = styled(NavList)`
   right: 0;
 `;
 
-export const StyledLink = styled.a`
+export const StyledLink = styled(Alink)`
   display: flex;
   justify-content: center;
   align-items: center;

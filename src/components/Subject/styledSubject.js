@@ -15,9 +15,13 @@ export const StyledSubjectWrapper = styled.div`
   ${media.tablet`
     display: grid;
     grid-template-columns: repeat(2, 1fr);
-    grid-auto-rows: 1fr;
+    grid-auto-rows: 210px;
     grid-gap: 4rem;
     padding: 4rem;
+  `}
+
+  ${media.desktop`
+    grid-template-columns: repeat(3, 1fr);
   `}
 `;
 

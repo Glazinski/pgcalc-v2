@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { PoseGroup } from 'react-pose';
+import { useMediaPredicate } from 'react-media-hook';
 import { H2, H3, StyledButton, StyledCheckbox } from '../styledComp';
 import {
   StyledWrapper,
@@ -21,6 +22,8 @@ import ExtraList from '../ExtraList/ExtraList';
 
 const Subject = props => {
   useEffect(() => {}, [props.lastResult]);
+
+  const biggerThan1248 = useMediaPredicate('(min-width: 1248px)');
 
   return (
     <>
@@ -70,6 +73,8 @@ const Subject = props => {
                 )
               )}
 
+              {biggerThan1248 ? <ExtraList key="824593798lhsda" /> : null}
+
               <StyledResultWrapper key="351633874">
                 <H2 square regular xl black>
                   Wynik:{' '}
@@ -92,7 +97,8 @@ const Subject = props => {
                 ) : null}
                 <StyledButton mt>Policz</StyledButton>
               </StyledResultWrapper>
-              <ExtraList key="824593798lhsda" />
+              {/* <ExtraList key="824593798lhsda" /> */}
+              {!biggerThan1248 ? <ExtraList key="824593798lhsda" /> : null}
             </PoseGroup>
           </StyledSubjectWrapper>
         </StyledForm>

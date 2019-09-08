@@ -4,6 +4,7 @@ export const H2 = styled.h2`
   position: relative;
   color: ${({ theme, black }) =>
     black ? theme.colors.black : theme.colors.secondaryDark};
+  color: ${({ theme, ter }) => (ter ? theme.colors.tertiary : null)};
 
   font-size: ${({ theme, medium }) =>
     medium ? theme.fontSize.l : theme.fontSize.s};
