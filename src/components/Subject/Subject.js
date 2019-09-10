@@ -52,7 +52,7 @@ const Subject = props => {
                       ) : null}
                     </StyledInnerWrapper>
 
-                    <StyledInnerForm>
+                    <StyledInnerForm title={item.title}>
                       {item.input.map(
                         ({ id, level, value, name, min, max }) => (
                           <StyledInnerSubjectWrapper key={id}>
@@ -73,7 +73,7 @@ const Subject = props => {
                 )
               )}
 
-              {biggerThan1248 ? <ExtraList key="824593798lhsda" /> : null}
+              {/* {biggerThan1248 ? <ExtraList key="824593798lhsda" /> : null} */}
 
               <StyledResultWrapper key="351633874">
                 <H2 square regular xl black>
@@ -97,8 +97,7 @@ const Subject = props => {
                 ) : null}
                 <StyledButton mt>Policz</StyledButton>
               </StyledResultWrapper>
-              {/* <ExtraList key="824593798lhsda" /> */}
-              {!biggerThan1248 ? <ExtraList key="824593798lhsda" /> : null}
+              {/* {!biggerThan1248 ? <ExtraList key="824593798lhsda" /> : null} */}
             </PoseGroup>
           </StyledSubjectWrapper>
         </StyledForm>
