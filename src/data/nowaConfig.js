@@ -2,6 +2,7 @@ const min = 0;
 const max = 100;
 const value = '';
 const unique = true;
+const disabled = false;
 
 export const scale = {
   basic: 0.4,
@@ -19,7 +20,8 @@ export const nowaConfigSubjects = [
         name: 'basicForeign',
         min,
         max,
-        value
+        value,
+        disabled
       },
       {
         id: 22,

@@ -3,7 +3,7 @@ import Global from '../Layout/Global';
 import Header from './Header/Header';
 
 const App = () => {
-  const handleConfigInputChange = (e, config, setConfig) => {
+  const handleConfigInputChange = (e, config, setConfig, isChecked, id) => {
     const { name } = e.target;
     let { value, min, max } = e.target;
 
@@ -20,6 +20,17 @@ const App = () => {
     // Map nested array and give them user's value
     const newConfig = config.map(item => {
       item.input.map(input => {
+        // If id is the same as basicForeign id
+        // And checkbox is checked in nowamatura
+        // Then disable input for basicForeign and change
+        // Value to string because it shouldn't be counted
+        if (id === input.id) {
+          if (isChecked || !isChecked) {
+            input.disabled = !input.disabled;
+            input.value = '';
+          }
+        }
+
         if (input.name === name) {
           input.value = value;
         }
@@ -41,6 +52,16 @@ const App = () => {
         item.hidden = false;
       }
 
+      // Cleans all inputs
+      if (type === 'clear') {
+        item.input.map(input => {
+          input.value = '';
+          return input;
+        });
+        calcResult();
+      }
+
+      // Removes a specific subject on user click
       if (item.id === num && type === 'del') {
         item.hidden = true;
 

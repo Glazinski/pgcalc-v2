@@ -6,7 +6,7 @@ export const StyledSelect = styled.div`
   display: flex;
   justify-content: space-around;
   align-items: center;
-  width: 136px;
+  width: 144px;
   height: 44px;
   border: 1px solid ${({ theme }) => theme.colors.secondaryDark};
   border-radius: 4px;
@@ -14,17 +14,6 @@ export const StyledSelect = styled.div`
   :hover {
     cursor: pointer;
   }
-
-  /* ::after {
-    content: '';
-    display: inline-block;
-    width: 9px;
-    height: 9px;
-    border-left: 1px solid ${({ theme }) => theme.colors.secondaryDark};
-    border-bottom: 1px solid ${({ theme }) => theme.colors.secondaryDark};
-    margin-left: 11px;
-    transform: rotate(-45deg);
-  } */
 `;
 
 export const StyledList = styled(List)`

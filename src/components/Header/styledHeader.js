@@ -140,8 +140,12 @@ export const StyledLink = styled(Alink)`
       
     :hover {
       cursor: pointer;
-      background-color: ${({ theme }) => theme.colors.primaryLight};
+      background-color: ${({ theme }) => theme.colors.primary};
       box-shadow: 0 0 0.3rem ${({ theme }) => theme.boxShadow};
     }
   `}
+`;
+
+export const StyledLinkTitle = styled.a`
+  text-decoration: none;
 `;

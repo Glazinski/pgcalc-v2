@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { H2, StyledMain } from '../components/styledComp';
+import { H2, StyledMain, StyledTitleWrapper } from '../components/styledComp';
 import Subject from '../components/Subject/Subject';
 import { nowaConfigSubjects, scale } from '../data/nowaConfig';
 
@@ -52,12 +52,12 @@ const NowaMaturaPage = props => {
     props.handleItemClick(e, num, calcResult, nowaConfig, setNowaConfig);
   };
 
-  const handleInputChange = e => {
+  const handleInputChange = (e, id) => {
     const { type } = e.target;
 
     if (type === 'checkbox') setIsChecked(!isChecked);
 
-    props.handleConfigInputChange(e, nowaConfig, setNowaConfig);
+    props.handleConfigInputChange(e, nowaConfig, setNowaConfig, isChecked, id);
   };
 
   const handleSubmit = e => {
@@ -68,11 +68,18 @@ const NowaMaturaPage = props => {
 
   return (
     <StyledMain>
-      <div>
-        <H2 square medium black regular mb>
+      <StyledTitleWrapper>
+        <H2 square medium black regular>
           Nowa Matura
         </H2>
-      </div>
+        <i
+          className="material-icons"
+          data-type="clear"
+          onClick={e => handleItemClick(e)}
+        >
+          delete_sweep
+        </i>
+      </StyledTitleWrapper>
       <Subject
         handleInputChange={handleInputChange}
         handleSubmit={handleSubmit}

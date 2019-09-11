@@ -3,7 +3,7 @@ import { css } from 'styled-components';
 export const theme = {
   colors: {
     primary: '#00669E',
-    // primaryLight: '#0082c9',
+    primaryDark: '#005685',
     primaryLight: '#0078ba',
     secondary: '#D2D2D2',
     secondaryLight: '#F3F3F3',
@@ -16,7 +16,7 @@ export const theme = {
   borderRadius: '4px',
   fontSize: {
     s: '1.5rem',
-    ss: '1.8rem',
+    m: '1.8rem',
     l: '2rem',
     xl: '2.3rem'
   },

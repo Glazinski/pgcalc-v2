@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import { PoseGroup } from 'react-pose';
-import { useMediaPredicate } from 'react-media-hook';
 import { H2, H3, StyledButton, StyledCheckbox } from '../styledComp';
 import {
   StyledWrapper,
@@ -15,15 +14,19 @@ import {
   StyledLabel,
   StyledResultWrapper,
   StyledDeleteButton,
-  StyledText
+  StyledText,
+  StyledInnerLabel,
+  StyledInnerLabelInfo
 } from './styledSubject';
 import CustomSelect from '../CustomSelect/CustomSelect';
 import ExtraList from '../ExtraList/ExtraList';
 
 const Subject = props => {
-  useEffect(() => {}, [props.lastResult]);
+  const [isHover, setIsHover] = useState(false);
 
-  const biggerThan1248 = useMediaPredicate('(min-width: 1248px)');
+  const toggleHover = () => {
+    setIsHover(!isHover);
+  };
 
   return (
     <>
@@ -54,7 +57,7 @@ const Subject = props => {
 
                     <StyledInnerForm title={item.title}>
                       {item.input.map(
-                        ({ id, level, value, name, min, max }) => (
+                        ({ id, level, value, name, min, max, disabled }) => (
                           <StyledInnerSubjectWrapper key={id}>
                             <H3>{level}</H3>
                             <StyledInput
@@ -64,6 +67,7 @@ const Subject = props => {
                               name={name}
                               min={min}
                               max={max}
+                              disabled={disabled}
                             />
                           </StyledInnerSubjectWrapper>
                         )
@@ -72,8 +76,6 @@ const Subject = props => {
                   </AnimationWrapper>
                 )
               )}
-
-              {/* {biggerThan1248 ? <ExtraList key="824593798lhsda" /> : null} */}
 
               <StyledResultWrapper key="351633874">
                 <H2 square regular xl black>
@@ -88,16 +90,31 @@ const Subject = props => {
                       id="twoLang"
                       type="checkbox"
                       checked={props.isChecked}
-                      onChange={e => props.handleInputChange(e)}
+                      // Pass 12 as an argument because it's the same id
+                      // As basicForeign has so handleInputChange knows which
+                      // Object to block
+                      onChange={e => props.handleInputChange(e, 12)}
                     />
                     <StyledLabel htmlFor="twoLang">
                       Matura Dwujęzyczna
                     </StyledLabel>
+                    <StyledInnerLabel
+                      onMouseEnter={toggleHover}
+                      onMouseLeave={toggleHover}
+                    >
+                      i
+                      {isHover && (
+                        <StyledInnerLabelInfo>
+                          Przy wyborze matury dwujęzycznej, punkty z języka
+                          obcego są liczone jak rozszerzenie.
+                        </StyledInnerLabelInfo>
+                      )}
+                    </StyledInnerLabel>
                   </StyledInputWrapper>
                 ) : null}
+
                 <StyledButton mt>Policz</StyledButton>
               </StyledResultWrapper>
-              {/* {!biggerThan1248 ? <ExtraList key="824593798lhsda" /> : null} */}
             </PoseGroup>
           </StyledSubjectWrapper>
         </StyledForm>

@@ -1,6 +1,6 @@
-import styled, { css } from 'styled-components';
+import styled, { css, keyframes } from 'styled-components';
 import { media } from '../../utils';
-import { ListNew, Text } from '../styledComp/animations';
+import { List, ListNew, Text } from '../styledComp/animations';
 
 export const StyledWrapper = styled.div`
   width: 100%;
@@ -135,8 +135,69 @@ export const StyledInput = styled.input`
 `;
 
 export const StyledLabel = styled.label`
+  position: relative;
   margin-left: 1rem;
   font-size: ${({ theme }) => theme.fontSize.s};
+
+  :hover {
+    cursor: pointer;
+  }
+`;
+
+export const StyledInnerLabel = styled.div`
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 18px;
+  height: 18px;
+  margin-left: 5px;
+  margin-bottom: 7px;
+  /* right: -13%;
+  top: -15%; */
+  border-radius: 100px;
+  border: 1px solid ${({ theme }) => theme.colors.secondaryDark};
+  font-size: 1.3rem;
+
+  :hover {
+    cursor: pointer;
+  }
+`;
+
+const enter = keyframes`
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+`;
+
+export const StyledInnerLabelInfo = styled(List)`
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  width: 180px;
+  height: 120px;
+  padding: 1rem;
+  bottom: 25px;
+  left: -75px;
+  box-shadow: 0 0 1rem ${({ theme }) => theme.boxShadow};
+  animation: ${enter} 0.3s ease-in-out both;
+  font-size: ${({ theme }) => theme.fontSize.s};
+  background-color: ${({ theme }) => theme.colors.white};
+
+  ${media.tablet`
+    left: 22px;
+    bottom: 0;
+  `}
+
+  :hover {
+    cursor: default;
+  }
 `;
 
 export const StyledResultWrapper = styled(ListNew)`

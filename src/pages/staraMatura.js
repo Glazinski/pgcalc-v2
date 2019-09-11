@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { H2, StyledMain } from '../components/styledComp';
+import { H2, StyledMain, StyledTitleWrapper } from '../components/styledComp';
 import { staraConfigSubjects, scale, grades } from '../data/staraConfig';
 import Subject from '../components/Subject/Subject';
 import AddSubject from '../components/AddSubject/AddSubject';
@@ -74,11 +74,18 @@ const StaraMaturaPage = props => {
 
   return (
     <StyledMain>
-      <div>
+      <StyledTitleWrapper>
         <H2 square medium black regular mb>
           Stara Matura
         </H2>
-      </div>
+        <i
+          className="material-icons"
+          data-type="clear"
+          onClick={e => handleItemClick(e)}
+        >
+          delete_sweep
+        </i>
+      </StyledTitleWrapper>
       <Subject
         handleInputChange={handleInputChange}
         handleSubmit={handleSubmit}

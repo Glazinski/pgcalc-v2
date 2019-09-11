@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
 import { PoseGroup } from 'react-pose';
 import { useMediaPredicate } from 'react-media-hook';
@@ -8,7 +8,8 @@ import {
   StyledNavDekstop,
   StyledLink,
   StyledLinkContainer,
-  StyledLinkList
+  StyledLinkList,
+  StyledLinkTitle
 } from './styledHeader';
 import { H1 } from '../styledComp';
 import { navData, pageTitle, rulesLink } from '../../data/navData';
@@ -103,7 +104,9 @@ const Header = props => {
     <Router>
       <StyledHeader>
         <div style={{ width: '50%' }}>
-          <H1>{pageTitle}</H1>
+          <StyledLinkTitle href="/">
+            <H1>{pageTitle}</H1>
+          </StyledLinkTitle>
         </div>
 
         <HamburgerMenu checked={checked} handleChecked={handleChecked} />

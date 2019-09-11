@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { H2, StyledMain } from '../components/styledComp';
+import { H2, StyledMain, StyledTitleWrapper } from '../components/styledComp';
 import { ibConfigSubject, basicGrades, extGrades } from '../data/ibConfig';
 import Subject from '../components/Subject/Subject';
 import AddSubject from '../components/AddSubject/AddSubject';
@@ -50,11 +50,18 @@ const MaturaIBPage = props => {
 
   return (
     <StyledMain>
-      <div>
+      <StyledTitleWrapper>
         <H2 square medium black regular mb>
           Matura Międzynarodowa
         </H2>
-      </div>
+        <i
+          className="material-icons"
+          data-type="clear"
+          onClick={e => handleItemClick(e)}
+        >
+          delete_sweep
+        </i>
+      </StyledTitleWrapper>
       <Subject
         handleInputChange={handleInputChange}
         handleSubmit={handleSubmit}
