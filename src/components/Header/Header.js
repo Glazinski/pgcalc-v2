@@ -1,5 +1,11 @@
 import React, { useState } from 'react';
-import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
+import {
+  BrowserRouter as Router,
+  Route,
+  Link,
+  Switch,
+  Redirect
+} from 'react-router-dom';
 import { PoseGroup } from 'react-pose';
 import { useMediaPredicate } from 'react-media-hook';
 import {
@@ -113,34 +119,38 @@ const Header = props => {
 
         {biggerThan800 ? desktopNav : mobileNav}
       </StyledHeader>
-      <Route
-        path="/"
-        exact
-        render={() => (
-          <NowaMaturaPage
-            handleConfigInputChange={props.handleConfigInputChange}
-            handleItemClick={props.handleItemClick}
-          />
-        )}
-      />
-      <Route
-        path="/stara-matura"
-        render={() => (
-          <StaraMaturaPage
-            handleConfigInputChange={props.handleConfigInputChange}
-            handleItemClick={props.handleItemClick}
-          />
-        )}
-      />
-      <Route
-        path="/matura-miedzynarodowa"
-        render={() => (
-          <MaturaIBPage
-            handleConfigInputChange={props.handleConfigInputChange}
-            handleItemClick={props.handleItemClick}
-          />
-        )}
-      />
+      <Switch>
+        <Route
+          path="/"
+          exact
+          render={() => (
+            <NowaMaturaPage
+              handleConfigInputChange={props.handleConfigInputChange}
+              handleItemClick={props.handleItemClick}
+            />
+          )}
+        />
+
+        <Route
+          path="/stara-matura"
+          render={() => (
+            <StaraMaturaPage
+              handleConfigInputChange={props.handleConfigInputChange}
+              handleItemClick={props.handleItemClick}
+            />
+          )}
+        />
+        <Route
+          path="/matura-miedzynarodowa"
+          render={() => (
+            <MaturaIBPage
+              handleConfigInputChange={props.handleConfigInputChange}
+              handleItemClick={props.handleItemClick}
+            />
+          )}
+        />
+        <Redirect to="/" />
+      </Switch>
     </Router>
   );
 };

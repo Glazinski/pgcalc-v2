@@ -41,8 +41,7 @@ export const StyledLinkContainer = styled.div`
   align-items: center;
   width: auto;
   height: 30px;
-  transition: background-color 0.3s ease-in-out, color 0.3s ease-in-out,
-    box-shadow 0.3s ease-in-out;
+  transition: background-color 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
   z-index: 100;
   margin-right: 2rem;
 
@@ -69,6 +68,7 @@ export const StyledLinkContainer = styled.div`
     color: ${({ theme }) => theme.colors.secondaryDark};
     font-size: ${({ theme }) => theme.fontSize.s};
     font-weight: bold;
+    transition: color 0.3s ease-in-out 0.1s;
   }
 `;
 
@@ -88,6 +88,7 @@ export const StyledLinkList = styled(NavList)`
 `;
 
 export const StyledLink = styled(Alink)`
+  position: relative;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -96,8 +97,13 @@ export const StyledLink = styled(Alink)`
   text-decoration: none;
   font-size: ${({ theme }) => theme.fontSize.xl};
   color: ${({ theme }) => theme.colors.secondaryDark};
-  transition: background-color 0.3s ease-in-out, color 0.3s ease-in-out,
+  transition: background-color 0.3s ease-in-out, color 0.3s ease-in-out 0.1s,
     box-shadow 0.3s ease-in-out;
+
+  :hover {
+    background-color: ${({ theme }) => theme.colors.primary};
+    color: ${({ theme }) => theme.colors.white};
+  }
 
   ${({ bottom }) =>
     bottom &&
@@ -140,7 +146,7 @@ export const StyledLink = styled(Alink)`
       
     :hover {
       cursor: pointer;
-      background-color: ${({ theme }) => theme.colors.primary};
+      background-color: ${({ theme }) => theme.colors.primaryLight};
       box-shadow: 0 0 0.3rem ${({ theme }) => theme.boxShadow};
     }
   `}

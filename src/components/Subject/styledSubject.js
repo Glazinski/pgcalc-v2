@@ -215,6 +215,10 @@ export const StyledDeleteButton = styled.button`
   appearance: none;
   border: none;
   background: none;
+
+  :hover {
+    cursor: pointer;
+  }
 `;
 
 export const StyledText = styled(Text)``;

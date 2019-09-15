@@ -3,13 +3,13 @@ const unique = true;
 export const pageTitle = 'Kalkulator Punktów';
 
 export const navData = [
-  {
-    id: 14324,
-    link: 'obcokrajowcy',
-    content: 'Dla obcokrajowców',
-    style: { gridColumn: '1 / -1' },
-    unique
-  },
+  // {
+  //   id: 14324,
+  //   link: 'obcokrajowcy',
+  //   content: 'Dla obcokrajowców',
+  //   style: { gridColumn: '1 / -1' },
+  //   unique
+  // },
   { id: 1324, link: '', content: 'Nowa matura', unique },
   { id: 1434, link: 'stara-matura', content: 'Stara matura', unique },
   {
