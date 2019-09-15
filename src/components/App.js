@@ -7,23 +7,23 @@ const App = () => {
     const { name } = e.target;
     let { value, min, max } = e.target;
 
-    // Parse to Int becouse these properties come as a string
+    // Parse to Int because these properties come as a string
     value = parseInt(value, 10);
     min = parseInt(min, 10);
     max = parseInt(max, 10);
 
-    // Change value if user write something he shouldn't
+    // Changes value if user write something he shouldn't
     if (value > max) value = max;
     if (value < min) value = min;
     if (isNaN(value)) value = '';
 
-    // Map nested array and give them user's value
+    // Map nested array and gives user's value
     const newConfig = config.map(item => {
       item.input.map(input => {
         // If id is the same as basicForeign id
-        // And checkbox is checked in nowamatura
-        // Then disable input for basicForeign and change
-        // Value to string because it shouldn't be counted
+        // and checkbox is checked in nowamatura
+        // then it disables input for basicForeign and changes
+        // value to string because it shouldn't be counted
         if (id === input.id) {
           if (isChecked || !isChecked) {
             input.disabled = !input.disabled;
@@ -65,8 +65,8 @@ const App = () => {
       if (item.id === num && type === 'del') {
         item.hidden = true;
 
-        // After delete change value to 0
-        // I don't want to have deleted subject in last result
+        // When subject is deleted it changes its value
+        // to "" so it doesn't take this into account of last result
         item.input.map(input => {
           input.value = '';
           return input;

@@ -16,7 +16,7 @@ const NowaMaturaPage = props => {
       item.input
         .map((subject, index) => {
           const { unique, value, name } = subject;
-          const { basic, extended } = scale;
+          const { langs, basic, extended } = scale;
 
           if (index % 2 === 0) {
             if (unique) {
@@ -24,10 +24,10 @@ const NowaMaturaPage = props => {
             }
 
             if (isChecked && name.includes('Foreign')) {
-              return parseFloat((0.1 * value * extended).toFixed(2));
+              return parseFloat((langs * value * extended).toFixed(2));
             }
 
-            return parseFloat((0.1 * value * basic).toFixed(2));
+            return parseFloat((langs * value * basic).toFixed(2));
           }
 
           if (unique) {
@@ -35,10 +35,10 @@ const NowaMaturaPage = props => {
           }
 
           if (isChecked && name.includes('Foreign')) {
-            return parseFloat((0.1 * value * extended).toFixed(2));
+            return parseFloat((langs * value * extended).toFixed(2));
           }
 
-          return parseFloat((0.1 * value * extended).toFixed(2));
+          return parseFloat((langs * value * extended).toFixed(2));
         })
         .reduce((acc, cur) => Math.max(acc, cur))
     );

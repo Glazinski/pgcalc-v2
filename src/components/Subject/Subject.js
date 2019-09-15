@@ -90,7 +90,7 @@ const Subject = props => {
                       id="twoLang"
                       type="checkbox"
                       checked={props.isChecked}
-                      // Pass 12 as an argument because it's the same id
+                      // Passes 12 as an argument because it's the same id
                       // As basicForeign has so handleInputChange knows which
                       // Object to block
                       onChange={e => props.handleInputChange(e, 12)}

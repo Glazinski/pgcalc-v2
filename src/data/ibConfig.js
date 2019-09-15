@@ -2,6 +2,8 @@ const min = 1;
 const max = 7;
 const value = '';
 const unique = true;
+const basLevel = `Poziom \n SL (1-7)`;
+const extLevel = `Poziom \n HL (1-7)`;
 
 export const basicGrades = new Map([
   ['', 0],
@@ -34,7 +36,7 @@ export const ibConfigSubject = [
     input: [
       {
         id: 12765,
-        level: `Poziom \n SL (1-7)`,
+        level: basLevel,
         name: 'basicForeign',
         min,
         max,
@@ -42,7 +44,7 @@ export const ibConfigSubject = [
       },
       {
         id: 22765,
-        level: `Poziom \n HL (1-7)`,
+        level: extLevel,
         name: 'extForeign',
         min,
         max,
@@ -56,7 +58,7 @@ export const ibConfigSubject = [
     input: [
       {
         id: 32765,
-        level: `Poziom \n SL (1-7)`,
+        level: basLevel,
         name: 'basicPolish',
         min,
         max,
@@ -64,7 +66,7 @@ export const ibConfigSubject = [
       },
       {
         id: 42765,
-        level: `Poziom \n HL (1-7)`,
+        level: extLevel,
         name: 'extPolish',
         min,
         max,
@@ -80,7 +82,7 @@ export const ibConfigSubject = [
     input: [
       {
         id: 52765,
-        level: `Poziom \n SL (1-7)`,
+        level: basLevel,
         name: 'basicMaths',
         min,
         max,
@@ -89,7 +91,7 @@ export const ibConfigSubject = [
       },
       {
         id: 62765,
-        level: `Poziom \n HL (1-7)`,
+        level: extLevel,
         name: 'extMaths',
         min,
         max,
@@ -100,14 +102,14 @@ export const ibConfigSubject = [
   },
   {
     id: 4,
-    title: 'Przedmiot Dodatkowy',
+    title: 'Przedmiot dodatkowy',
     hidden: true,
     special: true,
     removable: true,
     input: [
       {
         id: 72765,
-        level: `Poziom \n SL (1-7)`,
+        level: basLevel,
         name: 'basicExtra',
         min,
         max,
@@ -116,7 +118,7 @@ export const ibConfigSubject = [
       },
       {
         id: 82765,
-        level: `Poziom \n HL (1-7)`,
+        level: extLevel,
         name: 'extExtra',
         min,
         max,

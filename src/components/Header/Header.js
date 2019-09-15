@@ -63,6 +63,9 @@ const Header = props => {
 
   const desktopNav = (
     <StyledNavDekstop>
+      <StyledLink href={rulesLink.link} target="_blank">
+        Zasady
+      </StyledLink>
       <StyledLinkContainer
         onMouseEnter={toggleHover}
         onMouseLeave={toggleHover}

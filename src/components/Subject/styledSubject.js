@@ -30,10 +30,6 @@ export const StyledSubjectWrapper = styled.div`
     grid-gap: 4rem;
     padding: 4rem;
   `}
-
-  /* ${media.desktop`
-    grid-template-columns: repeat(3, 1fr);
-  `} */
 `;
 
 export const AnimationWrapper = styled(ListNew)`
@@ -44,6 +40,7 @@ export const AnimationWrapper = styled(ListNew)`
   ${media.desktop`
     margin: 0 auto;
     width: 75%;
+    max-width: none;
   `}
 `;
 

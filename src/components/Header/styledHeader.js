@@ -46,7 +46,7 @@ export const StyledLinkContainer = styled.div`
   margin-right: 2rem;
 
   :hover {
-    background-color: ${({ theme }) => theme.colors.primary};
+    background-color: ${({ theme }) => theme.colors.primaryLight};
     box-shadow: 0 0 0.3rem ${({ theme }) => theme.boxShadow};
     cursor: pointer;
 
@@ -125,11 +125,15 @@ export const StyledLink = styled(Alink)`
             height: 100%;
             padding: 0.5rem 0;
             font-size: ${({ theme }) => theme.fontSize.s};
-            background-color: ${({ theme }) => theme.colors.primary};
+            background-color: ${({ theme }) => theme.colors.primaryLight};
             color: ${({ theme }) => theme.colors.white};
             box-shadow: 0 0 0.3rem ${({ theme }) => theme.boxShadow};
+
+            :hover {
+              background-color: ${({ theme }) => theme.colors.primary};
+            }
           `
-        : // For links next to to Matury
+        : // For links next to Matury
           css`
             width: auto;
             height: 30px;
@@ -140,13 +144,14 @@ export const StyledLink = styled(Alink)`
             margin-right: 2rem;
 
             :hover {
+              background-color: ${({ theme }) => theme.colors.primaryLight};
               color: ${({ theme }) => theme.colors.white};
             }
           `}
       
     :hover {
       cursor: pointer;
-      background-color: ${({ theme }) => theme.colors.primaryLight};
+      
       box-shadow: 0 0 0.3rem ${({ theme }) => theme.boxShadow};
     }
   `}
