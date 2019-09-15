@@ -3,17 +3,21 @@ import { List } from '../styledComp/animations';
 
 export const StyledSelect = styled.div`
   position: relative;
-  display: flex;
-  justify-content: space-around;
-  align-items: center;
-  width: 144px;
-  height: 44px;
+  padding: 0.3rem;
+  width: 150px;
+  height: 46px;
   border: 1px solid ${({ theme }) => theme.colors.secondaryDark};
   border-radius: 4px;
 
   :hover {
     cursor: pointer;
   }
+`;
+
+export const StyledInnerSelect = styled.div`
+  display: flex;
+  justify-content: ${({ start }) => (start ? 'flex-start' : 'space-between')};
+  align-items: center;
 `;
 
 export const StyledList = styled(List)`

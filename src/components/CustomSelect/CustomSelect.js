@@ -1,6 +1,11 @@
 import React, { useState, useRef } from 'react';
 import { PoseGroup } from 'react-pose';
-import { StyledSelect, StyledList, StyledListItem } from './styledCustomSelect';
+import {
+  StyledSelect,
+  StyledInnerSelect,
+  StyledList,
+  StyledListItem
+} from './styledCustomSelect';
 import { H2, H3 } from '../styledComp';
 import { useOutsideClick } from '../../hooks';
 import { extraSubjectsConfig } from '../../data/extraSubjects';
@@ -20,8 +25,13 @@ const CustomSelect = () => {
 
   return (
     <StyledSelect onClick={handleClick} ref={ref}>
-      <H2 black>{value}</H2>
-      <i className="material-icons">keyboard_arrow_down</i>
+      <StyledInnerSelect start>
+        <label>Przedmiot dodatkowy</label>
+      </StyledInnerSelect>
+      <StyledInnerSelect>
+        <H2 black>{value}</H2>
+        <i className="material-icons">keyboard_arrow_down</i>
+      </StyledInnerSelect>
       <PoseGroup>
         {visible ? (
           <StyledList vis={visible} key="124532">

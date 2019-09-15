@@ -2,6 +2,9 @@ const min = 2;
 const max = 6;
 const value = '';
 const unique = true;
+const basLevel = `Egzamin \n Pisemny \n (2-6)`;
+const verbalLevel = `Egzamin \n Ustny \n (2-6)`;
+const certLevel = `Oceny ze \n świadectwa \n (2-6)`;
 
 export const scale = {
   cert: 0.25,
@@ -26,7 +29,7 @@ export const staraConfigSubjects = [
     input: [
       {
         id: 122,
-        level: `Egzamin \n Pisemny \n (2-6)`,
+        level: basLevel,
         name: 'writtenForeign',
         min,
         max,
@@ -34,7 +37,7 @@ export const staraConfigSubjects = [
       },
       {
         id: 222,
-        level: `Egzamin \n Ustny \n (2-6)`,
+        level: verbalLevel,
         name: 'verbalForeign',
         min,
         max,
@@ -42,7 +45,7 @@ export const staraConfigSubjects = [
       },
       {
         id: 322,
-        level: `Oceny ze \n świadectwa \n (2-6)`,
+        level: certLevel,
         name: 'certForeign',
         min,
         max,
@@ -56,7 +59,7 @@ export const staraConfigSubjects = [
     input: [
       {
         id: 422,
-        level: `Egzamin \n Pisemny \n (2-6)`,
+        level: basLevel,
         name: 'writtenPolish',
         min,
         max,
@@ -64,7 +67,7 @@ export const staraConfigSubjects = [
       },
       {
         id: 522,
-        level: `Egzamin \n Ustny \n (2-6)`,
+        level: verbalLevel,
         name: 'verbalPolish',
         min,
         max,
@@ -72,7 +75,7 @@ export const staraConfigSubjects = [
       },
       {
         id: 622,
-        level: `Oceny ze \n świadectwa \n (2-6)`,
+        level: certLevel,
         name: 'certPolish',
         min,
         max,
@@ -88,7 +91,7 @@ export const staraConfigSubjects = [
     input: [
       {
         id: 522,
-        level: `Egzamin \n Pisemny \n (2-6)`,
+        level: basLevel,
         name: 'writtenMaths',
         min,
         max,
@@ -97,7 +100,7 @@ export const staraConfigSubjects = [
       },
       {
         id: 622,
-        level: `Egzamin \n Ustny \n (2-6)`,
+        level: verbalLevel,
         name: 'verbalMaths',
         min,
         max,
@@ -106,7 +109,7 @@ export const staraConfigSubjects = [
       },
       {
         id: 722,
-        level: `Oceny ze \n świadectwa \n (2-6)`,
+        level: certLevel,
         name: 'certMaths',
         min,
         max,
@@ -124,7 +127,7 @@ export const staraConfigSubjects = [
     input: [
       {
         id: 822,
-        level: `Egzamin \n Pisemny \n (2-6)`,
+        level: basLevel,
         name: 'writtenExtra',
         min,
         max,
@@ -133,7 +136,7 @@ export const staraConfigSubjects = [
       },
       {
         id: 922,
-        level: `Egzamin \n Ustny \n (2-6)`,
+        level: verbalLevel,
         name: 'verbalExtra',
         min,
         max,
@@ -142,7 +145,7 @@ export const staraConfigSubjects = [
       },
       {
         id: 1022,
-        level: `Oceny ze \n świadectwa \n (2-6)`,
+        level: certLevel,
         name: 'certExtra',
         min,
         max,
