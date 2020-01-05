@@ -25,7 +25,7 @@ const CustomSelect = () => {
 
   return (
     <StyledSelect onClick={handleClick} ref={ref}>
-      <StyledInnerSelect start>
+      <StyledInnerSelect start="true">
         <label>Przedmiot dodatkowy</label>
       </StyledInnerSelect>
       <StyledInnerSelect>

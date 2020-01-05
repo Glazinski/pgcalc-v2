@@ -19,8 +19,8 @@ export const navData = [
     style: { gridColumn: '1 / -1' },
     unique
   },
-  { id: 1634, link: 'kontakt', content: 'Kontakt' },
-  { id: 1734, link: 'moje-wyniki', content: 'Moje \n Wyniki' }
+  // { id: 1634, link: 'kontakt', content: 'Kontakt' },
+  // { id: 1734, link: 'moje-wyniki', content: 'Moje \n Wyniki' }
 ];
 
 export const rulesLink = {

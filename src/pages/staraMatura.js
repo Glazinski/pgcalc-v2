@@ -6,7 +6,7 @@ import AddSubject from '../components/AddSubject/AddSubject';
 
 const StaraMaturaPage = props => {
   const [staraConfig, setStaraConfig] = useState(staraConfigSubjects);
-  const [lastResult, setLastResult] = useState(0);
+  const [lastResult, setLastResult] = useState(0)
 
   const calcResult = () => {
     const results = staraConfig.map(item =>
