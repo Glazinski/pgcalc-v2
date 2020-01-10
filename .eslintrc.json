@@ -1,51 +1,28 @@
 {
-   "env": {
-      "browser": true,
-      "es6": true
-   },
-   "extends": ["airbnb", "prettier", "plugin:node/recommended"],
-   "globals": {
-      "Atomics": "readonly",
-      "SharedArrayBuffer": "readonly"
-   },
-   "parserOptions": {
-      "ecmaFeatures": {
-         "jsx": true
-      },
-      "ecmaVersion": 2018,
-      "sourceType": "module"
-   },
-   "plugins": ["react", "prettier"],
-   "rules": {
-      // "prettier/prettier": "warn",
-      "no-unused-vars": "warn",
-      "linebreak-style": ["error", "windows"],
-      "react/jsx-filename-extension": [
-         1,
-         {
-            "extensions": [".js", ".jsx"]
-         }
-      ],
-      "semi": "warn",
-      "func-names": "off",
-      "node/no-unsupported-features/es-syntax": "off",
-      "react/prop-types": "off",
-      "react/destructuring-assignment": "off",
-      "import/prefer-default-export": "off",
-      "no-param-reassign": [
-         2,
-         {
-            "props": false
-         }
-      ],
-      "no-restricted-globals": "off",
-      "react/jsx-one-expression-per-line": "off",
-      "jsx-a11y/label-has-for": [
-         {
-            "required": {
-               "some": ["nesting", "id"]
-            }
-         }
-      ]
-   }
+  "env": {
+    "browser": true,
+    "es6": true
+  },
+  "extends": ["airbnb", "airbnb/hooks"],
+  "globals": {
+    "Atomics": "readonly",
+    "SharedArrayBuffer": "readonly"
+  },
+  "parserOptions": {
+    "ecmaFeatures": {
+      "jsx": true
+    },
+    "ecmaVersion": 2018,
+    "sourceType": "module"
+  },
+  "plugins": ["react"],
+  "rules": {
+    "react/jsx-filename-extension": [
+      1,
+      {
+        "extensions": [".js", ".jsx"]
+      }
+    ],
+    "arrow-parens": ["error", "as-needed"]
+  }
 }

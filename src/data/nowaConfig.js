@@ -3,13 +3,13 @@ const max = 100;
 const value = '';
 const unique = true;
 const disabled = false;
-const basLevel = `Poziom \n Podstawowy \n (%)`;
-const extLevel = `Poziom \n Rozszerzony \n (%)`;
+const basLevel = 'Poziom \n Podstawowy \n (%)';
+const extLevel = 'Poziom \n Rozszerzony \n (%)';
 
 export const scale = {
   langs: 0.1,
   basic: 0.4,
-  extended: 1
+  extended: 1,
 };
 
 export const nowaConfigSubjects = [
@@ -24,7 +24,7 @@ export const nowaConfigSubjects = [
         min,
         max,
         value,
-        disabled
+        disabled,
       },
       {
         id: 22,
@@ -32,9 +32,9 @@ export const nowaConfigSubjects = [
         name: 'extForeign',
         min,
         max,
-        value
-      }
-    ]
+        value,
+      },
+    ],
   },
   {
     id: 2,
@@ -46,7 +46,7 @@ export const nowaConfigSubjects = [
         name: 'basicPolish',
         min,
         max,
-        value
+        value,
       },
       {
         id: 42,
@@ -54,9 +54,9 @@ export const nowaConfigSubjects = [
         name: 'extPolish',
         min,
         max,
-        value
-      }
-    ]
+        value,
+      },
+    ],
   },
   {
     id: 3,
@@ -71,7 +71,7 @@ export const nowaConfigSubjects = [
         min,
         max,
         value,
-        unique
+        unique,
       },
       {
         id: 62,
@@ -80,9 +80,9 @@ export const nowaConfigSubjects = [
         min,
         max,
         value,
-        unique
-      }
-    ]
+        unique,
+      },
+    ],
   },
   {
     id: 4,
@@ -98,7 +98,7 @@ export const nowaConfigSubjects = [
         min,
         max,
         value,
-        unique
+        unique,
       },
       {
         id: 82,
@@ -107,8 +107,8 @@ export const nowaConfigSubjects = [
         min,
         max,
         value,
-        unique
-      }
-    ]
-  }
+        unique,
+      },
+    ],
+  },
 ];

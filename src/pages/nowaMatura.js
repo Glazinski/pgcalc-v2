@@ -12,36 +12,34 @@ const NowaMaturaPage = props => {
 
   // Calculate result for Nowa Matura
   const calcResult = () => {
-    const results = nowaConfig.map(item =>
-      item.input
-        .map((subject, index) => {
-          const { unique, value, name } = subject;
-          const { langs, basic, extended } = scale;
+    const results = nowaConfig.map(item => item.input
+      .map((subject, index) => {
+        const { unique, value, name } = subject;
+        const { langs, basic, extended } = scale;
 
-          if (index % 2 === 0) {
-            if (unique) {
-              return parseFloat((value * basic).toFixed(2));
-            }
-
-            if (isChecked && name.includes('Foreign')) {
-              return parseFloat((langs * value * extended).toFixed(2));
-            }
-
-            return parseFloat((langs * value * basic).toFixed(2));
-          }
-
+        if (index % 2 === 0) {
           if (unique) {
-            return parseFloat(value * extended.toFixed(2));
+            return parseFloat((value * basic).toFixed(2));
           }
 
           if (isChecked && name.includes('Foreign')) {
             return parseFloat((langs * value * extended).toFixed(2));
           }
 
+          return parseFloat((langs * value * basic).toFixed(2));
+        }
+
+        if (unique) {
+          return parseFloat(value * extended.toFixed(2));
+        }
+
+        if (isChecked && name.includes('Foreign')) {
           return parseFloat((langs * value * extended).toFixed(2));
-        })
-        .reduce((acc, cur) => Math.max(acc, cur))
-    );
+        }
+
+        return parseFloat((langs * value * extended).toFixed(2));
+      })
+      .reduce((acc, cur) => Math.max(acc, cur)));
 
     const veryLastResult = results.reduce((acc, cur) => acc + cur, 0);
 

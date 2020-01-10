@@ -4,54 +4,52 @@ import { staraConfigSubjects, scale, grades } from '../data/staraConfig';
 import Subject from '../components/Subject/Subject';
 import AddSubject from '../components/AddSubject/AddSubject';
 
-const StaraMaturaPage = props => {
+const StaraMaturaPage = (props) => {
   const [staraConfig, setStaraConfig] = useState(staraConfigSubjects);
-  const [lastResult, setLastResult] = useState(0)
+  const [lastResult, setLastResult] = useState(0);
 
   const calcResult = () => {
-    const results = staraConfig.map(item =>
-      item.input
-        .map((subject, index, arr) => {
-          // Destructuring properties from subject
-          const { unique, value, name } = subject;
+    const results = staraConfig.map((item) => item.input
+      .map((subject, index, arr) => {
+        // Destructuring properties from subject
+        const { unique, value, name } = subject;
 
-          if (name.includes('written')) {
-            if (arr[index + 1].value > 0 && unique) {
-              return parseFloat(
-                (
-                  (grades.get(arr[index + 1].value) + grades.get(value)) /
-                  2
-                ).toFixed(2)
-              );
-            }
-            if (arr[index + 1].value > 0) {
-              return parseFloat(
-                (
-                  0.1 *
-                  ((grades.get(arr[index + 1].value) + grades.get(value)) / 2)
-                ).toFixed(2)
-              );
-            }
-
-            if (unique) {
-              return parseFloat(grades.get(value * 1.0).toFixed(2));
-            }
-            return parseFloat(0.1 * grades.get(value * 1.0).toFixed(2));
-          }
-
-          if (name.includes('cert')) {
-            if (unique) {
-              return parseFloat((grades.get(value) * scale.cert).toFixed(2));
-            }
+        if (name.includes('written')) {
+          if (arr[index + 1].value > 0 && unique) {
             return parseFloat(
-              (0.1 * grades.get(value) * scale.cert).toFixed(2)
+              (
+                (grades.get(arr[index + 1].value) + grades.get(value))
+                  / 2
+              ).toFixed(2),
+            );
+          }
+          if (arr[index + 1].value > 0) {
+            return parseFloat(
+              (
+                0.1
+                  * ((grades.get(arr[index + 1].value) + grades.get(value)) / 2)
+              ).toFixed(2),
             );
           }
 
-          return 0;
-        })
-        .reduce((acc, cur) => Math.max(acc, cur))
-    );
+          if (unique) {
+            return parseFloat(grades.get(value * 1.0).toFixed(2));
+          }
+          return parseFloat(0.1 * grades.get(value * 1.0).toFixed(2));
+        }
+
+        if (name.includes('cert')) {
+          if (unique) {
+            return parseFloat((grades.get(value) * scale.cert).toFixed(2));
+          }
+          return parseFloat(
+            (0.1 * grades.get(value) * scale.cert).toFixed(2),
+          );
+        }
+
+        return 0;
+      })
+      .reduce((acc, cur) => Math.max(acc, cur)));
 
     const veryLastResult = results.reduce((acc, cur) => acc + cur, 0);
 
@@ -62,11 +60,11 @@ const StaraMaturaPage = props => {
     props.handleItemClick(e, num, calcResult, staraConfig, setStaraConfig);
   };
 
-  const handleInputChange = e => {
+  const handleInputChange = (e) => {
     props.handleConfigInputChange(e, staraConfig, setStaraConfig);
   };
 
-  const handleSubmit = e => {
+  const handleSubmit = (e) => {
     e.preventDefault();
 
     calcResult();
@@ -81,7 +79,7 @@ const StaraMaturaPage = props => {
         <i
           className="material-icons"
           data-type="clear"
-          onClick={e => handleItemClick(e)}
+          onClick={(e) => handleItemClick(e)}
         >
           delete_sweep
         </i>
