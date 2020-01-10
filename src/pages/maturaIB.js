@@ -1,15 +1,15 @@
 import React, { useState } from 'react';
 import { H2, StyledMain, StyledTitleWrapper } from '../components/styledComp';
 import { ibConfigSubject, basicGrades, extGrades } from '../data/ibConfig';
-import Subject from '../components/Subject/Subject';
+import Subject from '../components/SubjectForm/Subject';
 import AddSubject from '../components/AddSubject/AddSubject';
 
-const MaturaIBPage = (props) => {
+const MaturaIBPage = props => {
   const [ibConfig, setIbConfig] = useState(ibConfigSubject);
   const [lastResult, setLastResult] = useState(0);
 
   const calcResult = () => {
-    const results = ibConfig.map((item) => item.input
+    const results = ibConfig.map(item => item.input
       .map((subject, index) => {
         const { value, unique } = subject;
 
@@ -36,11 +36,11 @@ const MaturaIBPage = (props) => {
     props.handleItemClick(e, num, calcResult, ibConfig, setIbConfig);
   };
 
-  const handleInputChange = (e) => {
+  const handleInputChange = e => {
     props.handleConfigInputChange(e, ibConfig, setIbConfig);
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = e => {
     e.preventDefault();
 
     calcResult();
@@ -55,7 +55,7 @@ const MaturaIBPage = (props) => {
         <i
           className="material-icons"
           data-type="clear"
-          onClick={(e) => handleItemClick(e)}
+          onClick={e => handleItemClick(e)}
         >
           delete_sweep
         </i>

@@ -4,7 +4,7 @@ import {
   Route,
   Link,
   Switch,
-  Redirect
+  Redirect,
 } from 'react-router-dom';
 import { PoseGroup } from 'react-pose';
 import { useMediaPredicate } from 'react-media-hook';
@@ -15,16 +15,16 @@ import {
   StyledLink,
   StyledLinkContainer,
   StyledLinkList,
-  StyledLinkTitle
+  StyledLinkTitle,
 } from './styledHeader';
 import { H1 } from '../styledComp';
 import { navData, pageTitle, rulesLink } from '../../data/navData';
 import HamburgerMenu from './HamburgerMenu';
-import NowaMaturaPage from '../../pages/nowaMatura';
-import StaraMaturaPage from '../../pages/staraMatura';
-import MaturaIBPage from '../../pages/maturaIB';
+import NowaMaturaPage from '../../pages/NowaMatura';
+// import StaraMaturaPage from '../../pages/staraMatura';
+// import MaturaIBPage from '../../pages/maturaIB';
 
-const Header = props => {
+const Header = () => {
   const [checked, setChecked] = useState(false);
   const handleChecked = () => {
     setChecked(!checked);
@@ -75,36 +75,34 @@ const Header = props => {
           {isHover && (
             <StyledLinkList key="209389sd">
               {navData.map(
-                item =>
-                  item.unique && (
-                    <StyledLink
-                      as={Link}
-                      key={item.id}
-                      onClick={handleChecked}
-                      to={`/${item.link}`}
-                      style={item.style}
-                      unique={1}
-                    >
-                      {item.content}
-                    </StyledLink>
-                  )
+                item => item.unique && (
+                <StyledLink
+                  as={Link}
+                  key={item.id}
+                  onClick={handleChecked}
+                  to={`/${item.link}`}
+                  style={item.style}
+                  unique={1}
+                >
+                  {item.content}
+                </StyledLink>
+                ),
               )}
             </StyledLinkList>
           )}
         </PoseGroup>
       </StyledLinkContainer>
       {navData.map(
-        item =>
-          !item.unique && (
-            <StyledLink
-              as={Link}
-              key={item.id}
-              onClick={handleChecked}
-              to={`/${item.link}`}
-            >
-              {item.content}
-            </StyledLink>
-          )
+        item => !item.unique && (
+        <StyledLink
+          as={Link}
+          key={item.id}
+          onClick={handleChecked}
+          to={`/${item.link}`}
+        >
+          {item.content}
+        </StyledLink>
+        ),
       )}
     </StyledNavDekstop>
   );
@@ -126,15 +124,10 @@ const Header = props => {
         <Route
           path="/"
           exact
-          render={() => (
-            <NowaMaturaPage
-              handleConfigInputChange={props.handleConfigInputChange}
-              handleItemClick={props.handleItemClick}
-            />
-          )}
+          component={NowaMaturaPage}
         />
 
-        <Route
+        {/* <Route
           path="/stara-matura"
           render={() => (
             <StaraMaturaPage
@@ -151,7 +144,7 @@ const Header = props => {
               handleItemClick={props.handleItemClick}
             />
           )}
-        />
+        /> */}
         <Redirect to="/" />
       </Switch>
     </Router>
