@@ -1,56 +1,46 @@
-import React, { useEffect, useCallback } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
-import { connect } from 'react-redux';
-import { H2, StyledMain, StyledTitleWrapper } from '../components/styledComp';
-// import Subject from '../components/SubjectForm/Subject';
-import SubjectForm from '../components/SubjectForm';
-import nowaConfig from '../data/nowaConfig';
-import { toggleSubject } from '../actions';
+import * as config from '../data/nowaConfig';
+import matura from './matura';
 
-
-import AddSubject from '../components/AddSubject/AddSubject';
-
-const NowaMatura = props => {
-  const toggleSubjects = useCallback((id, config) => { props.toggleSubject(id, config); }, [props]);
-
-  useEffect(() => {
-    toggleSubjects(nowaConfig.id, nowaConfig);
-  }, [props, toggleSubjects]);
-
-  return (
-    <StyledMain>
-      <StyledTitleWrapper>
-        <H2 square medium black regular>
-          Nowa Matura
-        </H2>
-        <i
-          className="material-icons"
-          data-type="clear"
-        >
-          delete_sweep
-        </i>
-      </StyledTitleWrapper>
-      <SubjectForm subjects={nowaConfig} />
-      {/* <Subject
-        handleInputChange={handleInputChange}
-        handleSubmit={handleSubmit}
-        handleItemClick={handleItemClick}
-        data={nowaConfig}
-        lastResult={lastResult}
-        isChecked={isChecked}
-        checkboxExist
-      /> */}
-      <AddSubject />
-    </StyledMain>
-  );
-};
-
-NowaMatura.defaultProps = {
-  toggleSubject: null,
-};
+const NowaMatura = ({ children }) => <>{children}</>;
 
 NowaMatura.propTypes = {
-  toggleSubject: PropTypes.func,
+  children: PropTypes.node.isRequired,
 };
 
-export default connect(null, { toggleSubject })(NowaMatura);
+export default matura(NowaMatura, config);
+
+// const NowaMatura = () => (
+//   <StyledMain>
+//     <StyledTitleWrapper>
+//       <H2 square medium black regular>
+//           Nowa Matura
+//       </H2>
+//       <i
+//         className="material-icons"
+//         data-type="clear"
+//       >
+//           delete_sweep
+//       </i>
+//     </StyledTitleWrapper>
+//     {/* {renderForm()} */}
+//     <SubjectForm
+//           // subjects={props.subjects[`${nowaConfig.id}`]}
+//       subjects={nowaConfig}
+//       validationSchema={validationSchema}
+//     />
+//     {/* <Subject
+//         handleInputChange={handleInputChange}
+//         handleSubmit={handleSubmit}
+//         handleItemClick={handleItemClick}
+//         data={nowaConfig}
+//         lastResult={lastResult}
+//         isChecked={isChecked}
+//         checkboxExist
+//       /> */}
+//     <AddSubject />
+//   </StyledMain>
+// );
+
+// export default NowaMatura;

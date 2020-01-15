@@ -4,7 +4,7 @@ import {
   StyledSelect,
   StyledInnerSelect,
   StyledList,
-  StyledListItem
+  StyledListItem,
 } from './styledCustomSelect';
 import { H2, H3 } from '../styledComp';
 import { useOutsideClick } from '../../hooks';

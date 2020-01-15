@@ -1,5 +1,6 @@
 import React from 'react';
 import { createGlobalStyle, ThemeProvider } from 'styled-components';
+import PropTypes from 'prop-types';
 import { theme } from '../utils/theme';
 
 const GlobalStyle = createGlobalStyle`
@@ -22,13 +23,17 @@ const GlobalStyle = createGlobalStyle`
   }
 `;
 
-const Global = props => (
+const Global = ({ children }) => (
   <ThemeProvider theme={theme}>
     <>
       <GlobalStyle />
-      {props.children}
+      {children}
     </>
   </ThemeProvider>
 );
+
+Global.propTypes = {
+  children: PropTypes.oneOfType([PropTypes.object]).isRequired,
+};
 
 export default Global;

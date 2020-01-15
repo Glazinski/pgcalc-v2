@@ -10,7 +10,7 @@ export const theme = {
     secondaryDark: '#707070',
     tertiary: '#4A4A4A',
     black: '#000',
-    white: '#fff'
+    white: '#fff',
   },
   boxShadow: 'rgba(0, 0, 0, 0.4)',
   borderRadius: '4px',
@@ -18,17 +18,17 @@ export const theme = {
     s: '1.5rem',
     m: '1.8rem',
     l: '2rem',
-    xl: '2.3rem'
+    xl: '2.3rem',
   },
   fontWeight: {
     regular: '400',
-    bold: 'bold'
+    bold: 'bold',
   },
   zIndex: {
     level10: '10',
     level15: '15',
     level20: '20',
-    level25: '25'
+    level25: '25',
   },
   square: css`
     ::before {
@@ -57,5 +57,5 @@ export const theme = {
     ::-webkit-scrollbar-track {
       background-color: #f5f5f5;
     }
-  `
+  `,
 };

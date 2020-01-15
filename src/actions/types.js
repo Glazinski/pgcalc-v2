@@ -1,1 +1,0 @@
-export const TOGGLE_SUBJECT = 'TOGGLE_SUBJECT';

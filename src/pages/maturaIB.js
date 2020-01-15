@@ -1,75 +1,44 @@
-import React, { useState } from 'react';
-import { H2, StyledMain, StyledTitleWrapper } from '../components/styledComp';
-import { ibConfigSubject, basicGrades, extGrades } from '../data/ibConfig';
-import Subject from '../components/SubjectForm/Subject';
-import AddSubject from '../components/AddSubject/AddSubject';
+import React from 'react';
+import PropTypes from 'prop-types';
+import * as config from '../data/ibConfig';
+import matura from './matura';
 
-const MaturaIBPage = props => {
-  const [ibConfig, setIbConfig] = useState(ibConfigSubject);
-  const [lastResult, setLastResult] = useState(0);
+const MaturaIb = ({ children }) => <>{children}</>;
 
-  const calcResult = () => {
-    const results = ibConfig.map(item => item.input
-      .map((subject, index) => {
-        const { value, unique } = subject;
-
-        if (index % 2 === 0) {
-          if (unique) {
-            return parseFloat((basicGrades.get(value) * 1.0).toFixed(2));
-          }
-          return parseFloat((0.1 * basicGrades.get(value) * 1.0).toFixed(2));
-        }
-
-        if (unique) {
-          return parseFloat((extGrades.get(value) * 1.0).toFixed(2));
-        }
-        return parseFloat((0.1 * extGrades.get(value) * 1.0).toFixed(2));
-      })
-      .reduce((acc, cur) => Math.max(acc, cur)));
-
-    const veryLastResult = results.reduce((acc, cur) => acc + cur, 0);
-
-    setLastResult(parseFloat(veryLastResult.toFixed(2)));
-  };
-
-  const handleItemClick = (e, num) => {
-    props.handleItemClick(e, num, calcResult, ibConfig, setIbConfig);
-  };
-
-  const handleInputChange = e => {
-    props.handleConfigInputChange(e, ibConfig, setIbConfig);
-  };
-
-  const handleSubmit = e => {
-    e.preventDefault();
-
-    calcResult();
-  };
-
-  return (
-    <StyledMain>
-      <StyledTitleWrapper>
-        <H2 square medium black regular mb>
-          Matura Międzynarodowa
-        </H2>
-        <i
-          className="material-icons"
-          data-type="clear"
-          onClick={e => handleItemClick(e)}
-        >
-          delete_sweep
-        </i>
-      </StyledTitleWrapper>
-      <Subject
-        handleInputChange={handleInputChange}
-        handleSubmit={handleSubmit}
-        handleItemClick={handleItemClick}
-        lastResult={lastResult}
-        data={ibConfig}
-      />
-      <AddSubject handleItemClick={handleItemClick} />
-    </StyledMain>
-  );
+MaturaIb.propTypes = {
+  children: PropTypes.node.isRequired,
 };
 
-export default MaturaIBPage;
+export default matura(MaturaIb, config);
+
+// const MaturaIB = () => (
+//   <>
+//     {page(MaturaIB, config)}
+//   </>
+//   <StyledMain>
+//     <StyledTitleWrapper>
+//       <H2 square medium black regular mb>
+//           Matura Międzynarodowa
+//       </H2>
+//       <i className="material-icons">
+//           delete_sweep
+//       </i>
+//     </StyledTitleWrapper>
+//     <SubjectForm
+//       subjects={ibConfig}
+//       grades={grades}
+//       validationSchema={validationSchema}
+//     />
+//     {/* <Subject
+//         handleInputChange={handleInputChange}
+//         handleSubmit={handleSubmit}
+//         handleItemClick={handleItemClick}
+//         lastResult={lastResult}
+//         data={ibConfig}
+//       /> */}
+
+//     <AddSubject />
+//   </StyledMain>
+// );
+
+// export default MaturaIB;

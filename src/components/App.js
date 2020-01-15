@@ -1,6 +1,6 @@
 import React from 'react';
 import Global from '../Layout/Global';
-import Header from './Header/Header';
+import Header from './Header';
 
 const App = () => (
   <Global>

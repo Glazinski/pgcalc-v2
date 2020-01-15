@@ -22,7 +22,7 @@ import { navData, pageTitle, rulesLink } from '../../data/navData';
 import HamburgerMenu from './HamburgerMenu';
 import NowaMaturaPage from '../../pages/NowaMatura';
 // import StaraMaturaPage from '../../pages/staraMatura';
-// import MaturaIBPage from '../../pages/maturaIB';
+import IbMaturaPage from '../../pages/MaturaIB';
 
 const Header = () => {
   const [checked, setChecked] = useState(false);
@@ -125,6 +125,12 @@ const Header = () => {
           path="/"
           exact
           component={NowaMaturaPage}
+        />
+
+        <Route
+          path="/matura-miedzynarodowa"
+          exact
+          component={IbMaturaPage}
         />
 
         {/* <Route
