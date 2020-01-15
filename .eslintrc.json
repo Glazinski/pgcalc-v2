@@ -23,6 +23,7 @@
         "extensions": [".js", ".jsx"]
       }
     ],
-    "arrow-parens": ["error", "as-needed"]
+    "arrow-parens": ["error", "as-needed"],
+    "react/jsx-one-expression-per-line": "off"
   }
 }

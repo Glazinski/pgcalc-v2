@@ -1,42 +1,85 @@
-import styled from 'styled-components';
-import posed from 'react-pose';
-import { tween } from 'popmotion';
-
-export const ListNew = posed.div({
-  enter: {
-    opacity: 1,
-    transition: {
-      default: { ease: 'easeInOut', duration: 300 },
-    },
-  },
-  exit: {
-    opacity: 0,
-    transition: {
-      default: { ease: 'easeInOut', duration: 0 },
-    },
-  },
-  flip: {
-    transition: tween,
-  },
-});
+import styled, { css } from 'styled-components';
+import { ListNew } from '../styledComp/animations';
+import { media } from '../../utils';
 
 export const StyledWrapper = styled.div`
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
+  grid-template-columns: 1fr;
+  margin: 4rem auto;
+
+  ${media.tablet`
+    grid-template-columns: repeat(2, 1fr);
+  `}
 `;
 
 export const StyledItem = styled(ListNew)`
-  margin: 10px;
+  position: relative;
+  text-align: center;
+  width: 90%;
+  margin: 2rem auto;
+  border-bottom: 1px solid ${({ theme }) => theme.colors.secondaryDark};
+
+  ${media.tablet`
+    max-width: 600px;
+  `}
+
+  ::after {
+    content: '';
+    position: absolute;
+    display: none;
+    width: 100px;
+    height: 100px;
+  }
+
+  ${({ title }) => (title.includes('obcy')
+    ? css`
+      ::after {
+        display: inline-block;
+        left: -10px;
+        top: -30px;
+        z-index: -5;
+        clip-path: polygon(100% 0, 0% 100%, 0 0);
+        background-color: ${({ theme }) => theme.colors.secondary};
+      }
+    `
+    : title.includes('dodatkowy')
+      && css`
+        ::after {
+          display: inline-block;
+          clip-path: polygon(100% 0, 0% 100%, 100% 100%);
+          right: -10px;
+          bottom: -30px;
+          background-color: ${({ theme }) => theme.colors.primary};
+        }
+    `)} 
+`;
+
+export const StyledInnerWrapper = styled.div`
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  margin-top: 2rem;
 `;
 
 export const StyledInput = styled.input`
-  width: 100px;
-  margin: 5px;
-`;
+  position: relative;
+  appearance: none;
+  width: 67px;
+  height: 26px;
+  text-align: center;
+  border: 1px solid ${({ theme }) => theme.colors.secondaryDark};
+  border-radius: ${({ theme }) => theme.borderRadius};
+  outline: none;
+  transition: box-shadow 0.2s ease-in-out;
+  margin: 4rem auto;
+  z-index: 3;
 
-export const StyledTest = styled.div`
-  width: 100px;
-  height: 100px;
-  border: 1px solid black;
-  margin: 10px;
+  :focus {
+    box-shadow: 0 0 1rem ${({ theme }) => theme.boxShadow};
+  }
+
+  ::-webkit-inner-spin-button,
+  ::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+  }
 `;

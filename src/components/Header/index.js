@@ -117,7 +117,6 @@ const Header = () => {
         </div>
 
         <HamburgerMenu checked={checked} handleChecked={handleChecked} />
-
         {biggerThan800 ? desktopNav : mobileNav}
       </StyledHeader>
       <Switch>

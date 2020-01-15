@@ -11,12 +11,14 @@ const bigger = 0;
 // const value = '';
 // const unique = true;
 // const disabled = false;
-// const basLevel = 'Poziom \n Podstawowy \n (%)';
-// const extLevel = 'Poziom \n Rozszerzony \n (%)';
+const basLevel = 'Poziom \n Podstawowy \n (%)';
+const extLevel = 'Poziom \n Rozszerzony \n (%)';
 
 export const subjects = {
   id: uniqid(),
   title: 'Nowa Matura',
+  basLevel,
+  extLevel,
   min,
   max,
   subjects: [
@@ -37,7 +39,7 @@ export const subjects = {
       advanceScore,
       primaryScale,
       advanceScale,
-      forLanguage: true,
+      forLanguage: 0.1,
       bigger,
     },
     {

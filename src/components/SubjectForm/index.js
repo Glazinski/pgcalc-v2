@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import { PoseGroup } from 'react-pose';
 import {
@@ -11,9 +11,15 @@ import {
   StyledWrapper,
   StyledItem,
   StyledInput,
+  StyledInnerWrapper,
 } from './styles';
+import { H2 } from '../styledComp/H2';
+import { H3 } from '../styledComp/H3';
+import CustomSelect from '../CustomSelect';
 
 const SubjectForm = ({ subjects, grades, validationSchema }) => {
+  const [result, setResult] = useState(0);
+
   const toggleSubjects = (e, submitForm, id, values) => {
     e.preventDefault();
     const newData = { ...values };
@@ -37,32 +43,37 @@ const SubjectForm = ({ subjects, grades, validationSchema }) => {
     <Formik
       initialValues={subjects}
       validationSchema={validationSchema}
-      onSubmit={data => data.subjects.map(subject => {
-        const {
-          primaryScore, advanceScore, primaryScale, advanceScale, forLanguage,
-        } = subject;
-        let pscore;
-        let ascore;
+      onSubmit={data => {
+        data.subjects.map(subject => {
+          const {
+            primaryScore, advanceScore, primaryScale, advanceScale, forLanguage,
+          } = subject;
+          let pscore;
+          let ascore;
 
-        if (grades) {
-          const { basicGrades, extGrades } = grades;
-          pscore = basicGrades.get(primaryScore) * primaryScale * forLanguage;
-          ascore = extGrades.get(advanceScore) * advanceScale * forLanguage;
-        } else {
-          pscore = primaryScore * primaryScale * forLanguage;
-          ascore = advanceScore * advanceScale * forLanguage;
-        }
+          if (grades) {
+            const { basicGrades, extGrades } = grades;
+            pscore = basicGrades.get(primaryScore) * primaryScale * forLanguage;
+            ascore = extGrades.get(advanceScore) * advanceScale * forLanguage;
+          } else {
+            pscore = primaryScore * primaryScale * forLanguage;
+            ascore = advanceScore * advanceScale * forLanguage;
+          }
 
-        // console.log(pscore, ascore);
-        // console.log(parseFloat(pscore.toFixed(2)), parseFloat(ascore.toFixed(2)));
+          // console.log(pscore, ascore);
+          // console.log(parseFloat(pscore.toFixed(2)), parseFloat(ascore.toFixed(2)));
 
-        const result = Math.max(parseFloat(pscore.toFixed(2)), parseFloat(ascore.toFixed(2)));
+          const result = Math.max(parseFloat(pscore.toFixed(2)), parseFloat(ascore.toFixed(2)));
 
-        // subject.bigger = Math.max(parseFloat(pscore.toFixed(2)), parseFloat(ascore.toFixed(2)));
-        subject.bigger = result;
-        // return { ...subject, bigger: result };
-        return subject;
-      })}
+          // subject.bigger = Math.max(parseFloat(pscore.toFixed(2)), parseFloat(ascore.toFixed(2)));
+          subject.bigger = result;
+          // return { ...subject, bigger: result };
+          return subject;
+        });
+
+        const res = data.subjects.reduce((acc, cur) => acc + cur.bigger, 0);
+        setResult(res);
+      }}
     >
       {({ values, submitForm }) => (
         <Form>
@@ -70,23 +81,31 @@ const SubjectForm = ({ subjects, grades, validationSchema }) => {
             <FieldArray name="subjects">
               {() => (
                 <PoseGroup>
-                  {/* {renderInputs(values)} */}
                   {values.subjects.map((subject, index) => (subject.hidden ? null : (
-                    <StyledItem key={subject.id}>
-                      <h3>{subject.title}</h3>
-                      <br />
-                      <Field
-                        name={`subjects.${index}.primaryScore`}
-                        type="number"
-                        as={StyledInput}
-                      />
+                    <StyledItem key={subject.id} title={subject.title}>
+                      {index === 3 ? <CustomSelect /> : (
+                        <div style={{ height: '46px' }}>
+                          <H2 left black>{subject.title}</H2>
+                        </div>
+                      )}
 
-                      <Field
-                        name={`subjects.${index}.advanceScore`}
-                        type="number"
-                        as={StyledInput}
-                      />
-                      <button type="button" onClick={e => toggleSubjects(e, submitForm, values.subjects[index].id, values)}>TEST</button>
+                      <StyledInnerWrapper>
+                        <H3>{values.basLevel}</H3>
+                        <H3>{values.extLevel}</H3>
+
+                        <Field
+                          name={`subjects.${index}.primaryScore`}
+                          type="number"
+                          as={StyledInput}
+                        />
+
+                        <Field
+                          name={`subjects.${index}.advanceScore`}
+                          type="number"
+                          as={StyledInput}
+                        />
+                      </StyledInnerWrapper>
+                      {/* <button type="button" onClick={e => toggleSubjects(e, submitForm, values.subjects[index].id, values)}>TEST</button> */}
                     </StyledItem>
                   )))}
                 </PoseGroup>
@@ -101,6 +120,9 @@ const SubjectForm = ({ subjects, grades, validationSchema }) => {
           </div>
           <div>
             <button type="submit">Submit</button>
+          </div>
+          <div>
+            <H3>Wynik: {result > 0 ? result : ''}</H3>
           </div>
           <pre style={{ fontSize: '1.6rem' }}>
             {JSON.stringify(values, null, 2)}
