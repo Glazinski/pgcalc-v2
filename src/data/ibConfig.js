@@ -1,5 +1,4 @@
 import uniqid from 'uniqid';
-import * as yup from 'yup';
 
 const min = 1;
 const max = 7;
