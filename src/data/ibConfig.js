@@ -88,22 +88,3 @@ export const subjects = {
     },
   ],
 };
-
-export const validationSchema = yup.object({
-  subjects: yup.array().of(
-    yup.object({
-      primaryScore: yup
-        .number()
-        .positive()
-        .integer()
-        .min(min)
-        .max(max),
-      advanceScore: yup
-        .number()
-        .positive()
-        .integer()
-        .min(min)
-        .max(max),
-    }),
-  ),
-});

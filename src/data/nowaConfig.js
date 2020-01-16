@@ -1,5 +1,4 @@
 import uniqid from 'uniqid';
-import * as yup from 'yup';
 
 const min = 0;
 const max = 100;
@@ -66,22 +65,3 @@ export const subjects = {
     },
   ],
 };
-
-export const validationSchema = yup.object({
-  subjects: yup.array().of(
-    yup.object({
-      primaryScore: yup
-        .number()
-        .positive()
-        .integer()
-        .min(min)
-        .max(max),
-      advanceScore: yup
-        .number()
-        .positive()
-        .integer()
-        .min(min)
-        .max(max),
-    }),
-  ),
-});
