@@ -39,6 +39,8 @@ export const grades = {
 export const subjects = {
   id: uniqid(),
   title: 'Matura Międzynarodowa',
+  basLevel,
+  extLevel,
   min,
   max,
   subjects: [

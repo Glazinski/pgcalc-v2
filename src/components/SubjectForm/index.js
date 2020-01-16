@@ -12,10 +12,17 @@ import {
   StyledItem,
   StyledInput,
   StyledInnerWrapper,
+  StyledDeleteButton,
+  StyledResultWrapper,
+  StyledResultItem,
+  StyledLabel,
 } from './styles';
-import { H2 } from '../styledComp/H2';
-import { H3 } from '../styledComp/H3';
+import {
+  StyledCheckbox, StyledButton, H2, H3,
+} from '../styledComp';
 import CustomSelect from '../CustomSelect';
+import AddSubject from '../AddSubject';
+
 
 const SubjectForm = ({ subjects, grades, validationSchema }) => {
   const [result, setResult] = useState(0);
@@ -35,7 +42,6 @@ const SubjectForm = ({ subjects, grades, validationSchema }) => {
       return subject;
     });
 
-    console.log(newData);
     submitForm();
   };
 
@@ -63,16 +69,17 @@ const SubjectForm = ({ subjects, grades, validationSchema }) => {
           // console.log(pscore, ascore);
           // console.log(parseFloat(pscore.toFixed(2)), parseFloat(ascore.toFixed(2)));
 
-          const result = Math.max(parseFloat(pscore.toFixed(2)), parseFloat(ascore.toFixed(2)));
+          const res = Math.max(parseFloat(pscore.toFixed(2)), parseFloat(ascore.toFixed(2)));
 
           // subject.bigger = Math.max(parseFloat(pscore.toFixed(2)), parseFloat(ascore.toFixed(2)));
-          subject.bigger = result;
+          subject.bigger = res;
           // return { ...subject, bigger: result };
           return subject;
         });
 
+        // Very last result
         const res = data.subjects.reduce((acc, cur) => acc + cur.bigger, 0);
-        setResult(res);
+        setResult(parseFloat(res).toFixed(2));
       }}
     >
       {({ values, submitForm }) => (
@@ -105,28 +112,37 @@ const SubjectForm = ({ subjects, grades, validationSchema }) => {
                           as={StyledInput}
                         />
                       </StyledInnerWrapper>
-                      {/* <button type="button" onClick={e => toggleSubjects(e, submitForm, values.subjects[index].id, values)}>TEST</button> */}
+                      {index === 2 || index === 3 ? (
+                        <StyledDeleteButton type="button" onClick={e => toggleSubjects(e, submitForm, values.subjects[index].id, values)}>
+                          <i className="material-icons">
+                            delete_forever
+                          </i>
+                        </StyledDeleteButton>
+                      ) : null}
                     </StyledItem>
                   )))}
                 </PoseGroup>
               )}
             </FieldArray>
           </StyledWrapper>
-          <div>
-            <button type="button" onClick={e => toggleSubjects(e, submitForm, values.subjects[2].id, values)}>Math</button>
-          </div>
-          <div>
-            <button type="button" onClick={e => toggleSubjects(e, submitForm, values.subjects[3].id, values)}>Extra</button>
-          </div>
-          <div>
-            <button type="submit">Submit</button>
-          </div>
-          <div>
-            <H3>Wynik: {result > 0 ? result : ''}</H3>
-          </div>
+          <StyledResultWrapper>
+            <StyledResultItem>
+              <H2 square regular xl black>Wynik: {result > 0 ? result : ''}</H2>
+            </StyledResultItem>
+            <StyledResultItem>
+              <Field type="checkbox" as={StyledCheckbox} />
+              <StyledLabel>
+                Matura Dwujęzyczna
+              </StyledLabel>
+            </StyledResultItem>
+            <StyledResultItem>
+              <StyledButton type="submit">Policz</StyledButton>
+            </StyledResultItem>
+          </StyledResultWrapper>
           <pre style={{ fontSize: '1.6rem' }}>
             {JSON.stringify(values, null, 2)}
           </pre>
+          <AddSubject onClick={toggleSubjects} values={values} submitForm={submitForm} />
         </Form>
       )}
     </Formik>

@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-export const StyledCheckbox = styled.input`
+const StyledCheckbox = styled.input`
   position: relative;
   width: 30px;
   height: 15px;
@@ -54,3 +54,5 @@ export const StyledCheckbox = styled.input`
     box-shadow: 0 1px 5px rgba(0, 0, 0, 0.6);
   } */
 `;
+
+export default StyledCheckbox;

@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import { media } from '../../utils/';
+import media from '../../utils';
 
 export const StyledHamburger = styled.div`
   position: relative;

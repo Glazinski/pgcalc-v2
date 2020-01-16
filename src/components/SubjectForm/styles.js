@@ -1,6 +1,6 @@
 import styled, { css } from 'styled-components';
 import { ListNew } from '../styledComp/animations';
-import { media } from '../../utils';
+import media from '../../utils';
 
 export const StyledWrapper = styled.div`
   display: grid;
@@ -81,5 +81,41 @@ export const StyledInput = styled.input`
   ::-webkit-outer-spin-button {
     -webkit-appearance: none;
     margin: 0;
+  }
+`;
+
+export const StyledDeleteButton = styled.button`
+  position: absolute;
+  top: -20px;
+  right: 0;
+  appearance: none;
+  background-color: transparent;
+  border: none;
+
+  :hover {
+    cursor: pointer;
+  }
+`;
+
+export const StyledResultWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+`;
+
+export const StyledResultItem = styled.div`
+  margin: 1rem 1rem;
+
+  ${media.tablet`
+    margin: 1rem 4rem;
+  `}
+`;
+
+export const StyledLabel = styled.label`
+  position: relative;
+  margin-left: 1rem;
+  font-size: ${({ theme }) => theme.fontSize.s};
+
+  :hover {
+    cursor: pointer;
   }
 `;

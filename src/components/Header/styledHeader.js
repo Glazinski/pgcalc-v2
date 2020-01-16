@@ -1,6 +1,6 @@
 import styled, { css } from 'styled-components';
 import { Nav, NavList, Alink } from '../styledComp/animations';
-import { media } from '../../utils';
+import media from '../../utils';
 
 export const StyledHeader = styled.header`
   display: flex;

@@ -12,16 +12,17 @@ export default (Matura, data) => () => {
           <H2 square medium black regular mb>
             {config.subjects.title}
           </H2>
-          <i className="material-icons">
-          delete_sweep
-          </i>
+          <button type="button">
+            <i className="material-icons">
+              delete_sweep
+            </i>
+          </button>
         </StyledTitleWrapper>
         <SubjectForm
           subjects={config.subjects}
           grades={config.grades && null}
           validationSchema={config.validationSchema}
         />
-        {/* <AddSubject /> */}
       </StyledMain>
     </Matura>
   );
