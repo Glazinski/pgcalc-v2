@@ -11,6 +11,7 @@ const theme = {
     tertiary: '#4A4A4A',
     black: '#000',
     white: '#fff',
+    error: '#b50706',
   },
   boxShadow: 'rgba(0, 0, 0, 0.4)',
   borderRadius: '4px',

@@ -60,8 +60,12 @@ export const StyledInnerWrapper = styled.div`
   margin-top: 2rem;
 `;
 
-export const StyledInput = styled.input`
+export const StyledInputWrapper = styled.div`
   position: relative;
+`;
+
+export const StyledInput = styled.input`
+  /* position: relative; */
   appearance: none;
   width: 67px;
   height: 26px;
@@ -71,7 +75,7 @@ export const StyledInput = styled.input`
   outline: none;
   transition: box-shadow 0.2s ease-in-out;
   margin: 4rem auto;
-  z-index: 3;
+  /* z-index: 3; */
 
   :focus {
     box-shadow: 0 0 1rem ${({ theme }) => theme.boxShadow};
@@ -82,6 +86,21 @@ export const StyledInput = styled.input`
     -webkit-appearance: none;
     margin: 0;
   }
+
+  ${({ errors }) => (errors
+    ? css`
+      border-color: ${({ theme }) => theme.colors.error};
+    ` : null
+  )};
+`;
+
+export const StyledErrorMessage = styled.div`
+  position: absolute;
+  width: 100px;
+  bottom: 8px;
+  left: 50%;
+  transform: translateX(-50%);
+  color: ${({ theme }) => theme.colors.error};
 `;
 
 export const StyledDeleteButton = styled.button`

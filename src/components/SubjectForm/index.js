@@ -6,11 +6,14 @@ import {
   Form,
   Field,
   FieldArray,
+  useField,
 } from 'formik';
 import {
   StyledWrapper,
   StyledItem,
+  StyledInputWrapper,
   StyledInput,
+  StyledErrorMessage,
   StyledInnerWrapper,
   StyledDeleteButton,
   StyledResultWrapper,
@@ -18,32 +21,57 @@ import {
   StyledLabel,
 } from './styles';
 import {
-  StyledCheckbox, StyledButton, H2, H3,
+  StyledTitleWrapper, StyledCheckbox, StyledButton, H2, H3,
 } from '../styledComp';
 import CustomSelect from '../CustomSelect';
 import AddSubject from '../AddSubject';
 
+const MyField = ({ ...props }) => {
+  const [field, meta] = useField(props);
+  const errorMsg = !!(meta.error && meta.touched);
+  return (
+    <StyledInputWrapper>
+      <StyledInput {...field} type="number" errors={errorMsg} />
+
+      {meta.touched && meta.error ? (
+        <StyledErrorMessage>{meta.error}</StyledErrorMessage>
+      ) : null}
+    </StyledInputWrapper>
+  );
+};
+
+const clearFields = (submitForm, values) => {
+  values.subjects.map(subject => {
+    subject.primaryScore = '';
+    subject.advanceScore = '';
+    subject.bigger = 0;
+
+    return subject;
+  });
+
+  submitForm();
+};
+
+const toggleSubjects = (e, submitForm, id, values) => {
+  e.preventDefault();
+  const newData = { ...values };
+
+  newData.subjects.map(subject => {
+    if (id === subject.id) {
+      subject.hidden = !subject.hidden;
+      subject.primaryScore = '';
+      subject.advanceScore = '';
+      subject.bigger = 0;
+    }
+
+    return subject;
+  });
+
+  submitForm();
+};
 
 const SubjectForm = ({ subjects, grades, validationSchema }) => {
   const [result, setResult] = useState(0);
-
-  const toggleSubjects = (e, submitForm, id, values) => {
-    e.preventDefault();
-    const newData = { ...values };
-
-    newData.subjects.map(subject => {
-      if (id === subject.id) {
-        subject.hidden = !subject.hidden;
-        subject.primaryScore = '';
-        subject.advanceScore = '';
-        subject.bigger = 0;
-      }
-
-      return subject;
-    });
-
-    submitForm();
-  };
 
   return (
     <Formik
@@ -82,8 +110,22 @@ const SubjectForm = ({ subjects, grades, validationSchema }) => {
         setResult(parseFloat(res).toFixed(2));
       }}
     >
-      {({ values, submitForm }) => (
+      {({ values, submitForm, errors }) => (
         <Form>
+          <StyledTitleWrapper>
+            <H2 square medium black regular mb>
+              {values.title}
+            </H2>
+            <button
+              style={{ border: 'none', backgroundColor: 'transparent' }}
+              type="button"
+              onClick={() => clearFields(submitForm, values)}
+            >
+              <i className="material-icons">
+              delete_sweep
+              </i>
+            </button>
+          </StyledTitleWrapper>
           <StyledWrapper>
             <FieldArray name="subjects">
               {() => (
@@ -99,18 +141,9 @@ const SubjectForm = ({ subjects, grades, validationSchema }) => {
                       <StyledInnerWrapper>
                         <H3>{values.basLevel}</H3>
                         <H3>{values.extLevel}</H3>
+                        <MyField name={`subjects.${index}.primaryScore`} />
 
-                        <Field
-                          name={`subjects.${index}.primaryScore`}
-                          type="number"
-                          as={StyledInput}
-                        />
-
-                        <Field
-                          name={`subjects.${index}.advanceScore`}
-                          type="number"
-                          as={StyledInput}
-                        />
+                        <MyField name={`subjects.${index}.advanceScore`} />
                       </StyledInnerWrapper>
                       {index === 2 || index === 3 ? (
                         <StyledDeleteButton type="button" onClick={e => toggleSubjects(e, submitForm, values.subjects[index].id, values)}>
@@ -141,6 +174,9 @@ const SubjectForm = ({ subjects, grades, validationSchema }) => {
           </StyledResultWrapper>
           <pre style={{ fontSize: '1.6rem' }}>
             {JSON.stringify(values, null, 2)}
+          </pre>
+          <pre style={{ fontSize: '1.6rem' }}>
+            {JSON.stringify(errors, null, 2)}
           </pre>
           <AddSubject onClick={toggleSubjects} values={values} submitForm={submitForm} />
         </Form>
