@@ -37,7 +37,7 @@ const StyledCheckbox = styled.input`
     background: ${({ theme }) => theme.colors.secondaryLight};
     transform: scale(1.1);
     box-shadow: 0 2px 5px ${({ theme }) => theme.boxShadow};
-    transition: transform 0.3s ease-in-out;
+    transition: transform 0.2s ease-in-out;
     z-index: 1;
   }
 

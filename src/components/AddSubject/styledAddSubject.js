@@ -47,6 +47,8 @@ export const StyledWrapper = styled(List)`
 
 export const StyledItem = styled.div`
   width: 100%;
+  /* width: 127px;
+  height: 25px; */
 
   :hover h2 {
     transition: color 0.3s ease-in-out;

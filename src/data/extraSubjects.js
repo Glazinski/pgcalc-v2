@@ -1,30 +1,30 @@
 export const extraSubjectsConfig = [
   {
     id: 122,
-    title: 'Fizyka'
+    title: 'Fizyka',
   },
   {
     id: 222,
-    title: 'Informatyka'
+    title: 'Informatyka',
   },
   {
     id: 322,
-    title: 'Chemia'
+    title: 'Chemia',
   },
   {
     id: 422,
-    title: 'Geografia'
+    title: 'Geografia',
   },
   {
     id: 522,
-    title: 'Biologia'
+    title: 'Biologia',
   },
   {
     id: 622,
-    title: 'Historia'
+    title: 'Historia',
   },
   {
     id: 722,
-    title: 'Historia sztuki'
-  }
+    title: 'Historia sztuki',
+  },
 ];

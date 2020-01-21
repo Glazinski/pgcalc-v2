@@ -1,4 +1,5 @@
 import styled, { css } from 'styled-components';
+import { Link } from 'react-router-dom';
 import { Nav, NavList, Alink } from '../styledComp/animations';
 import media from '../../utils';
 
@@ -153,6 +154,6 @@ export const StyledLink = styled(Alink)`
   `}
 `;
 
-export const StyledLinkTitle = styled.a`
+export const StyledLinkTitle = styled(Alink)`
   text-decoration: none;
 `;

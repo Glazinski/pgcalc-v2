@@ -32,7 +32,7 @@ export default (Matura, data) => () => {
       <StyledMain>
         <SubjectForm
           subjects={config.subjects}
-          grades={config.grades && null}
+          grades={config.grades ? config.grades : null}
           validationSchema={validationSchema}
         />
       </StyledMain>

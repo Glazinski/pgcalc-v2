@@ -52,7 +52,7 @@ const Header = () => {
       ))}
       <StyledLink
         pose={checked ? 'visible' : 'hidden'}
-        href={rulesLink.link}
+        to={rulesLink.link}
         target="_blank"
         bottom={1}
       >
@@ -79,7 +79,7 @@ const Header = () => {
                 <StyledLink
                   as={Link}
                   key={item.id}
-                  onClick={handleChecked}
+                  // onClick={handleChecked}
                   to={`/${item.link}`}
                   style={item.style}
                   unique={1}
@@ -111,7 +111,7 @@ const Header = () => {
     <Router>
       <StyledHeader>
         <div style={{ width: '50%' }}>
-          <StyledLinkTitle href="/">
+          <StyledLinkTitle as={Link} to="/">
             <H1>{pageTitle}</H1>
           </StyledLinkTitle>
         </div>

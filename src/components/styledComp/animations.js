@@ -1,4 +1,5 @@
 import posed from 'react-pose';
+import { Link } from 'react-router-dom';
 import { tween } from 'popmotion';
 
 export const Nav = posed.nav({

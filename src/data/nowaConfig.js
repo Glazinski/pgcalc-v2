@@ -2,14 +2,12 @@ import uniqid from 'uniqid';
 
 const min = 0;
 const max = 100;
+const isDoubleLang = false;
 const primaryScale = 0.4;
 const advanceScale = 1;
 const primaryScore = '';
 const advanceScore = '';
 const bigger = 0;
-// const value = '';
-// const unique = true;
-// const disabled = false;
 const basLevel = 'Poziom \n Podstawowy \n (%)';
 const extLevel = 'Poziom \n Rozszerzony \n (%)';
 
@@ -20,6 +18,7 @@ export const subjects = {
   extLevel,
   min,
   max,
+  isDoubleLang,
   subjects: [
     {
       id: uniqid(),

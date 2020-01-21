@@ -1,5 +1,5 @@
-import styled, { css } from 'styled-components';
-import { ListNew } from '../styledComp/animations';
+import styled, { css, keyframes } from 'styled-components';
+import { ListNew, List } from '../styledComp/animations';
 import media from '../../utils';
 
 export const StyledWrapper = styled.div`
@@ -105,7 +105,7 @@ export const StyledErrorMessage = styled.div`
 
 export const StyledDeleteButton = styled.button`
   position: absolute;
-  top: -20px;
+  top: -6px;
   right: 0;
   appearance: none;
   background-color: transparent;
@@ -122,6 +122,7 @@ export const StyledResultWrapper = styled.div`
 `;
 
 export const StyledResultItem = styled.div`
+  display: flex;
   margin: 1rem 1rem;
 
   ${media.tablet`
@@ -136,5 +137,61 @@ export const StyledLabel = styled.label`
 
   :hover {
     cursor: pointer;
+  }
+`;
+
+export const StyledInnerLabel = styled.div`
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 18px;
+  height: 18px;
+  margin-left: 5px;
+  margin-bottom: 7px;
+  /* right: -13%;
+  top: -15%; */
+  border-radius: 100px;
+  border: 1px solid ${({ theme }) => theme.colors.secondaryDark};
+  font-size: 1.3rem;
+
+  :hover {
+    cursor: pointer;
+  }
+`;
+
+const enter = keyframes`
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+`;
+
+export const StyledInnerLabelInfo = styled(List)`
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  width: 180px;
+  height: 120px;
+  padding: 1rem;
+  bottom: 25px;
+  left: -75px;
+  box-shadow: 0 0 1rem ${({ theme }) => theme.boxShadow};
+  animation: ${enter} 0.3s ease-in-out both;
+  font-size: ${({ theme }) => theme.fontSize.s};
+  background-color: ${({ theme }) => theme.colors.white};
+
+  ${media.tablet`
+    left: 22px;
+    bottom: 0;
+  `}
+
+  :hover {
+    cursor: default;
   }
 `;

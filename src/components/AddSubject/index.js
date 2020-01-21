@@ -12,7 +12,7 @@ const AddSubject = ({ onClick, submitForm, values }) => {
   useOutsideClick(ref, setVisible);
 
   return (
-    <StyledAddButton onClick={() => setVisible(!visible)} ref={ref}>
+    <StyledAddButton type="button" onClick={() => setVisible(!visible)} ref={ref}>
       <i className="material-icons">add</i>
       <PoseGroup>
         {visible ? (

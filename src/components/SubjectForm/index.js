@@ -1,5 +1,7 @@
+/* eslint-disable no-param-reassign */
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
+import _ from 'lodash';
 import { PoseGroup } from 'react-pose';
 import {
   Formik,
@@ -19,6 +21,8 @@ import {
   StyledResultWrapper,
   StyledResultItem,
   StyledLabel,
+  StyledInnerLabel,
+  StyledInnerLabelInfo,
 } from './styles';
 import {
   StyledTitleWrapper, StyledCheckbox, StyledButton, H2, H3,
@@ -29,15 +33,28 @@ import AddSubject from '../AddSubject';
 const MyField = ({ ...props }) => {
   const [field, meta] = useField(props);
   const errorMsg = !!(meta.error && meta.touched);
+
   return (
     <StyledInputWrapper>
-      <StyledInput {...field} type="number" errors={errorMsg} />
+      <StyledInput {...field} {...props} errors={errorMsg} />
 
-      {meta.touched && meta.error ? (
+      {errorMsg ? (
         <StyledErrorMessage>{meta.error}</StyledErrorMessage>
       ) : null}
     </StyledInputWrapper>
   );
+};
+
+const clearForeignField = (submitForm, formValues) => {
+  formValues.subjects.map((subject, index) => {
+    if (index === 0) {
+      subject.primaryScore = '';
+    }
+
+    return subject;
+  });
+
+  submitForm();
 };
 
 const clearFields = (submitForm, values) => {
@@ -72,6 +89,9 @@ const toggleSubjects = (e, submitForm, id, values) => {
 
 const SubjectForm = ({ subjects, grades, validationSchema }) => {
   const [result, setResult] = useState(0);
+  const [isHover, setIsHover] = useState(false);
+
+  const toggleHover = () => setIsHover(!isHover);
 
   return (
     <Formik
@@ -87,6 +107,7 @@ const SubjectForm = ({ subjects, grades, validationSchema }) => {
 
           if (grades) {
             const { basicGrades, extGrades } = grades;
+
             pscore = basicGrades.get(primaryScore) * primaryScale * forLanguage;
             ascore = extGrades.get(advanceScore) * advanceScale * forLanguage;
           } else {
@@ -94,26 +115,20 @@ const SubjectForm = ({ subjects, grades, validationSchema }) => {
             ascore = advanceScore * advanceScale * forLanguage;
           }
 
-          // console.log(pscore, ascore);
-          // console.log(parseFloat(pscore.toFixed(2)), parseFloat(ascore.toFixed(2)));
+          subject.bigger = Math.max(parseFloat(pscore.toFixed(2)), parseFloat(ascore.toFixed(2)));
 
-          const res = Math.max(parseFloat(pscore.toFixed(2)), parseFloat(ascore.toFixed(2)));
-
-          // subject.bigger = Math.max(parseFloat(pscore.toFixed(2)), parseFloat(ascore.toFixed(2)));
-          subject.bigger = res;
-          // return { ...subject, bigger: result };
           return subject;
         });
 
-        // Very last result
+        // The final result
         const res = data.subjects.reduce((acc, cur) => acc + cur.bigger, 0);
         setResult(parseFloat(res).toFixed(2));
       }}
     >
-      {({ values, submitForm, errors }) => (
+      {({ values, submitForm }) => (
         <Form>
           <StyledTitleWrapper>
-            <H2 square medium black regular mb>
+            <H2 square medium black regular>
               {values.title}
             </H2>
             <button
@@ -141,12 +156,20 @@ const SubjectForm = ({ subjects, grades, validationSchema }) => {
                       <StyledInnerWrapper>
                         <H3>{values.basLevel}</H3>
                         <H3>{values.extLevel}</H3>
-                        <MyField name={`subjects.${index}.primaryScore`} />
+                        <MyField
+                          name={`subjects.${index}.primaryScore`}
+                          type="number"
+                          disabled={index === 0 ? values.isDoubleLang : false}
+                        />
 
-                        <MyField name={`subjects.${index}.advanceScore`} />
+                        <MyField name={`subjects.${index}.advanceScore`} type="number" />
                       </StyledInnerWrapper>
+
                       {index === 2 || index === 3 ? (
-                        <StyledDeleteButton type="button" onClick={e => toggleSubjects(e, submitForm, values.subjects[index].id, values)}>
+                        <StyledDeleteButton
+                          type="button"
+                          onClick={e => toggleSubjects(e, submitForm, values.subjects[index].id, values)}
+                        >
                           <i className="material-icons">
                             delete_forever
                           </i>
@@ -163,10 +186,31 @@ const SubjectForm = ({ subjects, grades, validationSchema }) => {
               <H2 square regular xl black>Wynik: {result > 0 ? result : ''}</H2>
             </StyledResultItem>
             <StyledResultItem>
-              <Field type="checkbox" as={StyledCheckbox} />
-              <StyledLabel>
-                Matura Dwujęzyczna
-              </StyledLabel>
+              {_.has(subjects, 'isDoubleLang') ? (
+                <>
+                  <Field
+                    type="checkbox"
+                    as={StyledCheckbox}
+                    name="isDoubleLang"
+                    onClick={() => clearForeignField(submitForm, values)}
+                  />
+                  <StyledLabel>
+                    Matura Dwujęzyczna
+                  </StyledLabel>
+                  <StyledInnerLabel
+                    onMouseEnter={toggleHover}
+                    onMouseLeave={toggleHover}
+                  >
+                      i
+                    {isHover && (
+                    <StyledInnerLabelInfo>
+                          Przy wyborze matury dwujęzycznej, punkty z języka
+                          obcego są liczone jak rozszerzenie.
+                    </StyledInnerLabelInfo>
+                    )}
+                  </StyledInnerLabel>
+                </>
+              ) : null}
             </StyledResultItem>
             <StyledResultItem>
               <StyledButton type="submit">Policz</StyledButton>
@@ -174,9 +218,6 @@ const SubjectForm = ({ subjects, grades, validationSchema }) => {
           </StyledResultWrapper>
           <pre style={{ fontSize: '1.6rem' }}>
             {JSON.stringify(values, null, 2)}
-          </pre>
-          <pre style={{ fontSize: '1.6rem' }}>
-            {JSON.stringify(errors, null, 2)}
           </pre>
           <AddSubject onClick={toggleSubjects} values={values} submitForm={submitForm} />
         </Form>
