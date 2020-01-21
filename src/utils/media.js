@@ -1,8 +1,8 @@
 import { css } from 'styled-components';
 
-export const sizes = {
+const sizes = {
   desktop: 1248,
-  tablet: 800
+  tablet: 800,
 };
 
 export default Object.keys(sizes).reduce((acc, label) => {

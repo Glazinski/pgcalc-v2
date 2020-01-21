@@ -1,6 +1,7 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import styled from 'styled-components';
-import { media } from '../../utils/';
+import media from '../../utils';
 
 export const StyledHamburger = styled.div`
   position: relative;
@@ -72,16 +73,21 @@ const StyledInput = styled.input`
   }
 `;
 
-const HamburgerMenu = props => (
+const HamburgerMenu = ({ checked, handleChecked }) => (
   <StyledHamburger>
     <StyledInput
       name="navigation"
       type="checkbox"
-      checked={props.checked}
-      onChange={props.handleChecked}
+      checked={checked}
+      onChange={handleChecked}
     />
     <div />
   </StyledHamburger>
 );
+
+HamburgerMenu.propTypes = {
+  checked: PropTypes.bool.isRequired,
+  handleChecked: PropTypes.func.isRequired,
+};
 
 export default HamburgerMenu;

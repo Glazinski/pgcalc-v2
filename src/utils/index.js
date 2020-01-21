@@ -1,1 +1,2 @@
-export { default as media } from './media';
+export { default } from './media';
+export { default as theme } from './theme';

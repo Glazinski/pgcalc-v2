@@ -28,6 +28,56 @@ const Subject = props => {
     setIsHover(!isHover);
   };
 
+  const test = () => {
+    props.data.map(item => {
+      if(item.hidden) {
+        return null;
+      } else {
+			  return (
+          <AnimationWrapper key={item.id}>
+            <StyledInnerWrapper>
+              {item.special ? (
+                <CustomSelect />
+              ) : (
+                <H2 black>{item.title}</H2>
+              )}
+              {item.special ? <CustomSelect /> : <H2 black>{item.title}</H2>}
+              {item.removable ? (
+                <StyledDeleteButton
+                  type="submit"
+                  onClick={e => props.handleItemClick(e, item.id)}
+                >
+                  <i className="material-icons" data-type="del">
+                    delete_forever
+                  </i>
+                </StyledDeleteButton>
+              ) : null}
+            </StyledInnerWrapper>
+
+            <StyledInnerForm title={item.title}>
+              {item.input.map(
+                ({ id, level, value, name, min, max, disabled }) => (
+                  <StyledInnerSubjectWrapper key={id}>
+                    <H3>{level}</H3>
+                    <StyledInput
+                      type="number"
+                      onChange={e => props.handleInputChange(e)}
+                      value={value}
+                      name={name}
+                      min={min}
+                      max={max}
+                      disabled={disabled}
+                    />
+                  </StyledInnerSubjectWrapper>
+                )
+              )}
+            </StyledInnerForm>
+          </AnimationWrapper>
+        );
+      }
+    })
+  };
+
   return (
     <>
       <StyledWrapper>

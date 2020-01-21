@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-export const StyledButton = styled.button`
+const StyledButton = styled.button`
   position: relative;
   appearance: none;
   width: 95px;
@@ -23,3 +23,5 @@ export const StyledButton = styled.button`
     box-shadow: 0 0.7rem 1.2rem ${({ theme }) => theme.boxShadow};
   }
 `;
+
+export default StyledButton;

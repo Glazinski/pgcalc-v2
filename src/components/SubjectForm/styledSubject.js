@@ -72,9 +72,11 @@ export const StyledInnerForm = styled.div`
     height: 100px;
   }
 
-  ${({ title }) =>
-    title.includes('obcy')
-      ? css`
+
+`;
+
+/* ${({ title }) => (title.includes('obcy')
+    ? css`
           ::after {
             display: inline-block;
             left: -10px;
@@ -84,8 +86,8 @@ export const StyledInnerForm = styled.div`
             background-color: ${({ theme }) => theme.colors.secondary};
           }
         `
-      : title.includes('dodatkowy') &&
-        css`
+    : title.includes('dodatkowy')
+        && css`
           ::after {
             display: inline-block;
             clip-path: polygon(100% 0, 0% 100%, 100% 100%);
@@ -93,8 +95,7 @@ export const StyledInnerForm = styled.div`
             bottom: -15px;
             background-color: ${({ theme }) => theme.colors.primary};
           }
-        `}
-`;
+        `)} */
 
 export const StyledInnerSubjectWrapper = styled.div`
   margin: 2.5rem 0;

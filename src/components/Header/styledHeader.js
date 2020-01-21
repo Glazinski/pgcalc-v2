@@ -1,6 +1,7 @@
 import styled, { css } from 'styled-components';
+import { Link } from 'react-router-dom';
 import { Nav, NavList, Alink } from '../styledComp/animations';
-import { media } from '../../utils/';
+import media from '../../utils';
 
 export const StyledHeader = styled.header`
   display: flex;
@@ -105,9 +106,8 @@ export const StyledLink = styled(Alink)`
     color: ${({ theme }) => theme.colors.white};
   }
 
-  ${({ bottom }) =>
-    bottom &&
-    css`
+  ${({ bottom }) => bottom
+    && css`
       position: fixed;
       bottom: 0;
       left: 0;
@@ -116,38 +116,35 @@ export const StyledLink = styled(Alink)`
     `}
 
   ${media.tablet`
+    ${({ unique }) => (unique
+    ? css`
+      display: inline-block;
+      height: 100%;
+      padding: 0.5rem 0;
+      font-size: ${({ theme }) => theme.fontSize.s};
+      background-color: ${({ theme }) => theme.colors.primaryLight};
+      color: ${({ theme }) => theme.colors.white};
+      box-shadow: 0 0 0.3rem ${({ theme }) => theme.boxShadow};
 
-    ${({ unique }) =>
-      // For List with Matury
-      unique
-        ? css`
-            display: inline-block;
-            height: 100%;
-            padding: 0.5rem 0;
-            font-size: ${({ theme }) => theme.fontSize.s};
-            background-color: ${({ theme }) => theme.colors.primaryLight};
-            color: ${({ theme }) => theme.colors.white};
-            box-shadow: 0 0 0.3rem ${({ theme }) => theme.boxShadow};
+      :hover {
+        background-color: ${({ theme }) => theme.colors.primary};
+      }
+    `
+    // For links next to Matury
+    : css`
+      width: auto;
+      height: 30px;
+      padding: 0;
+      color: ${({ theme }) => theme.colors.secondaryDark};
+      font-size: ${({ theme }) => theme.fontSize.s};
+      font-weight: bold;
+      margin-right: 2rem;
 
-            :hover {
-              background-color: ${({ theme }) => theme.colors.primary};
-            }
-          `
-        : // For links next to Matury
-          css`
-            width: auto;
-            height: 30px;
-            padding: 0;
-            color: ${({ theme }) => theme.colors.secondaryDark};
-            font-size: ${({ theme }) => theme.fontSize.s};
-            font-weight: bold;
-            margin-right: 2rem;
-
-            :hover {
-              background-color: ${({ theme }) => theme.colors.primaryLight};
-              color: ${({ theme }) => theme.colors.white};
-            }
-          `}
+      :hover {
+        background-color: ${({ theme }) => theme.colors.primaryLight};
+        color: ${({ theme }) => theme.colors.white};
+      }
+    `)}
       
     :hover {
       cursor: pointer;
@@ -157,6 +154,6 @@ export const StyledLink = styled(Alink)`
   `}
 `;
 
-export const StyledLinkTitle = styled.a`
+export const StyledLinkTitle = styled(Alink)`
   text-decoration: none;
 `;

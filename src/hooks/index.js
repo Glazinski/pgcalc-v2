@@ -1,1 +1,1 @@
-export * from './useOutsideClick';
+export { default as useOutsideClick } from './useOutsideClick';

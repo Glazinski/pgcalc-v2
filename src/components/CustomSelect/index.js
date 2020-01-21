@@ -4,7 +4,7 @@ import {
   StyledSelect,
   StyledInnerSelect,
   StyledList,
-  StyledListItem
+  StyledListItem,
 } from './styledCustomSelect';
 import { H2, H3 } from '../styledComp';
 import { useOutsideClick } from '../../hooks';
@@ -25,7 +25,7 @@ const CustomSelect = () => {
 
   return (
     <StyledSelect onClick={handleClick} ref={ref}>
-      <StyledInnerSelect start>
+      <StyledInnerSelect start="true">
         <label>Przedmiot dodatkowy</label>
       </StyledInnerSelect>
       <StyledInnerSelect>

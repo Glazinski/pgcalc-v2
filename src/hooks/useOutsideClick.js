@@ -1,6 +1,6 @@
 import { useEffect } from 'react';
 
-export const useOutsideClick = (ref, setVisible) => {
+const useOutsideClick = (ref, setVisible) => {
   const handleClickOutside = event => {
     if (ref.current && !ref.current.contains(event.target)) {
       setVisible(false);
@@ -14,3 +14,5 @@ export const useOutsideClick = (ref, setVisible) => {
     };
   });
 };
+
+export default useOutsideClick;
