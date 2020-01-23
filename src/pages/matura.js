@@ -23,6 +23,12 @@ export default (Matura, data) => () => {
           .integer()
           .min(min, errorMsg)
           .max(max, errorMsg),
+        oralScore: yup
+          .number()
+          .positive()
+          .integer()
+          .min(min, errorMsg)
+          .max(max, errorMsg),
       }),
     ),
   });

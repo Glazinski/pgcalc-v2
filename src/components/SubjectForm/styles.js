@@ -56,7 +56,9 @@ export const StyledItem = styled(ListNew)`
 
 export const StyledInnerWrapper = styled.div`
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
+  grid-template-columns: ${({ threeCol }) => (
+    threeCol ? css`repeat(3, 1fr)` : css`repeat(2, 1fr)`
+  )};
   margin-top: 2rem;
 `;
 

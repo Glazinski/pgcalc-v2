@@ -93,6 +93,46 @@ const SubjectForm = ({ subjects, grades, validationSchema }) => {
 
   const toggleHover = () => setIsHover(!isHover);
 
+  console.log('re-render');
+
+  // const renderFields = values => {
+  //   const test = 0;
+
+  //   return values.subjects.map((subject, index) => (subject.hidden ? null : (
+  //     <StyledItem key={subject.id} title={subject.title}>
+  //       {index === 3 ? <CustomSelect /> : (
+  //         <div style={{ height: '46px' }}>
+  //           <H2 left black>{subject.title}</H2>
+  //         </div>
+  //       )}
+
+  //       <StyledInnerWrapper>
+  //         <H3>{values.basLevel}</H3>
+  //         {/* {_.has(values, 'oralLevel') ? <H3>{values.oralLevel}</H3> : null} */}
+  //         <H3>{values.extLevel}</H3>
+  //         <MyField
+  //           name={`subjects.${index}.primaryScore`}
+  //           type="number"
+  //           disabled={index === 0 ? values.isDoubleLang : false}
+  //         />
+
+  //         <MyField name={`subjects.${index}.advanceScore`} type="number" />
+  //       </StyledInnerWrapper>
+
+  //       {index === 2 || index === 3 ? (
+  //         <StyledDeleteButton
+  //           type="button"
+  //           onClick={e => toggleSubjects(e, submitForm, values.subjects[index].id, values)}
+  //         >
+  //           <i className="material-icons">
+  //             delete_forever
+  //           </i>
+  //         </StyledDeleteButton>
+  //       ) : null}
+  //     </StyledItem>
+  //   )));
+  // };
+
   return (
     <Formik
       initialValues={subjects}
@@ -100,12 +140,17 @@ const SubjectForm = ({ subjects, grades, validationSchema }) => {
       onSubmit={data => {
         data.subjects.map(subject => {
           const {
-            primaryScore, advanceScore, primaryScale, advanceScale, forLanguage,
+            primaryScore, advanceScore, primaryScale, advanceScale, forLanguage, oralScore,
           } = subject;
           let pscore;
           let ascore;
 
-          if (grades) {
+          if (_.has(subject, 'oralScore')) {
+            if (_.isNumber(oralScore) && _.isNumber(primaryScore)) {
+              pscore = ((grades.get(primaryScore) + grades.get(oralScore)) / 2) * primaryScale * forLanguage;
+            } else pscore = grades.get(primaryScore) * primaryScale * forLanguage;
+            ascore = grades.get(advanceScore) * advanceScale * forLanguage;
+          } else if (grades) {
             const { basicGrades, extGrades } = grades;
 
             pscore = basicGrades.get(primaryScore) * primaryScale * forLanguage;
@@ -145,38 +190,47 @@ const SubjectForm = ({ subjects, grades, validationSchema }) => {
             <FieldArray name="subjects">
               {() => (
                 <PoseGroup>
-                  {values.subjects.map((subject, index) => (subject.hidden ? null : (
-                    <StyledItem key={subject.id} title={subject.title}>
-                      {index === 3 ? <CustomSelect /> : (
-                        <div style={{ height: '46px' }}>
-                          <H2 left black>{subject.title}</H2>
-                        </div>
-                      )}
+                  {values.subjects.map((subject, index) => {
+                    const isStara = _.has(values, 'oralLevel');
 
-                      <StyledInnerWrapper>
-                        <H3>{values.basLevel}</H3>
-                        <H3>{values.extLevel}</H3>
-                        <MyField
-                          name={`subjects.${index}.primaryScore`}
-                          type="number"
-                          disabled={index === 0 ? values.isDoubleLang : false}
-                        />
+                    return (subject.hidden ? null : (
+                      <StyledItem key={subject.id} title={subject.title}>
+                        {index === 3 ? <CustomSelect /> : (
+                          <div style={{ height: '46px' }}>
+                            <H2 left black>{subject.title}</H2>
+                          </div>
+                        )}
 
-                        <MyField name={`subjects.${index}.advanceScore`} type="number" />
-                      </StyledInnerWrapper>
+                        <StyledInnerWrapper threeCol={!!(isStara && index !== 1)}>
+                          <H3>{values.basLevel}</H3>
+                          {isStara && index !== 1 ? <H3>{values.oralLevel}</H3> : null}
+                          <H3>{values.extLevel}</H3>
+                          <MyField
+                            name={`subjects.${index}.primaryScore`}
+                            type="number"
+                            disabled={index === 0 ? values.isDoubleLang : false}
+                          />
 
-                      {index === 2 || index === 3 ? (
-                        <StyledDeleteButton
-                          type="button"
-                          onClick={e => toggleSubjects(e, submitForm, values.subjects[index].id, values)}
-                        >
-                          <i className="material-icons">
+                          {isStara && index !== 1 ? (
+                            <MyField name={`subjects.${index}.oralScore`} type="number" />
+                          ) : null}
+
+                          <MyField name={`subjects.${index}.advanceScore`} type="number" />
+                        </StyledInnerWrapper>
+
+                        {index === 2 || index === 3 ? (
+                          <StyledDeleteButton
+                            type="button"
+                            onClick={e => toggleSubjects(e, submitForm, values.subjects[index].id, values)}
+                          >
+                            <i className="material-icons">
                             delete_forever
-                          </i>
-                        </StyledDeleteButton>
-                      ) : null}
-                    </StyledItem>
-                  )))}
+                            </i>
+                          </StyledDeleteButton>
+                        ) : null}
+                      </StyledItem>
+                    ));
+                  })}
                 </PoseGroup>
               )}
             </FieldArray>
@@ -216,9 +270,9 @@ const SubjectForm = ({ subjects, grades, validationSchema }) => {
               <StyledButton type="submit">Policz</StyledButton>
             </StyledResultItem>
           </StyledResultWrapper>
-          <pre style={{ fontSize: '1.6rem' }}>
+          {/* <pre style={{ fontSize: '1.6rem' }}>
             {JSON.stringify(values, null, 2)}
-          </pre>
+          </pre> */}
           <AddSubject onClick={toggleSubjects} values={values} submitForm={submitForm} />
         </Form>
       )}

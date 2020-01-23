@@ -17,7 +17,6 @@ export const StyledAddButton = styled.button`
   background-color: ${({ theme }) => theme.colors.secondaryLight};
   outline: none;
   transition: box-shadow 0.2s ease-in-out;
-  z-index: 10;
 
   :hover {
     cursor: pointer;

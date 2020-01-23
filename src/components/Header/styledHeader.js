@@ -1,5 +1,4 @@
 import styled, { css } from 'styled-components';
-import { Link } from 'react-router-dom';
 import { Nav, NavList, Alink } from '../styledComp/animations';
 import media from '../../utils';
 
@@ -43,7 +42,6 @@ export const StyledLinkContainer = styled.div`
   width: auto;
   height: 30px;
   transition: background-color 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
-  z-index: 100;
   margin-right: 2rem;
 
   :hover {
@@ -99,9 +97,10 @@ export const StyledLink = styled(Alink)`
   font-size: ${({ theme }) => theme.fontSize.xl};
   color: ${({ theme }) => theme.colors.secondaryDark};
   transition: background-color 0.3s ease-in-out, color 0.3s ease-in-out 0.1s,
-    box-shadow 0.3s ease-in-out;
+  box-shadow 0.3s ease-in-out;
 
   :hover {
+    cursor: pointer;
     background-color: ${({ theme }) => theme.colors.primary};
     color: ${({ theme }) => theme.colors.white};
   }
