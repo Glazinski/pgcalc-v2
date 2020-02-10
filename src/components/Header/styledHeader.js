@@ -21,8 +21,9 @@ export const StyledNav = styled(Nav)`
   align-items: center;
   flex-direction: column;
   text-align: center;
-  height: 100vh;
+  height: 100%;
   width: 100%;
+  /* overflow-y: hidden; */
   z-index: ${({ theme }) => theme.zIndex.level10};
   background-color: #fff;
 `;

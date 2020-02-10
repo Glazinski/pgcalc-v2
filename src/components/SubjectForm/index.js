@@ -93,46 +93,6 @@ const SubjectForm = ({ subjects, grades, validationSchema }) => {
 
   const toggleHover = () => setIsHover(!isHover);
 
-  console.log('re-render');
-
-  // const renderFields = values => {
-  //   const test = 0;
-
-  //   return values.subjects.map((subject, index) => (subject.hidden ? null : (
-  //     <StyledItem key={subject.id} title={subject.title}>
-  //       {index === 3 ? <CustomSelect /> : (
-  //         <div style={{ height: '46px' }}>
-  //           <H2 left black>{subject.title}</H2>
-  //         </div>
-  //       )}
-
-  //       <StyledInnerWrapper>
-  //         <H3>{values.basLevel}</H3>
-  //         {/* {_.has(values, 'oralLevel') ? <H3>{values.oralLevel}</H3> : null} */}
-  //         <H3>{values.extLevel}</H3>
-  //         <MyField
-  //           name={`subjects.${index}.primaryScore`}
-  //           type="number"
-  //           disabled={index === 0 ? values.isDoubleLang : false}
-  //         />
-
-  //         <MyField name={`subjects.${index}.advanceScore`} type="number" />
-  //       </StyledInnerWrapper>
-
-  //       {index === 2 || index === 3 ? (
-  //         <StyledDeleteButton
-  //           type="button"
-  //           onClick={e => toggleSubjects(e, submitForm, values.subjects[index].id, values)}
-  //         >
-  //           <i className="material-icons">
-  //             delete_forever
-  //           </i>
-  //         </StyledDeleteButton>
-  //       ) : null}
-  //     </StyledItem>
-  //   )));
-  // };
-
   return (
     <Formik
       initialValues={subjects}
@@ -243,12 +203,13 @@ const SubjectForm = ({ subjects, grades, validationSchema }) => {
               {_.has(subjects, 'isDoubleLang') ? (
                 <>
                   <Field
+                    id="doublelang"
                     type="checkbox"
                     as={StyledCheckbox}
                     name="isDoubleLang"
                     onClick={() => clearForeignField(submitForm, values)}
                   />
-                  <StyledLabel>
+                  <StyledLabel htmlFor="doublelang">
                     Matura Dwujęzyczna
                   </StyledLabel>
                   <StyledInnerLabel
@@ -270,9 +231,6 @@ const SubjectForm = ({ subjects, grades, validationSchema }) => {
               <StyledButton type="submit">Policz</StyledButton>
             </StyledResultItem>
           </StyledResultWrapper>
-          {/* <pre style={{ fontSize: '1.6rem' }}>
-            {JSON.stringify(values, null, 2)}
-          </pre> */}
           <AddSubject onClick={toggleSubjects} values={values} submitForm={submitForm} />
         </Form>
       )}

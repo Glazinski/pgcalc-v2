@@ -36,6 +36,9 @@ const Header = () => {
   const toggleHover = () => setIsHover(!isHover);
 
   const biggerThan800 = useMediaPredicate('(min-width: 800px)');
+  document.ontouchmove = function (e) {
+    e.preventDefault();
+  };
 
   const renderLinks = (unique, handleFn) => matury.map(item => (
     <StyledLink

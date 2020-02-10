@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 import media from '../../utils';
 
 export const StyledHamburger = styled.div`
@@ -14,6 +14,14 @@ export const StyledHamburger = styled.div`
   ${media.tablet`;
     display: none;
   `}
+
+  ${({ checked }) => (checked
+    ? css`
+      position: fixed;
+      z-index: 15;
+      right: 30px;
+    `
+    : null)};
 
   div {
     position: relative;
@@ -74,7 +82,7 @@ const StyledInput = styled.input`
 `;
 
 const HamburgerMenu = ({ checked, handleChecked }) => (
-  <StyledHamburger>
+  <StyledHamburger checked={checked}>
     <StyledInput
       name="navigation"
       type="checkbox"
