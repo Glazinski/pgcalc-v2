@@ -87,7 +87,9 @@ const toggleSubjects = (e, submitForm, id, values) => {
   submitForm();
 };
 
-const SubjectForm = ({ subjects, grades, validationSchema }) => {
+const SubjectForm = ({
+  handleConfig, subjects, grades, validationSchema,
+}) => {
   const [result, setResult] = useState(0);
   const [isHover, setIsHover] = useState(false);
 
@@ -127,7 +129,16 @@ const SubjectForm = ({ subjects, grades, validationSchema }) => {
 
         // The final result
         const res = data.subjects.reduce((acc, cur) => acc + cur.bigger, 0);
+        console.log(res);
+        data.res = parseFloat(res).toFixed(2);
+        console.log(data);
         setResult(parseFloat(res).toFixed(2));
+
+        handleConfig({
+          subjects: {
+            ...data,
+          },
+        });
       }}
     >
       {({ values, submitForm }) => (
@@ -197,7 +208,8 @@ const SubjectForm = ({ subjects, grades, validationSchema }) => {
           </StyledWrapper>
           <StyledResultWrapper>
             <StyledResultItem>
-              <H2 square regular xl black>Wynik: {result > 0 ? result : ''}</H2>
+              {/* <H2 square regular xl black>Wynik: {result > 0 ? result : ''}</H2> */}
+              <H2 square regular xl black>Wynik: {values.res > 0 ? values.res : ''}</H2>
             </StyledResultItem>
             <StyledResultItem>
               {_.has(subjects, 'isDoubleLang') ? (
@@ -246,6 +258,7 @@ SubjectForm.propTypes = {
   validationSchema: PropTypes.oneOfType([PropTypes.object]).isRequired,
   subjects: PropTypes.oneOfType([PropTypes.object]).isRequired,
   grades: PropTypes.oneOfType([PropTypes.object]),
+  handleConfig: PropTypes.func.isRequired,
 };
 
 export default SubjectForm;
