@@ -6,6 +6,7 @@ import {
   Switch,
   Redirect,
 } from 'react-router-dom';
+import uniqid from 'uniqid';
 import { PoseGroup } from 'react-pose';
 import { useMediaPredicate } from 'react-media-hook';
 import {
@@ -18,52 +19,57 @@ import {
   StyledLinkTitle,
 } from './styledHeader';
 import { H1 } from '../styledComp';
-import { navData, pageTitle, rulesLink } from '../../data/navData';
+import { navData } from '../../data/navData';
 import HamburgerMenu from './HamburgerMenu';
 import NowaMaturaPage from '../../pages/NowaMatura';
-// import StaraMaturaPage from '../../pages/staraMatura';
+import StaraMaturaPage from '../../pages/StaraMatura';
 import IbMaturaPage from '../../pages/MaturaIB';
 
 const Header = () => {
+  const { pageTitle, rules, matury } = navData;
+
   const [checked, setChecked] = useState(false);
-  const handleChecked = () => {
-    setChecked(!checked);
-  };
+  const handleChecked = () => setChecked(!checked);
 
   const [isHover, setIsHover] = useState(false);
 
-  const toggleHover = () => {
-    setIsHover(!isHover);
-  };
+  const toggleHover = () => setIsHover(!isHover);
 
   const biggerThan800 = useMediaPredicate('(min-width: 800px)');
+  document.ontouchmove = function (e) {
+    e.preventDefault();
+  };
+
+  const renderLinks = (unique, handleFn) => matury.map(item => (
+    <StyledLink
+      as={Link}
+      key={item.id}
+      onClick={handleFn || null}
+      to={`/${item.link}`}
+      style={item.style}
+      unique={unique ? 'true' : null}
+    >
+      {item.content}
+    </StyledLink>
+  ));
 
   const mobileNav = (
     <StyledNav pose={checked ? 'visible' : 'hidden'}>
-      {navData.map(item => (
-        <StyledLink
-          as={Link}
-          key={item.id}
-          onClick={handleChecked}
-          to={`/${item.link}`}
-        >
-          {item.content}
-        </StyledLink>
-      ))}
+      {renderLinks(false, handleChecked)}
       <StyledLink
         pose={checked ? 'visible' : 'hidden'}
-        to={rulesLink.link}
+        href={rules.link}
         target="_blank"
         bottom={1}
       >
-        {rulesLink.content}
+        {rules.content}
       </StyledLink>
     </StyledNav>
   );
 
   const desktopNav = (
     <StyledNavDekstop>
-      <StyledLink href={rulesLink.link} target="_blank">
+      <StyledLink href={rules.link} target="_blank">
         Zasady
       </StyledLink>
       <StyledLinkContainer
@@ -73,37 +79,12 @@ const Header = () => {
         <span>Matury</span>
         <PoseGroup>
           {isHover && (
-            <StyledLinkList key="209389sd">
-              {navData.map(
-                item => item.unique && (
-                <StyledLink
-                  as={Link}
-                  key={item.id}
-                  // onClick={handleChecked}
-                  to={`/${item.link}`}
-                  style={item.style}
-                  unique={1}
-                >
-                  {item.content}
-                </StyledLink>
-                ),
-              )}
+            <StyledLinkList key={uniqid()}>
+              {renderLinks(true, false)}
             </StyledLinkList>
           )}
         </PoseGroup>
       </StyledLinkContainer>
-      {navData.map(
-        item => !item.unique && (
-        <StyledLink
-          as={Link}
-          key={item.id}
-          onClick={handleChecked}
-          to={`/${item.link}`}
-        >
-          {item.content}
-        </StyledLink>
-        ),
-      )}
     </StyledNavDekstop>
   );
 
@@ -132,24 +113,12 @@ const Header = () => {
           component={IbMaturaPage}
         />
 
-        {/* <Route
-          path="/stara-matura"
-          render={() => (
-            <StaraMaturaPage
-              handleConfigInputChange={props.handleConfigInputChange}
-              handleItemClick={props.handleItemClick}
-            />
-          )}
-        />
         <Route
-          path="/matura-miedzynarodowa"
-          render={() => (
-            <MaturaIBPage
-              handleConfigInputChange={props.handleConfigInputChange}
-              handleItemClick={props.handleItemClick}
-            />
-          )}
-        /> */}
+          path="/stara-matura"
+          exact
+          component={StaraMaturaPage}
+        />
+
         <Redirect to="/" />
       </Switch>
     </Router>
