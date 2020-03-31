@@ -1,29 +1,28 @@
-# Kalkulator Punktów
+# Points Calculator
 
-Aplikacja internetowa służąca do obliczenia punktów <br />
-na Politechnikę Gdańską na każdy kierunek. <br />
-`Na architekturę trzeba dodać do wyniku punkty z pierwszego etapu`
+It is a web application which calculates points <br />
+for Politechnika Gdańska for all subjects
 
-## Dostępne matury
+## Available matura exams
 
 - Nowa matura
 - Stara matura
 - Matura międzynarodowa
 
-## Jak uruchomić?
+## How to run?
 
-Aby uruchomić lokalnie trzeba mieć zainstalowanego node'a i wykonać polecenie
+To run it locally you have to have node installed and run command
 
 ```
 npm start
 ```
 
-Natomiast aby stworzyć build w folderze public gotowy na hosting
+However to create build in public folder run
 
 ```
 npm run build
 ```
 
-## Skrawek tego jak aplikacja się prezentuje
+## Snippet of how application looks
 
 ![aplikacja](./assets/desktop.gif)
