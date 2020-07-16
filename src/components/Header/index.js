@@ -21,9 +21,9 @@ import {
 import { H1 } from '../styledComp';
 import { navData } from '../../data/navData';
 import HamburgerMenu from './HamburgerMenu';
-import NowaMaturaPage from '../../pages/NowaMatura';
-import StaraMaturaPage from '../../pages/StaraMatura';
-import IbMaturaPage from '../../pages/MaturaIB';
+import NowaMaturaPage from '../../pages/nowaMatura';
+import StaraMaturaPage from '../../pages/staraMatura';
+import IbMaturaPage from '../../pages/maturaIB';
 
 const Header = () => {
   const { pageTitle, rules, matury } = navData;
@@ -36,11 +36,8 @@ const Header = () => {
   const toggleHover = () => setIsHover(!isHover);
 
   const biggerThan800 = useMediaPredicate('(min-width: 800px)');
-  document.ontouchmove = function (e) {
-    e.preventDefault();
-  };
 
-  const renderLinks = (unique, handleFn) => matury.map(item => (
+  const renderLinks = (unique, handleFn) => matury.map((item) => (
     <StyledLink
       as={Link}
       key={item.id}
@@ -101,23 +98,11 @@ const Header = () => {
         {biggerThan800 ? desktopNav : mobileNav}
       </StyledHeader>
       <Switch>
-        <Route
-          path="/"
-          exact
-          component={NowaMaturaPage}
-        />
+        <Route path="/" exact component={NowaMaturaPage} />
 
-        <Route
-          path="/matura-miedzynarodowa"
-          exact
-          component={IbMaturaPage}
-        />
+        <Route path="/matura-miedzynarodowa" exact component={IbMaturaPage} />
 
-        <Route
-          path="/stara-matura"
-          exact
-          component={StaraMaturaPage}
-        />
+        <Route path="/stara-matura" exact component={StaraMaturaPage} />
 
         <Redirect to="/" />
       </Switch>
