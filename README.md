@@ -1,5 +1,6 @@
 # Points Calculator
 
+<a href="https://pgcalc-v2.netlify.app/" target="_blank">Visit the live app</a> <br />
 It is a web application which calculates points <br />
 for Politechnika Gdańska for all subjects
 
