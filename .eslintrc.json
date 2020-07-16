@@ -23,10 +23,10 @@
         "extensions": [".js", ".jsx"]
       }
     ],
-    "arrow-parens": ["error", "as-needed"],
     "react/jsx-one-expression-per-line": "off",
     "import/prefer-default-export": "off",
     "react/jsx-props-no-spreading": "off",
-    "max-len": ["error", { "code": 120 }]
+    "max-len": ["error", { "code": 120 }],
+    "linebreak-style": ["error", "windows"]
   }
 }
