@@ -5,12 +5,14 @@ import SubjectForm from '../components/SubjectForm';
 
 export default (Matura, data) => () => {
   const localConfig = JSON.parse(localStorage.getItem(data.subjects.title));
-  const [config, setConfig] = useState({ ...data, ...localConfig } || { ...data });
+  const [config, setConfig] = useState(
+    { ...data, ...localConfig } || { ...data },
+  );
 
   const { min, max } = config.subjects;
   const errorMsg = `Wynik musi być pomiędzy ${min} a ${max}.`;
 
-  const handleConfig = formData => {
+  const handleConfig = (formData) => {
     localStorage.setItem(config.subjects.title, JSON.stringify(formData));
     setConfig({ ...config, formData });
   };

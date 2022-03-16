@@ -1,14 +1,9 @@
-/* eslint-disable no-param-reassign */
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import _ from 'lodash';
 import { PoseGroup } from 'react-pose';
 import {
-  Formik,
-  Form,
-  Field,
-  FieldArray,
-  useField,
+  Formik, Form, Field, FieldArray, useField,
 } from 'formik';
 import {
   StyledWrapper,
@@ -25,7 +20,11 @@ import {
   StyledInnerLabelInfo,
 } from './styles';
 import {
-  StyledTitleWrapper, StyledCheckbox, StyledButton, H2, H3,
+  StyledTitleWrapper,
+  StyledCheckbox,
+  StyledButton,
+  H2,
+  H3,
 } from '../styledComp';
 import CustomSelect from '../CustomSelect';
 import AddSubject from '../AddSubject';
@@ -38,9 +37,7 @@ const MyField = ({ ...props }) => {
     <StyledInputWrapper>
       <StyledInput {...field} {...props} errors={errorMsg} />
 
-      {errorMsg ? (
-        <StyledErrorMessage>{meta.error}</StyledErrorMessage>
-      ) : null}
+      {errorMsg ? <StyledErrorMessage>{meta.error}</StyledErrorMessage> : null}
     </StyledInputWrapper>
   );
 };
@@ -58,7 +55,7 @@ const clearForeignField = (submitForm, formValues) => {
 };
 
 const clearFields = (submitForm, values) => {
-  values.subjects.map(subject => {
+  values.subjects.map((subject) => {
     subject.primaryScore = '';
     subject.advanceScore = '';
     subject.bigger = 0;
@@ -73,7 +70,7 @@ const toggleSubjects = (e, submitForm, id, values) => {
   e.preventDefault();
   const newData = { ...values };
 
-  newData.subjects.map(subject => {
+  newData.subjects.map((subject) => {
     if (id === subject.id) {
       subject.hidden = !subject.hidden;
       subject.primaryScore = '';
@@ -99,17 +96,24 @@ const SubjectForm = ({
     <Formik
       initialValues={subjects}
       validationSchema={validationSchema}
-      onSubmit={data => {
-        data.subjects.map(subject => {
+      onSubmit={(data) => {
+        data.subjects.map((subject) => {
           const {
-            primaryScore, advanceScore, primaryScale, advanceScale, forLanguage, oralScore,
+            primaryScore,
+            advanceScore,
+            primaryScale,
+            advanceScale,
+            forLanguage,
+            oralScore,
           } = subject;
           let pscore;
           let ascore;
 
           if (_.has(subject, 'oralScore')) {
             if (_.isNumber(oralScore) && _.isNumber(primaryScore)) {
-              pscore = ((grades.get(primaryScore) + grades.get(oralScore)) / 2) * primaryScale * forLanguage;
+              pscore = ((grades.get(primaryScore) + grades.get(oralScore)) / 2)
+                * primaryScale
+                * forLanguage;
             } else pscore = grades.get(primaryScore) * primaryScale * forLanguage;
             ascore = grades.get(advanceScore) * advanceScale * forLanguage;
           } else if (grades) {
@@ -122,7 +126,10 @@ const SubjectForm = ({
             ascore = advanceScore * advanceScale * forLanguage;
           }
 
-          subject.bigger = Math.max(parseFloat(pscore.toFixed(2)), parseFloat(ascore.toFixed(2)));
+          subject.bigger = Math.max(
+            parseFloat(pscore.toFixed(2)),
+            parseFloat(ascore.toFixed(2)),
+          );
 
           return subject;
         });
@@ -152,9 +159,7 @@ const SubjectForm = ({
               type="button"
               onClick={() => clearFields(submitForm, values)}
             >
-              <i className="material-icons">
-              delete_sweep
-              </i>
+              <i className="material-icons">delete_sweep</i>
             </button>
           </StyledTitleWrapper>
           <StyledWrapper>
@@ -164,17 +169,25 @@ const SubjectForm = ({
                   {values.subjects.map((subject, index) => {
                     const isStara = _.has(values, 'oralLevel');
 
-                    return (subject.hidden ? null : (
+                    return subject.hidden ? null : (
                       <StyledItem key={subject.id} title={subject.title}>
-                        {index === 3 ? <CustomSelect /> : (
+                        {index === 3 ? (
+                          <CustomSelect />
+                        ) : (
                           <div style={{ height: '46px' }}>
-                            <H2 left black>{subject.title}</H2>
+                            <H2 left black>
+                              {subject.title}
+                            </H2>
                           </div>
                         )}
 
-                        <StyledInnerWrapper threeCol={!!(isStara && index !== 1)}>
+                        <StyledInnerWrapper
+                          threeCol={!!(isStara && index !== 1)}
+                        >
                           <H3>{values.basLevel}</H3>
-                          {isStara && index !== 1 ? <H3>{values.oralLevel}</H3> : null}
+                          {isStara && index !== 1 ? (
+                            <H3>{values.oralLevel}</H3>
+                          ) : null}
                           <H3>{values.extLevel}</H3>
                           <MyField
                             name={`subjects.${index}.primaryScore`}
@@ -183,24 +196,33 @@ const SubjectForm = ({
                           />
 
                           {isStara && index !== 1 ? (
-                            <MyField name={`subjects.${index}.oralScore`} type="number" />
+                            <MyField
+                              name={`subjects.${index}.oralScore`}
+                              type="number"
+                            />
                           ) : null}
 
-                          <MyField name={`subjects.${index}.advanceScore`} type="number" />
+                          <MyField
+                            name={`subjects.${index}.advanceScore`}
+                            type="number"
+                          />
                         </StyledInnerWrapper>
 
                         {index === 2 || index === 3 ? (
                           <StyledDeleteButton
                             type="button"
-                            onClick={e => toggleSubjects(e, submitForm, values.subjects[index].id, values)}
+                            onClick={(e) => toggleSubjects(
+                              e,
+                              submitForm,
+                              values.subjects[index].id,
+                              values,
+                            )}
                           >
-                            <i className="material-icons">
-                            delete_forever
-                            </i>
+                            <i className="material-icons">delete_forever</i>
                           </StyledDeleteButton>
                         ) : null}
                       </StyledItem>
-                    ));
+                    );
                   })}
                 </PoseGroup>
               )}
@@ -209,7 +231,9 @@ const SubjectForm = ({
           <StyledResultWrapper>
             <StyledResultItem>
               {/* <H2 square regular xl black>Wynik: {result > 0 ? result : ''}</H2> */}
-              <H2 square regular xl black>Wynik: {values.res > 0 ? values.res : ''}</H2>
+              <H2 square regular xl black>
+                Wynik: {values.res > 0 ? values.res : ''}
+              </H2>
             </StyledResultItem>
             <StyledResultItem>
               {_.has(subjects, 'isDoubleLang') ? (
@@ -228,12 +252,12 @@ const SubjectForm = ({
                     onMouseEnter={toggleHover}
                     onMouseLeave={toggleHover}
                   >
-                      i
+                    i
                     {isHover && (
-                    <StyledInnerLabelInfo>
-                          Przy wyborze matury dwujęzycznej, punkty z języka
-                          obcego są liczone jak rozszerzenie.
-                    </StyledInnerLabelInfo>
+                      <StyledInnerLabelInfo>
+                        Przy wyborze matury dwujęzycznej, punkty z języka obcego
+                        są liczone jak rozszerzenie.
+                      </StyledInnerLabelInfo>
                     )}
                   </StyledInnerLabel>
                 </>
@@ -243,7 +267,11 @@ const SubjectForm = ({
               <StyledButton type="submit">Policz</StyledButton>
             </StyledResultItem>
           </StyledResultWrapper>
-          <AddSubject onClick={toggleSubjects} values={values} submitForm={submitForm} />
+          <AddSubject
+            onClick={toggleSubjects}
+            values={values}
+            submitForm={submitForm}
+          />
         </Form>
       )}
     </Formik>

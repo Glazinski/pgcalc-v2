@@ -17,12 +17,12 @@ const AddSubject = ({ onClick, submitForm, values }) => {
       <PoseGroup>
         {visible ? (
           <StyledWrapper key="89742">
-            <StyledItem onClick={e => onClick(e, submitForm, values.subjects[2].id, values)}>
+            <StyledItem onClick={(e) => onClick(e, submitForm, values.subjects[2].id, values)}>
               <H2 regular square black mb>
                 Matematyka
               </H2>
             </StyledItem>
-            <StyledItem onClick={e => onClick(e, submitForm, values.subjects[3].id, values)}>
+            <StyledItem onClick={(e) => onClick(e, submitForm, values.subjects[3].id, values)}>
               <H2 regular square black>
                 Przedmiot dodatkowy
               </H2>

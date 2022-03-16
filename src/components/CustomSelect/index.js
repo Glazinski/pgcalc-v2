@@ -14,7 +14,7 @@ const CustomSelect = () => {
   const [value, setValue] = useState('Fizyka');
   const [visible, setVisible] = useState(false);
 
-  const handleClick = e => {
+  const handleClick = (e) => {
     const { dataset } = e.target;
     setValue(dataset.value ? dataset.value : value);
     setVisible(!visible);
